@@ -15,109 +15,98 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="users.html">Users</a></li>
                 <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="locations.html">Locations</a></li>
                 <li><a href="reviews.html">Reviews</a></li>
                 <li><a href="cuisineTypes.html">Cuisine Types</a></li>
                 <li><a href="restaurantChains.html">Restaurant Chains</a></li>
             </ul>
         </nav>
         <main>
-            <h1>Restaurant Chains</h1>
+            <h1>Locations</h1>
+
             <div id="browse">
-                <p><a href="#" onClick="showAll()">Display all forms</a> </p>
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newPerson()">New</a></th>
+                    <th><a href="#" onClick="newLocation()">New</a></th>
                     <th></th>
-                    <th>id</th>
-                    <th>fname</th>
-                    <th>lname</th>
-                    <th>homeworld</th>
-                    <th>age</th>
+                    <th>locationID</th>
+                    <th>city</th>
+                    <th>state</th>
+                    <th>country</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
-                    <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
+                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
                     <td align="right" >1</td>
-                    <td >William</td>
-                    <td align="right" >Adama</td>
-                    <td>Caprica</td>
-                    <td>61</td>
+                    <td >New York</td>
+                    <td align="right" >NY</td>
+                    <td>USA</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
-                    <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
+                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
                     <td align="right" >2</td>
-                    <td>Lee</td>
-                    <td align="right" >Adama</td>
-                    <td >Caprica</td>
-                    <td>30</td>
+                    <td>Los Angeles</td>
+                    <td align="right" >CA</td>
+                    <td >USA</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
-                    <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
-                    <td>3</td>
-                    <td>Laura</td>
-                    <td align="right" >Roslin</td>
-                    <td>Caprica</td>
-                    <td><em>NULL</em></td>
+                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
+                    <td align="right" >3</td>
+                    <td>London</td>
+                    <td align="right" >NULL</td>
+                    <td>UK</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
             </div> <!-- browse -->
-            <div id="insert">
-                <form method="POST" id="addPlanet">
-                    <legend><strong>Add Person</strong></legend>
-                      <fieldset class="fields">
-                        <label> first name </label> <input type="text" name="fname">
-                        <label> last name </label> <input type="text" name="lname">
-                        <label> Homeworld </label> <select name="homeworld">
-                            <option value="0">&nbsp;</option>
-                            <option value="1">Gemenon</option>
-                            <option value="2">Leonis</option>
-                            <option value="3">Caprica</option>
-                            </select>
-                        <label> age </label> <input type="text" name="age">
-                  </fieldset>
-                      <input class="btn" type="submit" id="addPerson" value="Add Person">
-                      <input class="btn" type="button" value="cancel" onClick="browsePeople()">
-                </form> 
-            </div><!-- insert -->
             <p>&nbsp;</p>
-            <div id="update">
-                <form method="POST" id="UpdatePerson">
-                    <legend><strong>Update Person</strong></legend>
-                      <fieldset class="fields">
-                      <input type="hidden" name="personID" id="updatepersonID" value="1">
-                      <label> ID: </label> 1
-                        <label> first name </label> <input type="text" name="fname" value="William">
-                        <label> last name </label> <input type="text" name="lname" value="Adama">
-                        <label> Homeworld </label> <select name="homeworld">
-                            <option value="0">&nbsp;</option>
-                            <option value="1" selected>Gemenon</option>
-                            <option value="2">Leonis</option>
-                            <option value="3">Caprica</option>
-                            </select>
-                        <label> age </label> <input type="text" name="age" value="61">
+        </div> <!-- browse -->
+
+        <div id="insert" style="display: block">
+            <form id="addLocation">
+                <legend><strong>Add Location</strong></legend>
+                  <fieldset class="fields">
+                    <label> City </label> <input type="text" name="city">
+                    <label> State </label> <input type="text" name="state">
+                    <label> Location ID </label> <input type="text" name="locationID">
+                    <label> Country </label> <input type="text" name="country">
                   </fieldset>
-                      <input class="btn" type="submit" id="UpdateSavePerson" value="Save Update Person">
-                      <input class="btn" type="button" value="cancel" onClick="browsePeople()">
-                </form> 
-            </div><!-- update -->
-            <p>&nbsp;</p>
-            <div id="delete" style="display: block">
-              <form method="POST" id="deletePerson">
-                  <legend><strong>Delete Person</strong></legend>
-                      <fieldset class="fields">
-                      <p>Are you sure you wish to delete the following?</p>
-                      <input type="hidden" name="personID" id="deletepersonID" value="1">
-                      <label><strong>ID:</strong></label> 1
-                        <label> <strong>Name</strong> </label> William Adama
-                        
-                </fieldset>
-                <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
-                      <input class="btn" type="button" value="cancel" onClick="browsePeople()">
-              </form> 
-            </div><!-- delete -->
+                  <input class="btn" type="submit" id="addLocation" value="Add a Location">
+                  <input class="btn" type="button" value="cancel">
+            </form> <!--add new location-->
+        </div><!-- insert -->
+        
+        <p>&nbsp;</p>
+        <div id="update" style="display: block">
+          <form id="updateLocation">
+              <legend><strong>Update Location</strong></legend>
+                  <fieldset class="fields">
+                  <label>ID:</label> 1
+                    <label> City </label> <input type="text" value="New York" name="city">
+                    <label> State </label> <input type="text"  name="state" value="NY">
+                    <label> Location ID </label> <input type="text" name="locationID" value="1">
+                    <label> Country </label> <input type="text" name="country" value="USA">
+            </fieldset>
+            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+                  <input class="btn" type="button" value="cancel" >
+          </form> 
+        </div><!-- update -->
+        <p>&nbsp;</p>
+        <div id="delete" style="display: block">
+          <form id="deleteLocation">
+              <legend><strong>Delete Location</strong></legend>
+                  <fieldset class="fields">
+                  <p>Are you sure you wish to delete the following?</p>
+                  <label>ID:</label> 1
+                    <label> City </label> New York
+                    
+            </fieldset>
+            <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
+                  <input class="btn" type="button" value="cancel" >
+          </form> 
+        </div><!-- delete -->
         </main>
     </body>
 </html>
