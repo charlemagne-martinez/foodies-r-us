@@ -1,1 +1,8 @@
 Day 1: 2/14.
+Day 2: 2/15: 
+    - Added html skeleton for each page
+    - Added Select for table information
+    Todo: 
+        - Update HTML pages to be specialized to their own information tables
+        - DMQ 
+        - Add DDL.sql
