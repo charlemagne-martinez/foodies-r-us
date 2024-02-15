@@ -6,3 +6,10 @@ Day 2: 2/15:
         - Update HTML pages to be specialized to their own information tables
         - DMQ 
         - Add DDL.sql
+
+
+git fetch origin 
+git checkout main
+git pull origin main
+git checkout -branch
+git merge main
