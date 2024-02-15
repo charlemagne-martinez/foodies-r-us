@@ -18,3 +18,13 @@ SELECT * FROM RestaurantChains;
 --Select all locations
 SELECT * FROM Locations;
 
+--Create
+
+
+--Read
+
+
+--Update
+
+
+--Delete
