@@ -1,10 +1,13 @@
 --SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
-SELECT * FROM Users;
+SELECT userID, username, email, password, fName, lName FROM Users;
 
 --Select all restaurants
-SELECT * FROM Restaurants;
+SELECT restaurantID, Locations.locationID, RestaurantChains.restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder, photo 
+FROM Restaurants
+INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
+INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID; 
 
 --Select all reviews
 SELECT * FROM Reviews;
