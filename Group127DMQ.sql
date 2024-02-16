@@ -46,6 +46,7 @@ VALUES (:city, :state, :country);
 
 
 --Update
+
 -- Update Users
 UPDATE Users
 SET email = :email,
@@ -91,3 +92,28 @@ WHERE locationID = :locationID;
 
 
 --Delete
+
+--Delete for Users
+DELETE FROM Users
+WHERE username = :username;
+
+--Delete for Restaurants
+DELETE FROM Restaurants
+WHERE restaurantID = :restaurantID;
+
+--Delete for Reviews
+DELETE FROM Reviews
+WHERE restaurantID = :restaurantID
+  AND userID = :userID;
+
+--Delete for CusisineTypes
+DELETE FROM CuisineTypes
+WHERE cuisineTypeID = :cuisineTypeID;
+
+--Delete RestaurantsChains
+DELETE FROM RestaurantChains
+WHERE restaurantChainID = :restaurantChainID;
+
+--Delete Locations
+DELETE FROM Locations
+WHERE locationID = :locationID;
