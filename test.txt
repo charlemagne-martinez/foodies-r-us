@@ -1,14 +1,19 @@
 Day 1: 2/14.
+    - Created repo
+    - Initial setup
 Day 2: 2/15: 
     - Added html skeleton for each page
     - Added Select for table information
+    - Added DDL.sql
+    - Updated actions we are to take to update outline/ERD/schema based on TA/peer feedback
+    - Update outline, ERD, schema, DDL.sql file based on TA and peer feedback
+
     Todo: 
+        - Update entities, crud list google doc so that we have checklist of things
         - Update HTML pages to be specialized to their own information tables
         - DMQ.sql
-        - Add DDL.sql ✅
-        - Update entities, crud list google doc so that we have checklist of things
-        - Update actions we are to take to update outline/ERD/schema based on TA/peer feedback ✅
-        - Update outline, ERD, schema, DDL.sql file based on TA and peer feedback ✅
+
+
 
 
 

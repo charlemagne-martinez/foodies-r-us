@@ -22,41 +22,59 @@
             </ul>
         </nav>
         <main>
-            <h1>Locations</h1>
+            <h1>Users</h1>
 
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newLocation()">New</a></th>
+                    <th><a href="#" onClick="newUser()">New</a></th>
                     <th></th>
-                    <th>locationID</th>
-                    <th>city</th>
-                    <th>state</th>
-                    <th>country</th>
+                    <th>userID</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>password</th>
+                    <th>fName</th>
+                    <th>lName</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >1</td>
-                    <td >New York</td>
-                    <td align="right" >NY</td>
-                    <td>USA</td>
+                    <td><a href="#" onClick="updateUser('this.userID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
+                    <td>1</td>
+                    <td>user1</td>
+                    <td>user1@example.com</td>
+                    <td>password1</td>
+                    <td>John</td>
+                    <td>Doe</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >2</td>
-                    <td>Los Angeles</td>
-                    <td align="right" >CA</td>
-                    <td >USA</td>
+                    <td><a href="#" onClick="updateUser('this.userID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
+                    <td>2</td>
+                    <td>user2</td>
+                    <td>user2@example.com</td>
+                    <td>password2</td>
+                    <td>Jane</td>
+                    <td>Smith</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >3</td>
-                    <td>London</td>
-                    <td align="right" >NULL</td>
-                    <td>UK</td>
+                    <td><a href="#" onClick="updateUser('this.userID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
+                    <td>3</td>
+                    <td>user3</td>
+                    <td>user3@example.com</td>
+                    <td>password3</td>
+                    <td>Michael</td>
+                    <td>Johnson</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#" onClick="updateUser('this.userID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
+                    <td>4</td>
+                    <td>user4</td>
+                    <td>user4@example.com</td>
+                    <td>password4</td>
+                    <td>Emily</td>
+                    <td>Brown</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
@@ -65,45 +83,49 @@
         </div> <!-- browse -->
 
         <div id="insert" style="display: block">
-            <form id="addLocation">
-                <legend><strong>Add Location</strong></legend>
+            <form id="addUser">
+                <legend><strong>Add User</strong></legend>
                   <fieldset class="fields">
-                    <label> City </label> <input type="text" name="city">
-                    <label> State </label> <input type="text" name="state">
-                    <label> Location ID </label> <input type="text" name="locationID">
-                    <label> Country </label> <input type="text" name="country">
+                    <label> User ID </label> <input type="text" name="userID">
+                    <label> Username </label> <input type="text" name="username">
+                    <label> Email </label> <input type="text" name="email">
+                    <label> Password </label> <input type="text" name="password">
+                    <label> First Name </label> <input type="text" name="fName">
+                    <label> Last Name </label> <input type="text" name="lName">
                   </fieldset>
-                  <input class="btn" type="submit" id="addLocation" value="Add a Location">
+                  <input class="btn" type="submit" id="addUser" value="Add User">
                   <input class="btn" type="button" value="cancel">
-            </form> <!--add new location-->
+            </form> <!--add new user-->
         </div><!-- insert -->
         
         <p>&nbsp;</p>
         <div id="update" style="display: block">
-          <form id="updateLocation">
-              <legend><strong>Update Location</strong></legend>
+          <form id="updateUser">
+              <legend><strong>Update User</strong></legend>
                   <fieldset class="fields">
                   <label>ID:</label> 1
-                    <label> City </label> <input type="text" value="New York" name="city">
-                    <label> State </label> <input type="text"  name="state" value="NY">
-                    <label> Location ID </label> <input type="text" name="locationID" value="1">
-                    <label> Country </label> <input type="text" name="country" value="USA">
+                  <label> User ID </label> <input type="text" name="userID" value="1">
+                  <label> Username </label> <input type="text" name="username" value="user1">
+                  <label> Email </label> <input type="text" name="email" value="user1@example.com">
+                  <label> Password </label> <input type="text" name="password" value="passowrd1">
+                  <label> First Name </label> <input type="text" name="fName" value="John">
+                  <label> Last Name </label> <input type="text" name="lName" value="Doe">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+            <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
         <p>&nbsp;</p>
         <div id="delete" style="display: block">
-          <form id="deleteLocation">
-              <legend><strong>Delete Location</strong></legend>
+          <form id="deleteUser">
+              <legend><strong>Delete User</strong></legend>
                   <fieldset class="fields">
                   <p>Are you sure you wish to delete the following?</p>
                   <label>ID:</label> 1
-                    <label> City </label> New York
+                    <label> User </label> user1
                     
             </fieldset>
-            <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
+            <input class="btn" type="submit" id="DeleteUser" value="Delete User">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- delete -->

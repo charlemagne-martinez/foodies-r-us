@@ -22,41 +22,61 @@
             </ul>
         </nav>
         <main>
-            <h1>Locations</h1>
+            <h1>Restaurants</h1>
 
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newLocation()">New</a></th>
+                    <th><a href="#" onClick="newRestaurant()">New</a></th>
                     <th></th>
+                    <th>restaurantID</th>
                     <th>locationID</th>
-                    <th>city</th>
-                    <th>state</th>
-                    <th>country</th>
+                    <th>restaurantChainID</th>
+                    <th>restaurantName</th>
+                    <th>description</th>
+                    <th>avgRating</th>
+                    <th>avgPrice</th>
+                    <th>popularOrder</th>
+                    <th>photo</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >1</td>
-                    <td >New York</td>
-                    <td align="right" >NY</td>
-                    <td>USA</td>
+                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>McDonald's Times Square</td>
+                    <td>Fast food restaurant in Times Square</td>
+                    <td>4.2</td>
+                    <td>$$</td>
+                    <td>Big Mac</td>
+                    <td>binary_data_here</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >2</td>
-                    <td>Los Angeles</td>
-                    <td align="right" >CA</td>
-                    <td >USA</td>
+                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>Starbucks Central Plaza</td>
+                    <td>Coffee shop in Central Park</td>
+                    <td>4.5</td>
+                    <td>$</td>
+                    <td>Caramel Macchiato</td>
+                    <td>binary_data_here</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >3</td>
-                    <td>London</td>
-                    <td align="right" >NULL</td>
-                    <td>UK</td>
+                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>Subway Downtown LA</td>
+                    <td>Sandwich restaurant in Downtown LA</td>
+                    <td>4.0</td>
+                    <td>$</td>
+                    <td>Chicken Teriyaki Sub</td>
+                    <td>binary_data_here</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
@@ -65,45 +85,56 @@
         </div> <!-- browse -->
 
         <div id="insert" style="display: block">
-            <form id="addLocation">
-                <legend><strong>Add Location</strong></legend>
+            <form id="addRestaurant">
+                <legend><strong>Add Restaurant</strong></legend>
                   <fieldset class="fields">
-                    <label> City </label> <input type="text" name="city">
-                    <label> State </label> <input type="text" name="state">
+                    <label> Restaurant ID </label> <input type="text" name="restaurantID">
                     <label> Location ID </label> <input type="text" name="locationID">
-                    <label> Country </label> <input type="text" name="country">
+                    <label> Restaurant Chain ID </label> <input type="text" name="restaurantChainID">
+                    <label> Restaurant Name </label> <input type="text" name="restaurantName">
+                    <label> Description </label> <input type="text" name="description">
+                    <label> Average Rating </label> <input type="text" name="avgRating">
+                    <label> Average Price </label> <input type="text" name="avgPrice">
+                    <label> Popular Order </label> <input type="text" name="popularOrder">
+                    <label> Photo </label> <input type="text" name="photo">
+
                   </fieldset>
-                  <input class="btn" type="submit" id="addLocation" value="Add a Location">
+                  <input class="btn" type="submit" id="addRestaurant" value="Add a Restaurant">
                   <input class="btn" type="button" value="cancel">
-            </form> <!--add new location-->
+            </form> <!--add new restaurant-->
         </div><!-- insert -->
         
         <p>&nbsp;</p>
         <div id="update" style="display: block">
-          <form id="updateLocation">
-              <legend><strong>Update Location</strong></legend>
+          <form id="updateRestaurant">
+              <legend><strong>Update Restaurant</strong></legend>
                   <fieldset class="fields">
                   <label>ID:</label> 1
-                    <label> City </label> <input type="text" value="New York" name="city">
-                    <label> State </label> <input type="text"  name="state" value="NY">
-                    <label> Location ID </label> <input type="text" name="locationID" value="1">
-                    <label> Country </label> <input type="text" name="country" value="USA">
+                    <label> Restaurant ID </label> <input type="text" name="restaurantID" value="1">
+                    <label> Location ID </label> <input type="text"  name="locationID" value="1">
+                    <label> Restaurant Chain ID </label> <input type="text" name="restaurantChainID" value="1">
+                    <label> Restaurant Name </label> <input type="text" name="restaurantName" value="McDonald's Times Square">
+                    <label> Description </label> <input type="text" name="description" value="Fast food restaurant in Times Square">
+                    <label> Average Rating </label> <input type="text" name="avgRating" value="4.2">
+                    <label> Average Price </label> <input type="text" name="avgPrice" value="$$">
+                    <label> Popular Order </label> <input type="text" name="popularOrder" value="Big Mac">
+                    <label> Photo </label> <input type="text" name="photo" value="binary_data_here">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+            <input class="btn" type="submit" id="UpdateSaveRestaurant" value="Save Update Restaurant">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
         <p>&nbsp;</p>
         <div id="delete" style="display: block">
-          <form id="deleteLocation">
-              <legend><strong>Delete Location</strong></legend>
+          <form id="deleteRestaurant">
+              <legend><strong>Delete Restaurant</strong></legend>
                   <fieldset class="fields">
                   <p>Are you sure you wish to delete the following?</p>
                   <label>ID:</label> 1
-                    <label> City </label> New York
+                    <label> Restaurant </label> McDonald's Times Square
                     
             </fieldset>
-            <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
+            <input class="btn" type="submit" id="DeleteRestaurant" value="Delete Restaurant">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- delete -->
