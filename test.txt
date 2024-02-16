@@ -4,12 +4,17 @@ Day 2: 2/15:
     - Added Select for table information
     Todo: 
         - Update HTML pages to be specialized to their own information tables
-        - DMQ 
-        - Add DDL.sql
+        - DMQ.sql
+        - Add DDL.sql ✅
+        - Update entities, crud list google doc so that we have checklist of things
+        - Update actions we are to take to update outline/ERD/schema based on TA/peer feedback ✅
+        - Update outline, ERD, schema, DDL.sql file based on TA and peer feedback ✅
 
 
+
+Update local feature branch with changes from remote main branch:
 git fetch origin 
 git checkout main
 git pull origin main
-git checkout -branch
+git checkout [branch]
 git merge main
