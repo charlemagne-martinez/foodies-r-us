@@ -22,41 +22,49 @@
             </ul>
         </nav>
         <main>
-            <h1>Locations</h1>
+            <h1>Reviews</h1>
 
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newLocation()">New</a></th>
+                    <th><a href="#" onClick="newReview()">New</a></th>
                     <th></th>
-                    <th>locationID</th>
-                    <th>city</th>
-                    <th>state</th>
-                    <th>country</th>
+                    <th>reviewID</th>
+                    <th>restaurantID</th>
+                    <th>userID</th>
+                    <th>review</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >1</td>
-                    <td >New York</td>
-                    <td align="right" >NY</td>
-                    <td>USA</td>
+                    <td><a href="#" onClick="updateReview('this.reviewID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Great place for a quick meal.</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >2</td>
-                    <td>Los Angeles</td>
-                    <td align="right" >CA</td>
-                    <td >USA</td>
+                    <td><a href="#" onClick="updateReview('this.reviewID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>Love their fries!</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
-                    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                    <td align="right" >3</td>
-                    <td>London</td>
-                    <td align="right" >NULL</td>
-                    <td>UK</td>
+                    <td><a href="#" onClick="updateReview('this.reviewID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>Amazing coffee and atmosphere.</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#" onClick="updateReview('this.reviewID')">Edit</a></td>
+                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>Healthy options and fast service.</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
@@ -65,45 +73,45 @@
         </div> <!-- browse -->
 
         <div id="insert" style="display: block">
-            <form id="addLocation">
-                <legend><strong>Add Location</strong></legend>
+            <form id="addReview">
+                <legend><strong>Add Review</strong></legend>
                   <fieldset class="fields">
-                    <label> City </label> <input type="text" name="city">
-                    <label> State </label> <input type="text" name="state">
-                    <label> Location ID </label> <input type="text" name="locationID">
-                    <label> Country </label> <input type="text" name="country">
+                    <label> Review ID </label> <input type="text" name="reviewID">
+                    <label> Restaurant ID </label> <input type="text" name="restaurantID">
+                    <label> User ID </label> <input type="text" name="userID">
+                    <label> Review </label> <input type="text" name="review">
                   </fieldset>
-                  <input class="btn" type="submit" id="addLocation" value="Add a Location">
+                  <input class="btn" type="submit" id="addReview" value="Add a Review">
                   <input class="btn" type="button" value="cancel">
-            </form> <!--add new location-->
+            </form> <!--add new review-->
         </div><!-- insert -->
         
         <p>&nbsp;</p>
         <div id="update" style="display: block">
-          <form id="updateLocation">
-              <legend><strong>Update Location</strong></legend>
+          <form id="updateReview">
+              <legend><strong>Update Review</strong></legend>
                   <fieldset class="fields">
                   <label>ID:</label> 1
-                    <label> City </label> <input type="text" value="New York" name="city">
-                    <label> State </label> <input type="text"  name="state" value="NY">
-                    <label> Location ID </label> <input type="text" name="locationID" value="1">
-                    <label> Country </label> <input type="text" name="country" value="USA">
+                    <label> Review ID </label> <input type="text" name="reviewID" value="1">
+                    <label> Restaurant ID </label> <input type="text"  name="restaurantID" value="1">
+                    <label> User ID </label> <input type="text" name="userID" value="1">
+                    <label> Review </label> <input type="text" name="review" value="Great place for a quick meal.">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+            <input class="btn" type="submit" id="UpdateSaveReview" value="Save Update Review">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
         <p>&nbsp;</p>
         <div id="delete" style="display: block">
-          <form id="deleteLocation">
-              <legend><strong>Delete Location</strong></legend>
+          <form id="deleteReview">
+              <legend><strong>Delete Review</strong></legend>
                   <fieldset class="fields">
                   <p>Are you sure you wish to delete the following?</p>
                   <label>ID:</label> 1
-                    <label> City </label> New York
+                    <label> Review </label> Great place for a quick meal.
                     
             </fieldset>
-            <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
+            <input class="btn" type="submit" id="DeleteReview" value="Delete Review">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- delete -->
