@@ -7,11 +7,17 @@ Day 2: 2/15:
     - Added DDL.sql
     - Updated actions we are to take to update outline/ERD/schema based on TA/peer feedback
     - Update outline, ERD, schema, DDL.sql file based on TA and peer feedback
+    - Update entities, crud list google doc so that we have checklist of things
+    - Update HTML pages to be specialized to their own information tables
+    - DMQ.sql
 
-    Todo: 
-        - Update entities, crud list google doc so that we have checklist of things
-        - Update HTML pages to be specialized to their own information tables
-        - DMQ.sql
+Todo: 
+    - 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
+    (AKA make sure we have all the CRUD functionalities / queries satisfying the guide)
+    - update DMQ.sql and maybe DDL.sql as needed for above task ^
+    - Make pretty
+    - Host using node.js
+    - ...
 
 
 
