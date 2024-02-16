@@ -1,3 +1,8 @@
+-- Group 127 - CouchPotato Saga
+-- Bruce Yan & Charlemagne Martinez
+
+-- To Do: 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
+
 --SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
