@@ -12,7 +12,7 @@ Day 2: 2/15:
 
 
 
-Update feature branch with changes from remote main branch:
+Update local feature branch with changes from remote main branch:
 git fetch origin 
 git checkout main
 git pull origin main

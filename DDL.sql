@@ -5,7 +5,7 @@
 -- SET AUTOCOMMIT = 0;
 
 
--- TABLE CREATION
+-- -- -- -- -- TABLE CREATION -- -- -- -- --
 
 -- Table structure for table `Locations`
 CREATE OR REPLACE TABLE `Locations` (
@@ -100,8 +100,8 @@ CREATE TABLE `Visited` (
 );
 
 
+-- -- -- -- -- TABLE CREATION -- -- -- -- --
 
--- TABLE INSERTION
 
 -- Inserting dummy data into Locations
 INSERT INTO Locations (city, state, country) VALUES 
