@@ -10,16 +10,19 @@ INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
 INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID; 
 
 --Select all reviews 
-SELECT * FROM Reviews;
+SELECT reviewID, Restaurants.restaurantID, Users.userID, review
+FROM Reviews
+INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID
+INNER JOIN Users ON Reviews.userID = Users.userID;
 
 --Select all cuisine types
-SELECT * FROM CuisineTypes;
+SELECT cuisineTypeID, type FROM CuisineTypes;
 
 --Select all restaurant chains
-SELECT * FROM RestaurantChains;
+SELECT restaurantChainID, name FROM RestaurantChains;
 
 --Select all locations
-SELECT * FROM Locations;
+SELECT locationID, city, state, country FROM Locations;
 
 
 --Create
