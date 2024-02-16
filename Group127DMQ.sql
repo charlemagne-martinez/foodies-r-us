@@ -9,7 +9,7 @@ FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
 INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID; 
 
---Select all reviews
+--Select all reviews 
 SELECT * FROM Reviews;
 
 --Select all cuisine types
