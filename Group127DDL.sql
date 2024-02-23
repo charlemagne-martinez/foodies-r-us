@@ -28,7 +28,7 @@ CREATE OR REPLACE TABLE `RestaurantChains` (
 CREATE OR REPLACE TABLE `Restaurants` (
   `restaurantID` int AUTO_INCREMENT,
   `locationID` int(11) NOT NULL,
-  `restaurantChainID` int(11) NOT NULL,
+  `restaurantChainID` int(11),
   `restaurantName` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `avgRating` decimal(18,1) NOT NULL,
@@ -55,15 +55,6 @@ CREATE TABLE `RestaurantCuisines` (
   FOREIGN KEY (`restaurantID`) REFERENCES `Restaurants`(`restaurantID`) ON DELETE CASCADE,
   FOREIGN KEY (`cuisineTypeID`) REFERENCES `CuisineTypes`(`cuisineTypeID`) ON DELETE CASCADE
 );
-
--- Table structure for table `RestaurantLocations`
--- CREATE OR REPLACE TABLE `RestaurantLocations` (
---   `restaurantID` int(11) NOT NULL,
---   `locationID` int(11) NOT NULL,
---   PRIMARY KEY (`restaurantID`, `locationID`),
---   FOREIGN KEY (`restaurantID`) REFERENCES `Restaurants`(`restaurantID`) ON DELETE CASCADE,
---   FOREIGN KEY (`locationID`) REFERENCES `Locations`(`locationID`) ON DELETE CASCADE
--- );
 
 
 -- Table structure for table `Users`
@@ -113,7 +104,8 @@ INSERT INTO Locations (city, state, country) VALUES
 INSERT INTO Restaurants (restaurantChainID, locationID, restaurantName, description, avgRating, avgPrice, popularOrder, photo) VALUES 
 (1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 4.2, '$$', 'Big Mac', 'binary_data_here'),
 (2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4.5, '$', 'Caramel Macchiato', 'binary_data_here'),
-(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub', 'binary_data_here');
+(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub', 'binary_data_here'),
+(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala', 'binary_data_here');
 
 -- Inserting dummy data into RestaurantChains
 INSERT INTO RestaurantChains (name) VALUES 
@@ -155,13 +147,6 @@ INSERT INTO Visited (userID, restaurantID) VALUES
 (3, 2),
 (4, 3);
 
-
--- -- Inserting dummy data into RestaurantLocations
--- INSERT INTO RestaurantLocations (restaurantID, locationID) VALUES 
--- (1, 1), -- McDonald's Times Square located in New York
--- (2, 2), -- Starbucks Central Park located in Los Angeles
--- (3, 2), -- Subway Downtown LA also located in Los Angeles
--- (3, 3); -- Subway Downtown LA has a location in London
 
 
 -- SET FOREIGN_KEY_CHECKS=1;
