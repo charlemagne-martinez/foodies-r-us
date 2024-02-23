@@ -34,7 +34,6 @@
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newLocation()">New</a></th>
                     <th></th>
                     <th>locationID</th>
                     <th>city</th>
@@ -42,7 +41,6 @@
                     <th>country</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
                     <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
                     <td align="right" >1</td>
                     <td >New York</td>
@@ -50,7 +48,6 @@
                     <td>USA</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
                     <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
                     <td align="right" >2</td>
                     <td>Los Angeles</td>
@@ -58,7 +55,6 @@
                     <td >USA</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
                     <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
                     <td align="right" >3</td>
                     <td>London</td>
@@ -100,20 +96,7 @@
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
-        <p>&nbsp;</p>
-        <div id="delete" style="display: block">
-          <form id="deleteLocation">
-              <legend><strong>Delete Location</strong></legend>
-                  <fieldset class="fields">
-                  <p>Are you sure you wish to delete the following?</p>
-                  <label>ID:</label> 1
-                    <label> City </label> New York
-                    
-            </fieldset>
-            <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
-                  <input class="btn" type="button" value="cancel" >
-          </form> 
-        </div><!-- delete -->
+
         </main>
     </body>
 </html>
