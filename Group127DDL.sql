@@ -28,13 +28,12 @@ CREATE OR REPLACE TABLE `RestaurantChains` (
 CREATE OR REPLACE TABLE `Restaurants` (
   `restaurantID` int AUTO_INCREMENT,
   `locationID` int(11) NOT NULL,
-  `restaurantChainID` int(11),
+  `restaurantChainID` int(11) DEFAULT NULL,
   `restaurantName` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `avgRating` decimal(18,1) NOT NULL,
   `avgPrice` varchar(50) NOT NULL,
   `popularOrder` varchar(50) NOT NULL,
-  `photo` blob NOT NULL,
   PRIMARY KEY (`restaurantID`),
   FOREIGN KEY (`locationID`) REFERENCES `Locations`(`locationID`) ON DELETE CASCADE,
   FOREIGN KEY (`restaurantChainID`) REFERENCES `RestaurantChains`(`restaurantChainID`) ON DELETE CASCADE
@@ -101,11 +100,11 @@ INSERT INTO Locations (city, state, country) VALUES
 ('London', NULL, 'UK');
 
 -- Inserting dummy data into Restaurants
-INSERT INTO Restaurants (restaurantChainID, locationID, restaurantName, description, avgRating, avgPrice, popularOrder, photo) VALUES 
-(1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 4.2, '$$', 'Big Mac', 'binary_data_here'),
-(2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4.5, '$', 'Caramel Macchiato', 'binary_data_here'),
-(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub', 'binary_data_here'),
-(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala', 'binary_data_here');
+INSERT INTO Restaurants (restaurantChainID, locationID, restaurantName, description, avgRating, avgPrice, popularOrder) VALUES 
+(1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 4.2, '$$', 'Big Mac'),
+(2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4.5, '$', 'Caramel Macchiato'),
+(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub'),
+(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala');
 
 -- Inserting dummy data into RestaurantChains
 INSERT INTO RestaurantChains (name) VALUES 

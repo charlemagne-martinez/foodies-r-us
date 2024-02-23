@@ -33,7 +33,6 @@
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newRestaurant()">New</a></th>
                     <th></th>
                     <th>restaurantID</th>
                     <th>locationID</th>
@@ -43,10 +42,8 @@
                     <th>avgRating</th>
                     <th>avgPrice</th>
                     <th>popularOrder</th>
-                    <th>photo</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
                     <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
                     <td>1</td>
                     <td>1</td>
@@ -56,10 +53,8 @@
                     <td>4.2</td>
                     <td>$$</td>
                     <td>Big Mac</td>
-                    <td>binary_data_here</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
                     <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
                     <td>2</td>
                     <td>1</td>
@@ -69,10 +64,8 @@
                     <td>4.5</td>
                     <td>$</td>
                     <td>Caramel Macchiato</td>
-                    <td>binary_data_here</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateRestaurant('this.restaurantID')">Edit</a></td>
                     <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
                     <td>3</td>
                     <td>2</td>
@@ -82,7 +75,17 @@
                     <td>4.0</td>
                     <td>$</td>
                     <td>Chicken Teriyaki Sub</td>
-                    <td>binary_data_here</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>NULL</td>
+                    <td>Brigadiers</td>
+                    <td>Indian restaurant in London</td>
+                    <td>4.5</td>
+                    <td>$$$</td>
+                    <td>Chicken Tikka Butter Masala</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
@@ -102,7 +105,6 @@
                     <label> Average Rating </label> <input type="text" name="avgRating">
                     <label> Average Price </label> <input type="text" name="avgPrice">
                     <label> Popular Order </label> <input type="text" name="popularOrder">
-                    <label> Photo </label> <input type="text" name="photo">
 
                   </fieldset>
                   <input class="btn" type="submit" id="addRestaurant" value="Add a Restaurant">
@@ -124,26 +126,12 @@
                     <label> Average Rating </label> <input type="text" name="avgRating" value="4.2">
                     <label> Average Price </label> <input type="text" name="avgPrice" value="$$">
                     <label> Popular Order </label> <input type="text" name="popularOrder" value="Big Mac">
-                    <label> Photo </label> <input type="text" name="photo" value="binary_data_here">
             </fieldset>
             <input class="btn" type="submit" id="UpdateSaveRestaurant" value="Save Update Restaurant">
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
-        <p>&nbsp;</p>
-        <div id="delete" style="display: block">
-          <form id="deleteRestaurant">
-              <legend><strong>Delete Restaurant</strong></legend>
-                  <fieldset class="fields">
-                  <p>Are you sure you wish to delete the following?</p>
-                  <label>ID:</label> 1
-                    <label> Restaurant </label> McDonald's Times Square
-                    
-            </fieldset>
-            <input class="btn" type="submit" id="DeleteRestaurant" value="Delete Restaurant">
-                  <input class="btn" type="button" value="cancel" >
-          </form> 
-        </div><!-- delete -->
+
         </main>
     </body>
 </html>

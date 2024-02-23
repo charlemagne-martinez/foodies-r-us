@@ -33,31 +33,26 @@
             <div id="browse">
                 <table border="1" cellpadding="5">
                   <tr>
-                    <th><a href="#" onClick="newCuisineType()">New</a></th>
                     <th></th>
                     <th>cuisineTypeID</th>
                     <th>type</th>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateCuisineType('this.cuisineTypeID')">Edit</a></td>
                     <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
                     <td>1</td>
                     <td>Italian</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateCuisineType('this.cuisineTypeID')">Edit</a></td>
                     <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
                     <td>2</td>
                     <td>Mexican</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateCuisineType('this.cuisineTypeID')">Edit</a></td>
                     <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
                     <td>3</td>
                     <td>Chinese</td>
                   </tr>
                   <tr>
-                    <td><a href="#" onClick="updateCuisineType('this.cuisineTypeID')">Edit</a></td>
                     <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
                     <td>4</td>
                     <td>Indian</td>
@@ -93,20 +88,7 @@
                   <input class="btn" type="button" value="cancel" >
           </form> 
         </div><!-- update -->
-        <p>&nbsp;</p>
-        <div id="delete" style="display: block">
-          <form id="deleteCuisineType">
-              <legend><strong>Delete Cuisine Type</strong></legend>
-                  <fieldset class="fields">
-                  <p>Are you sure you wish to delete the following?</p>
-                  <label>ID:</label> 1
-                    <label> Type </label> Italian
-                    
-            </fieldset>
-            <input class="btn" type="submit" id="DeleteCuisineType" value="Delete Cuisine Type">
-                  <input class="btn" type="button" value="cancel" >
-          </form> 
-        </div><!-- delete -->
+
         </main>
     </body>
 </html>
