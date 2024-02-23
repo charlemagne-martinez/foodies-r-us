@@ -38,8 +38,8 @@
                     <th>username</th>
                     <th>email</th>
                     <th>password</th>
-                    <th>fName</th>
-                    <th>lName</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                   </tr>
                   <tr>
                     <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
@@ -87,7 +87,6 @@
             <form id="addUser">
                 <legend><strong>Add User</strong></legend>
                   <fieldset class="fields">
-                    <label> User ID </label> <input type="text" name="userID">
                     <label> Username </label> <input type="text" name="username">
                     <label> Email </label> <input type="text" name="email">
                     <label> Password </label> <input type="text" name="password">
@@ -95,7 +94,7 @@
                     <label> Last Name </label> <input type="text" name="lName">
                   </fieldset>
                   <input class="btn" type="submit" id="addUser" value="Add User">
-                  <input class="btn" type="button" value="cancel">
+                  <input class="btn" type="button" value="Cancel">
             </form> <!--add new user-->
         </div><!-- insert -->
         
@@ -104,16 +103,14 @@
           <form id="updateUser">
               <legend><strong>Update User</strong></legend>
                   <fieldset class="fields">
-                  <label>ID:</label> 1
-                  <label> User ID </label> <input type="text" name="userID" value="1">
-                  <label> Username </label> <input type="text" name="username" value="user1">
-                  <label> Email </label> <input type="text" name="email" value="user1@example.com">
-                  <label> Password </label> <input type="text" name="password" value="passowrd1">
-                  <label> First Name </label> <input type="text" name="fName" value="John">
-                  <label> Last Name </label> <input type="text" name="lName" value="Doe">
+                  <label> Username </label> <input type="text" name="username">
+                  <label> Email </label> <input type="text" name="email">
+                  <label> Password </label> <input type="text" name="password">
+                  <label> First Name </label> <input type="text" name="fName">
+                  <label> Last Name </label> <input type="text" name="lName">
             </fieldset>
             <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
-                  <input class="btn" type="button" value="cancel" >
+                  <input class="btn" type="button" value="Cancel" >
           </form> 
         </div><!-- update -->
         <p>&nbsp;</p>
