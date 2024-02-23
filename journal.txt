@@ -1,7 +1,7 @@
-Day 1: 2/14.
+2/14:
     - Created repo
     - Initial setup
-Day 2: 2/15: 
+2/15: 
     - Added html skeleton for each page
     - Added Select for table information
     - Added DDL.sql
@@ -10,8 +10,11 @@ Day 2: 2/15:
     - Update entities, crud list google doc so that we have checklist of things
     - Update HTML pages to be specialized to their own information tables
     - DMQ.sql
+2/21:
+2/22:
 
-Todo: 
+
+Todo : 
     - 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
     (AKA make sure we have all the CRUD functionalities / queries satisfying the guide)
     - update DMQ.sql and maybe DDL.sql as needed for above task ^
