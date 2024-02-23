@@ -1,8 +1,16 @@
 -- Group 127 - CouchPotato Saga
 -- Bruce Yan & Charlemagne Martinez
 
--- To Do: 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
--- have an insert for RestaurantCuisines, have queries for drop down menus
+-- TO-DO (as of step 3): 
+-- - SEE IF THE WAY WE'RE INSERTING INTO Restaurants IS A GOOD APPROACH
+--  (specifically locationID since we're using it's name attributes rather than just the ID)
+-- - decide if we want to use username in place of userID for Reviews
+-- - see if we're doing the dropdowns correctly
+
+
+
+-- To Do (as of step 2): 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
+-- , have queries for drop down menus
 
 --Read (SELECT)
 --SELECT ALL DATA TO SHOW ON UI
@@ -11,7 +19,7 @@
 SELECT userID, username, email, password, fName as firstName, lName as lastName FROM Users;
 
 --Select all restaurants
-SELECT Restaurants.restaurantID, Locations.locationID, RestaurantChains.restaurantChainID, CuisineTypes.type, restaurantName, description, avgRating, avgPrice, popularOrder 
+SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, CuisineTypes.type, restaurantName, description, avgRating, avgPrice, popularOrder 
 FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
 INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
@@ -19,7 +27,7 @@ INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.r
 INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
 --Select all reviews 
-SELECT reviewID, Restaurants.restaurantID, Users.userID, review
+SELECT reviewID, Restaurants.restaurantName, Users.username, review
 FROM Reviews
 INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID
 INNER JOIN Users ON Reviews.userID = Users.userID;
@@ -34,9 +42,16 @@ SELECT restaurantChainID, name FROM RestaurantChains;
 SELECT locationID, city, state, country FROM Locations;
 
 
+-- Selects for drop down menus
+SELECT locationID, CONCAT(city, ", ", IFNULL(state, ""), ", ", country) as Locations FROM Locations;
 
+SELECT restaurantChainID, name FROM RestaurantChains;
 
+SELECT cuisineTypeID, type FROM CuisineTypes;
 
+SELECT restaurantID, restaurantName FROM Restaurants;
+
+SELECT userID, CONCAT(fName, " ", lName) as User FROM Users;
 
 
 --Create (INSERT)
@@ -44,11 +59,25 @@ INSERT INTO Users (username, email, password, fName, lName)
 VALUES (:username, :email, :password, :fName, :lName);
 
 INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder)
-VALUES (:locationID, :restaurantChainID, :restaurantName, :description, :avgRating, :avgPrice, :popularOrder);
+VALUES (
+  SELECT locationID
+  FROM Locations
+  WHERE CONCAT(city, ', ', IFNULL(state, ', '), country) = :locationID, 
+  SELECT restaurantChainID
+  FROM RestaurantChains
+  WHERE name = :restaurantChainID, 
+  :restaurantName, :description, :avgRating, :avgPrice, :popularOrder);
 
 
 INSERT INTO Reviews (restaurantID, userID, review)
-VALUES (:restaurantID, :userID, :review);
+VALUES (
+  SELECT restaurantID
+  FROM Restaurants
+  WHERE restaurantName = :restaurantID, 
+  SELECT 
+  FROM Users
+  WHERE CONCAT(fName, ' ', lName) = :userID, 
+  :review);
 
 INSERT INTO CuisineTypes (type)
 VALUES (:type);
@@ -58,6 +87,9 @@ VALUES (:restaurantName);
 
 INSERT INTO Locations (city, state, country)
 VALUES (:city, :state, :country);
+
+INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID)
+VALUES (:restaurantID, :cuisineTypeID)
 
 
 --Update (UPDATE)
