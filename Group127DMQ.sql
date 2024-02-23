@@ -8,7 +8,7 @@
 --SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
-SELECT userID, username, email, password, fName, lName FROM Users;
+SELECT userID, username, email, password, fName as firstName, lName as lastName FROM Users;
 
 --Select all restaurants
 SELECT Restaurants.restaurantID, Locations.locationID, RestaurantChains.restaurantChainID, CuisineTypes.type, restaurantName, description, avgRating, avgPrice, popularOrder 
@@ -43,8 +43,8 @@ SELECT locationID, city, state, country FROM Locations;
 INSERT INTO Users (username, email, password, fName, lName)
 VALUES (:username, :email, :password, :fName, :lName);
 
-INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder, photo)
-VALUES (:locationID, :restaurantChainID, :restaurantName, :description, :avgRating, :avgPrice, :popularOrder, :photo);
+INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder)
+VALUES (:locationID, :restaurantChainID, :restaurantName, :description, :avgRating, :avgPrice, :popularOrder);
 
 
 INSERT INTO Reviews (restaurantID, userID, review)
@@ -79,7 +79,6 @@ SET locationID = :locationID,
     avgRating = :avgRating,
     avgPrice = :avgPrice,
     popularOrder = :popularOrder,
-    photo = :photo
 WHERE restaurantID = :restaurantID;
 
 -- Update Reviews

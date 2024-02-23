@@ -68,7 +68,7 @@ CREATE OR REPLACE TABLE `Users` (
 );
 
 
--- Table structure for table `Reviews`
+-- Table structure for intersection table `Reviews`
 CREATE OR REPLACE TABLE `Reviews` (
   `reviewID` int AUTO_INCREMENT,
   `restaurantID` int(11) NOT NULL,
