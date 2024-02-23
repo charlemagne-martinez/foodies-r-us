@@ -81,13 +81,13 @@ CREATE OR REPLACE TABLE `Reviews` (
 
 
 -- Table structure for intersection table `Visited`
-CREATE TABLE `Visited` (
-  `userID` int(11) NOT NULL,
-  `restaurantID` int(11) NOT NULL,
-  PRIMARY KEY (`userID`, `restaurantID`),
-  FOREIGN KEY (`userID`) REFERENCES `Users`(`userID`) ON DELETE CASCADE,
-  FOREIGN KEY (`restaurantID`) REFERENCES `Restaurants`(`restaurantID`) ON DELETE CASCADE
-);
+-- CREATE TABLE `Visited` (
+--   `userID` int(11) NOT NULL,
+--   `restaurantID` int(11) NOT NULL,
+--   PRIMARY KEY (`userID`, `restaurantID`),
+--   FOREIGN KEY (`userID`) REFERENCES `Users`(`userID`) ON DELETE CASCADE,
+--   FOREIGN KEY (`restaurantID`) REFERENCES `Restaurants`(`restaurantID`) ON DELETE CASCADE
+-- );
 
 
 -- -- -- -- -- TABLE CREATION -- -- -- -- --
@@ -140,11 +140,11 @@ INSERT INTO Reviews (restaurantID, userID, review) VALUES
 (3, 4, 'Healthy options and fast service.');
 
 -- Inserting dummy data into Visited
-INSERT INTO Visited (userID, restaurantID) VALUES 
-(1, 1),
-(2, 1),
-(3, 2),
-(4, 3);
+-- INSERT INTO Visited (userID, restaurantID) VALUES 
+-- (1, 1),
+-- (2, 1),
+-- (3, 2),
+-- (4, 3);
 
 
 

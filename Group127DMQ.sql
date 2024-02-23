@@ -2,17 +2,21 @@
 -- Bruce Yan & Charlemagne Martinez
 
 -- To Do: 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
+-- have an insert for RestaurantCuisines, have queries for drop down menus
 
+--Read (SELECT)
 --SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
 SELECT userID, username, email, password, fName, lName FROM Users;
 
 --Select all restaurants
-SELECT restaurantID, Locations.locationID, RestaurantChains.restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder, photo 
+SELECT Restaurants.restaurantID, Locations.locationID, RestaurantChains.restaurantChainID, CuisineTypes.type, restaurantName, description, avgRating, avgPrice, popularOrder 
 FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
-INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID; 
+INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
+INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
+INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
 --Select all reviews 
 SELECT reviewID, Restaurants.restaurantID, Users.userID, review
@@ -30,7 +34,12 @@ SELECT restaurantChainID, name FROM RestaurantChains;
 SELECT locationID, city, state, country FROM Locations;
 
 
---Create
+
+
+
+
+
+--Create (INSERT)
 INSERT INTO Users (username, email, password, fName, lName)
 VALUES (:username, :email, :password, :fName, :lName);
 
@@ -50,10 +59,8 @@ VALUES (:restaurantName);
 INSERT INTO Locations (city, state, country)
 VALUES (:city, :state, :country);
 
---Read
 
-
---Update
+--Update (UPDATE)
 
 -- Update Users
 UPDATE Users
@@ -99,7 +106,7 @@ SET city = :city,
 WHERE locationID = :locationID;
 
 
---Delete
+--Delete (DELETE)
 
 --Delete for Users
 DELETE FROM Users
