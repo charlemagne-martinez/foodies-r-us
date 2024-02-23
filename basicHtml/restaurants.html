@@ -97,9 +97,20 @@
             <form id="addRestaurant">
                 <legend><strong>Add Restaurant</strong></legend>
                   <fieldset class="fields">
-                    <label> Restaurant ID </label> <input type="text" name="restaurantID">
-                    <label> Location ID </label> <input type="text" name="locationID">
-                    <label> Restaurant Chain ID </label> <input type="text" name="restaurantChainID">
+                    <label> Locations </label> 
+                      <select name="locations">
+                        <option value="0">&nbsp;</option>
+                        <option value="1" selected>New York, NY, USA</option>
+                        <option value="2">Los Angeles, CA, USA</option>
+                        <option value="3">London, UK</option>
+                    </select>
+                    <label> Restaurant Chains</label> 
+                      <select name="locations">
+                        <option value="0">&nbsp;</option>
+                        <option value="1" selected>McDonald's</option>
+                        <option value="2">Starbucks</option>
+                        <option value="3">Subway</option>
+                      </select>
                     <label> Restaurant Name </label> <input type="text" name="restaurantName">
                     <label> Description </label> <input type="text" name="description">
                     <label> Average Rating </label> <input type="text" name="avgRating">
@@ -117,10 +128,20 @@
           <form id="updateRestaurant">
               <legend><strong>Update Restaurant</strong></legend>
                   <fieldset class="fields">
-                  <label>ID:</label> 1
-                    <label> Restaurant ID </label> <input type="text" name="restaurantID" value="1">
-                    <label> Location ID </label> <input type="text"  name="locationID" value="1">
-                    <label> Restaurant Chain ID </label> <input type="text" name="restaurantChainID" value="1">
+                    <label> Locations </label> 
+                      <select name="locations">
+                        <option value="0">&nbsp;</option>
+                        <option value="1" selected>New York, NY, USA</option>
+                        <option value="2">Los Angeles, CA, USA</option>
+                        <option value="3">London, UK</option>
+                      </select>
+                    <label> Restaurant Chains</label> 
+                      <select name="locations">
+                        <option value="0">&nbsp;</option>
+                        <option value="1" selected>McDonald's</option>
+                        <option value="2">Starbucks</option>
+                        <option value="3">Subway</option>
+                      </select>
                     <label> Restaurant Name </label> <input type="text" name="restaurantName" value="McDonald's Times Square">
                     <label> Description </label> <input type="text" name="description" value="Fast food restaurant in Times Square">
                     <label> Average Rating </label> <input type="text" name="avgRating" value="4.2">
