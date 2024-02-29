@@ -1,8 +1,8 @@
 -- Group 127 - CouchPotato Saga
 -- Bruce Yan & Charlemagne Martinez
 
--- SET FOREIGN_KEY_CHECKS=0;
--- SET AUTOCOMMIT = 0;
+SET FOREIGN_KEY_CHECKS=0;
+SET AUTOCOMMIT = 0;
 
 
 -- -- -- -- -- TABLE CREATION -- -- -- -- --
@@ -80,18 +80,7 @@ CREATE OR REPLACE TABLE `Reviews` (
 );
 
 
--- Table structure for intersection table `Visited`
--- CREATE TABLE `Visited` (
---   `userID` int(11) NOT NULL,
---   `restaurantID` int(11) NOT NULL,
---   PRIMARY KEY (`userID`, `restaurantID`),
---   FOREIGN KEY (`userID`) REFERENCES `Users`(`userID`) ON DELETE CASCADE,
---   FOREIGN KEY (`restaurantID`) REFERENCES `Restaurants`(`restaurantID`) ON DELETE CASCADE
--- );
-
-
--- -- -- -- -- TABLE CREATION -- -- -- -- --
-
+-- -- -- -- -- TABLE INSERTIONS -- -- -- -- --
 
 -- Inserting dummy data into Locations
 INSERT INTO Locations (city, state, country) VALUES 
@@ -139,14 +128,6 @@ INSERT INTO Reviews (restaurantID, userID, review) VALUES
 (2, 3, 'Amazing coffee and atmosphere.'),
 (3, 4, 'Healthy options and fast service.');
 
--- Inserting dummy data into Visited
--- INSERT INTO Visited (userID, restaurantID) VALUES 
--- (1, 1),
--- (2, 1),
--- (3, 2),
--- (4, 3);
 
-
-
--- SET FOREIGN_KEY_CHECKS=1;
--- COMMIT;
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
