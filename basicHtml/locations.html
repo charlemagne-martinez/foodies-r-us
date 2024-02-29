@@ -82,17 +82,21 @@
         </div><!-- insert -->
         
         <p>&nbsp;</p>
+
         <div id="update" style="display: block">
           <form id="updateLocation">
-              <legend><strong>Update Location</strong></legend>
-                  <fieldset class="fields">
-                    <label> City </label> <input type="text" name="city">
-                    <label> State </label> <input type="text"  name="state">
-                    <label> Country </label> <input type="text" name="country">
-            </fieldset>
+            <legend><strong>Update Location</strong></legend>
+              <label for="input-location"> City, State, Country </label>
+              <select> 
+                <option value="test">Select a Location</option>
+                {{#each data}}
+                <option value="{{this.id}}">{{this.city}}, {{this.state}}, {{this.country}}</option>
+                {{/each}}
+              </select>
             <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
                   <input class="btn" type="button" value="Cancel" >
           </form> 
+          <script src="./js/update_person.js"></script>
         </div><!-- update -->
 
         </main>
