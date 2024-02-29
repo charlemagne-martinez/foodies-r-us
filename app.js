@@ -43,7 +43,10 @@ app.get('/restaurantCuisines', function(req,res){
     res.render("pages/restaurantCuisines")
 })
 app.get('/users', function(req, res){
-    res.render("pages/users")
+    let query2 = "SELECT * FROM Users"
+    db.pool.query(query2, function(error, rows, fields){
+        res.render("pages/users", {data: rows});
+    })
 })
 app.get('/reviews', function(req, res){
     res.render("pages/reviews")
@@ -53,23 +56,29 @@ app.get('/reviews', function(req, res){
 app.post('/add-location-form', function(req, res){
     let data = req.body
 
-    // Handling NULL value for state attribute
-    let state = parseInt(data['input-state']);
-    if (isNaN(state))
-    {
-        state = 'NULL';
-    }
-
-    
-    
-    query1 = `INSERT INTO Locations (city, state, country) VALUES ('${data['input-city']}', '${state}', '${data['input-country']}')`;
+    query1 = `INSERT INTO Locations (city, state, country) VALUES ('${data.city}', '${data.state}', '${data.country}')`;
     db.pool.query(query1, function(error,rows,fields){
         if (error){
             console.log(error)
             res.sendStatus(400)
         }
         else{
-            res.redirect('/')
+            res.redirect('/locations')
+        }
+    })
+})
+
+app.post('/add-user-form', function(req, res){
+    let data = req.body
+
+    query1 = `INSERT INTO Users (username, email, password, fName, lName)('${data.username}', '${data.email}', '${data.password}', '${fName}', '${lName}')`;
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/users')
         }
     })
 })
