@@ -82,7 +82,6 @@ CREATE OR REPLACE TABLE `Reviews` (
 
 -- -- -- -- -- TABLE INSERTIONS -- -- -- -- --
 
-
 -- Inserting dummy data into Locations
 INSERT INTO Locations (city, state, country) VALUES 
 ('New York', 'NY', 'USA'),
