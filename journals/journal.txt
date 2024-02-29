@@ -17,10 +17,12 @@
 2/27:
     - checklist of what to edit on project based on TA feedback from step 3 final submission, also for step 4
 2/28:
-
+    - decided on doing Users entity
+    - got READ (Select) working, but is on bottom of page for some reason 
 
 Todo : 
     - regarding updating records, maybe consider having a dropdown corresponding to the primary key ID
+    - have CREATE (Insert), UPDATE (Update), DELETE (Delete) left
 
 
 
