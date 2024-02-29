@@ -86,14 +86,17 @@ CREATE OR REPLACE TABLE `Reviews` (
 INSERT INTO Locations (city, state, country) VALUES 
 ('New York', 'NY', 'USA'),
 ('Los Angeles', 'CA', 'USA'),
-('London', NULL, 'UK');
+('London', NULL, 'UK'),
+('Buford', 'WY', 'USA');
 
 -- Inserting dummy data into Restaurants
 INSERT INTO Restaurants (restaurantChainID, locationID, restaurantName, description, avgRating, avgPrice, popularOrder) VALUES 
 (1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 4.2, '$$', 'Big Mac'),
 (2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4.5, '$', 'Caramel Macchiato'),
 (3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub'),
-(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala');
+(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala'),
+(1, 3, 'McDonald''s Piccadilly', 'Fast food restaurant in Piccadilly Circus', '3.8', '$$', 'Chicken McNuggets');
+
 
 -- Inserting dummy data into RestaurantChains
 INSERT INTO RestaurantChains (name) VALUES 
@@ -112,8 +115,10 @@ INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID) VALUES
 (1, 1), -- McDonald's Times Square serves Italian cuisine
 (2, 3), -- Starbucks Central Park serves Chinese cuisine
 (3, 2), -- Subway Downtown LA serves Mexican cuisine
-(3, 4); -- Subway Downtown LA also serves Indian cuisine
-(4, 4); -- Brigadiers serves Indian cuisine
+(3, 4), -- Subway Downtown LA also serves Indian cuisine
+(4, 4), -- Brigadiers serves Indian cuisine
+(5, 1); -- McDonald's Piccadilly serves Italian cuisine
+
 
 -- Inserting dummy data into Users
 INSERT INTO Users (username, email, password, fName, lName) VALUES 
@@ -127,7 +132,7 @@ INSERT INTO Reviews (restaurantID, userID, review) VALUES
 (1, 1, 'Great place for a quick meal.'),
 (1, 2, 'Love their fries!'),
 (2, 3, 'Amazing coffee and atmosphere.'),
-(3, 4, 'Healthy options and fast service.');
+(3, 1, 'Healthy options and fast service.');
 
 
 SET FOREIGN_KEY_CHECKS=1;

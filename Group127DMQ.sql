@@ -19,12 +19,12 @@
 SELECT userID, username, email, password, fName as firstName, lName as lastName FROM Users;
 
 --Select all restaurants
-SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, CuisineTypes.type, restaurantName, description, avgRating, avgPrice, popularOrder 
+SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, restaurantName, description, avgRating, avgPrice, popularOrder 
 FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
-INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
-INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
-INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
+INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;
+-- INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
+-- INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
 --Select all reviews 
 SELECT reviewID, Restaurants.restaurantName, Users.username, review
@@ -40,6 +40,8 @@ SELECT restaurantChainID, name FROM RestaurantChains;
 
 --Select all locations
 SELECT locationID, city, state, country FROM Locations;
+
+-- Select all restaurant cuisines (intersection table)
 
 
 -- Selects for drop down menus
