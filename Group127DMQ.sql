@@ -69,7 +69,7 @@ VALUES (
   WHERE CONCAT(city, ', ', IFNULL(state, ', '), country) = :locationID, 
   SELECT restaurantChainID
   FROM RestaurantChains
-  WHERE name = :restaurantChainID, 
+  WHERE name = :name, 
   :restaurantName, :description, :avgRating, :avgPrice, :popularOrder);
 
 
@@ -77,8 +77,8 @@ INSERT INTO Reviews (restaurantID, userID, review)
 VALUES (
   SELECT restaurantID
   FROM Restaurants
-  WHERE restaurantName = :restaurantID, 
-  SELECT 
+  WHERE restaurantName = :restaurantName, 
+  SELECT userID
   FROM Users
   WHERE CONCAT(fName, ' ', lName) = :userID, 
   :review);
@@ -145,7 +145,7 @@ WHERE locationID = :locationID;
 
 --Delete for Users
 DELETE FROM Users
-WHERE username = :username;
+WHERE userID = :userID;
 
 --Delete for Restaurants
 DELETE FROM Restaurants
