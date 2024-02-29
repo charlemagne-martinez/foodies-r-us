@@ -113,6 +113,7 @@ INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID) VALUES
 (2, 3), -- Starbucks Central Park serves Chinese cuisine
 (3, 2), -- Subway Downtown LA serves Mexican cuisine
 (3, 4); -- Subway Downtown LA also serves Indian cuisine
+(4, 4); -- Brigadiers serves Indian cuisine
 
 -- Inserting dummy data into Users
 INSERT INTO Users (username, email, password, fName, lName) VALUES 
