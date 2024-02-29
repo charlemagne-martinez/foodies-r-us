@@ -42,7 +42,9 @@ SELECT restaurantChainID, name FROM RestaurantChains;
 SELECT locationID, city, state, country FROM Locations;
 
 -- Select all restaurant cuisines (intersection table)
-
+SELECT Restaurants.restaurantName, CuisineTypes.type FROM RestaurantCuisines
+INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
+INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID;
 
 -- Selects for drop down menus
 SELECT locationID, CONCAT(city, ", ", IFNULL(state, ""), ", ", country) as Locations FROM Locations;
