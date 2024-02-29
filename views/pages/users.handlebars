@@ -20,8 +20,8 @@
         <tbody>
             {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
             {{#each data}}
-            <tr>
-                <td><a href="#" onclick="deleteLocation('this.userID')">Delete</a></td>
+            <tr data-value="{{this.userID}}">
+                <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
                 <td>{{this.userID}}</td>
                 <td>{{this.username}}</td>
                 <td>{{this.email}}</td>
@@ -32,6 +32,8 @@
             {{/each}}
         </tbody>
         <p>&nbsp;</p>
+      </table>
+
     </div> <!-- browse -->
     <p>&nbsp;</p>
 
@@ -71,3 +73,5 @@
 <p>&nbsp;</p>
 
 </main>
+
+
