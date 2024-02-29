@@ -83,6 +83,33 @@ app.post('/add-user-form', function(req, res){
     })
 })
 
+app.delete('/delete-user', function(req,res,next){
+    let data = req.body
+    let userID = parseInt(data.userID)
+    let deleteReview = `DELETE FROM Reviews WHERE userID = ?`
+    let deleteUser = `DELETE FROM Users WHERE userID = ?`
+
+    db.pool.query(deleteReview, [userID], function(error,rows,fields){
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+        else {
+            db.pool.query(deleteUser, [UserID], function(error,rows,fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.sendStatus(204);
+                    res.redirect('/users')
+                }
+            })
+        }
+    })
+})
+
 
 /*
     LISTENER
