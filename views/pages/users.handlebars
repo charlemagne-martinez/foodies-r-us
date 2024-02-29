@@ -39,7 +39,6 @@
     <form id="add-user-form" method="POST" action="/add-user-form">
         <legend><strong>Add User</strong></legend>
           <fieldset class="fields">
-
             <label> Username </label> <input type="text" name="username" id="input-username">
             <label> Email </label> <input type="text" name="email" id="input-email">
             <label> Password </label> <input type="text" name="password" id="input-password">
@@ -56,11 +55,14 @@
   <form id="updateUser">
       <legend><strong>Update User</strong></legend>
           <fieldset class="fields">
-          <label> Username </label> <input type="text" name="username">
-          <label> Email </label> <input type="text" name="email">
-          <label> Password </label> <input type="text" name="password">
-          <label> First Name </label> <input type="text" name="fName">
-          <label> Last Name </label> <input type="text" name="lName">
+            <label></label>
+            <select>
+              <option value="test">Select a Person</option>
+              {{#each data}}
+              <option value="{{this.id}}">{{this.fName}} {{this.lName}}</option>
+              {{/each}}
+            </select>
+
     </fieldset>
     <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
           <input class="btn" type="button" value="Cancel" >

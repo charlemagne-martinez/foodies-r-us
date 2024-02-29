@@ -71,7 +71,7 @@ app.post('/add-location-form', function(req, res){
 app.post('/add-user-form', function(req, res){
     let data = req.body
 
-    query1 = `INSERT INTO Users (username, email, password, fName, lName)('${data.username}', '${data.email}', '${data.password}', '${fName}', '${lName}')`;
+    query1 = `INSERT INTO Users (username, email, password, fName, lName) VALUES ('${data.username}', '${data.email}', '${data.password}', '${data.fName}', '${data.lName}')`;
     db.pool.query(query1, function(error,rows,fields){
         if (error){
             console.log(error)
