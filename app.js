@@ -50,10 +50,19 @@ app.get('/reviews', function(req, res){
 })
 
 // Post
-app.post('/add-location-form', function(req,res){
+app.post('/add-location-form', function(req, res){
     let data = req.body
+
+    // Handling NULL value for state attribute
+    let state = parseInt(data['input-state']);
+    if (isNaN(state))
+    {
+        state = 'NULL';
+    }
+
     
-    query1 = `INSERT INTO Locations (city, state, country) VALUES ('${data['input-city']}', '${data['input-state']}', '${data['input-country']}')`;
+    
+    query1 = `INSERT INTO Locations (city, state, country) VALUES ('${data['input-city']}', '${state}', '${data['input-country']}')`;
     db.pool.query(query1, function(error,rows,fields){
         if (error){
             console.log(error)
