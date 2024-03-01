@@ -1,5 +1,15 @@
+{{!-- /*
+ * Citation: Citation is from node.js starter code
+ * Date: 02/28/2024
+ * Adapted from: Github page
+ * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+ */  --}}
+
 {{>header}}
 {{>navbar}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <main>
     <h1>Users</h1>
 
@@ -9,30 +19,31 @@
             {{!-- For just the first row, we print each key of the row object as a header cell so we
             know what each column means when the page renders --}}
             <tr>
-              <th></th>
               {{#each data.[0]}}
               <th>
                   {{@key}}
               </th>
               {{/each}}
+              <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{!-- For each row, print the userID, username, email, password, fName, and lName, in order --}}
             {{#each data}}
             <tr data-value="{{this.userID}}">
-                <td><a href="#" onclick="deleteUser('this.userID')">Delete</a></td>
                 <td>{{this.userID}}</td>
                 <td>{{this.username}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.password}}</td>
                 <td>{{this.fName}}</td>
                 <td>{{this.lName}}</td>
+                <td><button onclick="deleteUser({{this.userID}})">Delete</button></td>
             </tr>
             {{/each}}
         </tbody>
         <p>&nbsp;</p>
       </table>
+      <script src="./static/deleteUser.js"></script>
 
     </div> <!-- browse -->
     <p>&nbsp;</p>

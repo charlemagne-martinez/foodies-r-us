@@ -21,20 +21,20 @@
     - got READ (Select) working
 2/29:
     - got CREATE (Insert) working
+    - DELETE (Delete) WORKSSSSSSSSSSSSSSS
 
 
 Todo : 
-    - UPDATE (Update), DELETE (Delete) left
-    - update users.handlebars comments, some attributes that say location 
+    - UPDATE (Update),
     - rename updatePerson.js file to updateUser.js
     - make column names more human readable? (noticed it being finicky when displaying data tho...)
+    
 
 
     (thoughts to consider later)
     - regarding updating records, maybe consider having a dropdown corresponding to the primary key ID
     - for Restaurants when adding and updating entry, consider having a dropdown for cuisine type that hooks
       up similarly to automatically insert similar to TA's method
-
 
 
 
