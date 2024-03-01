@@ -30,6 +30,7 @@ function deleteUser(userID) {
 }
 
 
+// check this again later
 function deleteRow(userID)
 {
     let table = document.getElementById("users-table");
@@ -40,7 +41,21 @@ function deleteRow(userID)
        if (table.rows[i].getAttribute("data-value") == userID) 
        {
             table.deleteRow(i);
+            deleteDropDownMenuOption(userID);
             break;
        }
+    }
+}
+
+function deleteDropDownMenuOption(userID)
+{
+    let selectMenu = document.getElementById("updateUser")
+    for (let i = 0; i < selectMenu.length; i++)
+    {
+        if (Number(selectMenu.options[i].value) == Number(userID))
+        {
+            selectMenu[i].remove();
+            break;
+        }
     }
 }

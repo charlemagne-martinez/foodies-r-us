@@ -86,7 +86,7 @@ app.post('/add-user-form', function(req, res){
 app.delete('/delete-user', function(req, res, next){
     let data = req.body;
     let userID = parseInt(data.userID);
-    let deleteReview = `DELETE FROM Reviews WHERE userID = ?`; // update to include RestaurantID w/ OR instead of AND?
+    let deleteReview = `DELETE FROM Reviews WHERE userID = ?`;
     let deleteUser = `DELETE FROM Users WHERE userID = ?`;
 
     db.pool.query(deleteReview, [userID], function(error, rows, fields)
