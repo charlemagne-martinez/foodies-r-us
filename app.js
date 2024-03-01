@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 9091;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7676;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -83,27 +83,33 @@ app.post('/add-user-form', function(req, res){
     })
 })
 
-app.delete('/delete-user', function(req,res,next){
-    let data = req.body
-    let userID = parseInt(data.userID)
-    let deleteReview = `DELETE FROM Reviews WHERE userID = ?`
-    let deleteUser = `DELETE FROM Users WHERE userID = ?`
+app.delete('/delete-user', function(req, res, next){
+    let data = req.body;
+    let userID = parseInt(data.userID);
+    let deleteReview = `DELETE FROM Reviews WHERE userID = ?`; // update to include RestaurantID w/ OR instead of AND?
+    let deleteUser = `DELETE FROM Users WHERE userID = ?`;
 
-    db.pool.query(deleteReview, [userID], function(error,rows,fields){
-        if (error) {
-
-        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-        console.log(error);
-        res.sendStatus(400);
+    db.pool.query(deleteReview, [userID], function(error, rows, fields)
+    {
+        if (error) 
+        {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
         }
-        else {
-            db.pool.query(deleteUser, [UserID], function(error,rows,fields){
-                if (error) {
+
+        else 
+        {
+            db.pool.query(deleteUser, [userID], function(error, rows, fields){
+                if (error) 
+                {
                     console.log(error);
                     res.sendStatus(400);
-                } else {
+                } 
+                else 
+                {
                     res.sendStatus(204);
-                    res.redirect('/users')
+                    // res.redirect('/users')
                 }
             })
         }
