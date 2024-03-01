@@ -152,6 +152,8 @@ DELETE FROM Restaurants
 WHERE restaurantID = :restaurantID;
 
 --Delete for Reviews
+DELETE FROM Reviews WHERE userID = :userID;
+
 DELETE FROM Reviews
 WHERE restaurantID = :restaurantID
   AND userID = :userID;
