@@ -17,7 +17,7 @@
 
 --Select all users
 SELECT * FROM Users;
-SELECT userID, username, email, password, fName as firstName, lName as lastName FROM Users;
+SELECT userID as ID, username as Username, email as Email, password as Password, fName as `First Name`, lName as `Last Name` FROM Users;
 
 --Select all restaurants
 SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, restaurantName, description, avgRating, avgPrice, popularOrder 

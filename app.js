@@ -70,6 +70,8 @@ app.post('/add-location-form', function(req, res){
 
 app.post('/add-user-form', function(req, res){
     let data = req.body
+    console.log("User added!")
+    console.log(data)
 
     query1 = `INSERT INTO Users (username, email, password, fName, lName) VALUES ('${data.username}', '${data.email}', '${data.password}', '${data.fName}', '${data.lName}')`;
     db.pool.query(query1, function(error,rows,fields){
@@ -85,6 +87,7 @@ app.post('/add-user-form', function(req, res){
 
 app.post('/update-user-form', function(req, res){
     let data = req.body
+    console.log("User updated!")
     console.log(data)
 
     let query1 = `UPDATE Users SET 
