@@ -66,22 +66,57 @@
 <p>&nbsp;</p>
 <div id="update" style="display: block">
   <form id="updateUser">
-      <legend><strong>Update User</strong></legend>
-          <fieldset class="fields">
-            <label></label>
-            <select>
-              <option value="test">Select a Person</option>
-              {{#each data}}
-              <option value="{{this.id}}">{{this.fName}} {{this.lName}}</option>
-              {{/each}}
-            </select>
-
+    <legend><strong>Update User</strong></legend>
+    <fieldset class="fields">
+      <label for="selectUser">User</label>
+      <select id="selectUser">
+        <option value="test">Select a Person</option>
+        {{#each data}}
+        <option value="{{this.id}}" 
+                data-email="{{this.email}}" 
+                data-password="{{this.password}}" 
+                data-username="{{this.username}}" 
+                data-fName="{{this.fName}}" 
+                data-lName="{{this.lName}}">
+          {{this.fName}} {{this.lName}}
+        </option>
+        {{/each}}
+      </select>
+      <label for="update-fName">First Name</label> 
+      <input type="text" id="update-fName" name="fName">
+      <label for="update-lName">Last Name</label> 
+      <input type="text" id="update-lName" name="lName">
+      <label for="update-email">Email</label>
+      <input type="text" id="update-email" name="email">
+      <label for="update-password">Password</label>
+      <input type="text" id="update-password" name="password">
+      <label for="update-username">Username</label>
+      <input type="text" id="update-username" name="username">
     </fieldset>
     <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
-          <input class="btn" type="button" value="Cancel" >
+    <input class="btn" type="button" value="Cancel" >
   </form> 
+
 </div><!-- update -->
 <p>&nbsp;</p>
+{{!-- <script src="../../static/updateUser.js"></script> --}}
+  <script>
+// Get the select element
+let selectUser = document.querySelector('#selectUser');
+
+// Add event listener for change event
+selectUser.addEventListener("change", function (e) {
+    // Get the selected option
+    let selectedOption = selectUser.options[selectUser.selectedIndex];
+
+    // Populate the form fields with the data from the selected option
+    document.getElementById("update-fName").value = selectedOption.getAttribute('data-fName');
+    document.getElementById("update-lName").value = selectedOption.getAttribute('data-lName');
+    document.getElementById("update-email").value = selectedOption.getAttribute('data-email');
+    document.getElementById("update-password").value = selectedOption.getAttribute('data-password');
+    document.getElementById("update-username").value = selectedOption.getAttribute('data-username');
+});
+</script>
 
 </main>
 
