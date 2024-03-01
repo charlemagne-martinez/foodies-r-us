@@ -65,20 +65,20 @@
 
 <p>&nbsp;</p>
 <div id="update" style="display: block">
-  <form id="updateUser">
+  <form id="updateUser" method="POST" action="/update-user-form">
     <legend><strong>Update User</strong></legend>
     <fieldset class="fields">
       <label for="selectUser">User</label>
       <select id="selectUser">
         <option value="test">Select a Person</option>
         {{#each data}}
-        <option value="{{this.id}}" 
+        <option data-userID="{{this.userID}}" 
                 data-email="{{this.email}}" 
                 data-password="{{this.password}}" 
                 data-username="{{this.username}}" 
                 data-fName="{{this.fName}}" 
                 data-lName="{{this.lName}}">
-          {{this.fName}} {{this.lName}}
+          {{this.fName}} {{this.lName}} {{this.userID}}
         </option>
         {{/each}}
       </select>
@@ -92,6 +92,7 @@
       <input type="text" id="update-password" name="password">
       <label for="update-username">Username</label>
       <input type="text" id="update-username" name="username">
+      <input type="hidden" id="update-userID" name="userID">
     </fieldset>
     <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
     <input class="btn" type="button" value="Cancel" >
@@ -109,7 +110,11 @@
       // Get the selected option
       let selectedOption = selectUser.options[selectUser.selectedIndex];
 
+    // You can then use this userID as needed
+    
+      console.log(selectedOption.getAttribute('data-userID'))
       // Populate the form fields with the data from the selected option
+      document.getElementById("update-userID").value = selectedOption.getAttribute('data-userID');
       document.getElementById("update-fName").value = selectedOption.getAttribute('data-fName');
       document.getElementById("update-lName").value = selectedOption.getAttribute('data-lName');
       document.getElementById("update-email").value = selectedOption.getAttribute('data-email');
