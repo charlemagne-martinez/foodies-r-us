@@ -16,6 +16,7 @@
 --SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
+SELECT * FROM Users;
 SELECT userID, username, email, password, fName as firstName, lName as lastName FROM Users;
 
 --Select all restaurants
@@ -100,11 +101,12 @@ VALUES (:restaurantID, :cuisineTypeID)
 
 -- Update Users
 UPDATE Users
-SET email = :email,
+SET username = :username,
+    email = :email,
     password = :password,
     fName = :fName,
     lName = :lName
-WHERE username = :username;
+WHERE userID = :userID;
 
 -- Update Restaurants
 UPDATE Restaurants
