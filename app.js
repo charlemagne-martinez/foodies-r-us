@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 7677;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7676;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -24,7 +24,7 @@ app.use(express.static('static'))
 app.get('/', function(req,res){
     res.render('pages/home')
 })
-app.get('/cusineTypes', function(req,res){
+app.get('/cuisineTypes', function(req,res){
     res.render('pages/cuisineTypes')
 })
 app.get('/locations', function(req,res){

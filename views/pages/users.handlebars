@@ -73,26 +73,28 @@
         <option value="test">Select a Person</option>
         {{#each data}}
         <option data-userID="{{this.userID}}" 
+                data-username="{{this.username}}" 
                 data-email="{{this.email}}" 
                 data-password="{{this.password}}" 
-                data-username="{{this.username}}" 
                 data-fName="{{this.fName}}" 
                 data-lName="{{this.lName}}">
           {{this.fName}} {{this.lName}}
         </option>
         {{/each}}
       </select>
-      <label for="update-fName">First Name</label> 
-      <input type="text" id="update-fName" name="fName">
-      <label for="update-lName">Last Name</label> 
-      <input type="text" id="update-lName" name="lName">
+      <input type="hidden" id="update-userID" name="userID">
+
+      <label for="update-username">Username</label>
+      <input type="text" id="update-username" name="username">
       <label for="update-email">Email</label>
       <input type="text" id="update-email" name="email">
       <label for="update-password">Password</label>
       <input type="text" id="update-password" name="password">
-      <label for="update-username">Username</label>
-      <input type="text" id="update-username" name="username">
-      <input type="hidden" id="update-userID" name="userID">
+      <label for="update-fName">First Name</label> 
+      <input type="text" id="update-fName" name="fName">
+      <label for="update-lName">Last Name</label> 
+      <input type="text" id="update-lName" name="lName">
+
     </fieldset>
     <input class="btn" type="submit" id="UpdateSaveUser" value="Save Update User">
     <input class="btn" type="button" value="Cancel" >
@@ -101,6 +103,7 @@
 </div><!-- update -->
 <p>&nbsp;</p>
 {{!-- <script src="../../static/updateUser.js"></script> --}}
+
 <script>
   // Get the select element
   let selectUser = document.querySelector('#selectUser');
@@ -110,7 +113,7 @@
       // Get the selected option
       let selectedOption = selectUser.options[selectUser.selectedIndex];
 
-    // You can then use this userID as needed
+      // You can then use this userID as needed
     
       console.log(selectedOption.getAttribute('data-userID'))
       // Populate the form fields with the data from the selected option
@@ -124,5 +127,3 @@
 </script>
 
 </main>
-
-
