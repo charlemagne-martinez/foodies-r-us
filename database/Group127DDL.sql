@@ -129,10 +129,10 @@ INSERT INTO Users (username, email, password, fName, lName) VALUES
 
 -- Inserting dummy data into Reviews
 INSERT INTO Reviews (restaurantID, userID, review) VALUES 
-(1, 1, 'Great place for a quick meal.'),
-(1, 2, 'Love their fries!'),
-(2, 3, 'Amazing coffee and atmosphere.'),
-(3, 1, 'Healthy options and fast service.');
+(1, 1, 'Great place for a quick meal.'),      -- Review for McDonald's Times Square
+(1, 2, 'Love their fries!'),                  -- Review for McDonald's TImes Square
+(2, 3, 'Amazing coffee and atmosphere.'),     -- Review for Starbucks Central Park
+(3, 1, 'Healthy options and fast service.');  -- Review for Subway Downtown LA
 
 
 SET FOREIGN_KEY_CHECKS=1;
