@@ -1,16 +1,19 @@
 -- Group 127 - CouchPotato Saga
 -- Bruce Yan & Charlemagne Martinez
 
+-- To-Do (as of step 4):
+-- - do not think we're using the queries we have for the dropdown, as we're currently using
+--   a script (currently in users.handlebars). This method tho seems to be working but go back maybe?
+-- - once we get to them, look at INSERT queries that have subqueries again (Restaurants, Reviews)
+
+
 -- TO-DO (as of step 3): 
 -- - SEE IF THE WAY WE'RE INSERTING INTO Restaurants IS A GOOD APPROACH
 --  (specifically locationID since we're using it's name attributes rather than just the ID)
--- - decide if we want to use username in place of userID for Reviews
 -- - see if we're doing the dropdowns correctly
 
 
 
--- To Do (as of step 2): 1 update (1 NULLable relationship, probably a 1:M?), 1 DELETE (M:N), 1 DROP-DOWN
--- , have queries for drop down menus
 
 --Read (SELECT)
 --SELECT ALL DATA TO SHOW ON UI
