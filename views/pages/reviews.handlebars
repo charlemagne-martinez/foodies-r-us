@@ -81,31 +81,66 @@
   
   <p>&nbsp;</p>
   <div id="update" style="display: block">
-    <form id="updateReview">
+    <form id="update-review-form" method="POST" action="/update-review-form">
         <legend><strong>Update Review</strong></legend>
+
             <fieldset class="fields">
-              <label> Restaurant </label>                       
-                <select name="retaurants">
-                  <option value="0">&nbsp;</option>
-                  <option value="1">McDonald's</option>
-                  <option value="2">Starbucks</option>
-                  <option value="3">Subways</option>
-                  <option value="4">Brigadiers</option>
+              <label> Restaurant </label> 
+              <select id="select-update-restaurant">
+                <option>Select a Restaurant</option>
+                {{#each data}}
+                <option data-restaurant="{{this.restaurantName}}"
+                        data-userName="{{this.userName}}"
+                        data-review="{{this.review}}">
+                    {{this.restaurantName}}
+                </option>
+                {{/each}}
+              </select>
+              <input type="hidden" name="restaurantName" id="update-restaurant">
+              <label> User</label> 
+                <select id="select-update-user">
+                  <option>Select a User</option>
+                  {{#each data}}
+                  <option data-restaurant="{{this.restaurantName}}"
+                        data-userName="{{this.userName}}"
+                        data-review="{{this.review}}">
+                    {{this.userName}}
+                  </option>
+                  {{/each}}
                 </select>
-              <label> User</label>             
-                <select name="users">
-                  <option value="0">&nbsp;</option>
-                  <option value="1">John Doe</option>
-                  <option value="2">Jane Smith</option>
-                  <option value="3">Michael Johnson</option>
-                  <option value="4">Emily Brown</option>
-                </select>
-              <label> Review </label> <input type="text" name="review">
-      </fieldset>
+                <input type="hidden" name="userName" id="update-user">
+              <label> Review </label> <input type="text" name="review" id="update-review">
+            </fieldset>
+           
       <input class="btn" type="submit" id="UpdateSaveReview" value="Save Update Review">
-            <input class="btn" type="button" value="Cancel" >
+      <input class="btn" type="button" value="Cancel" >
     </form> 
   </div><!-- update -->
   <p>&nbsp;</p>
+
+  <script>
+    // Function to handle changes in the select elements
+function handleSelectChange(selectId, hiddenInputId) {
+    const selectElement = document.getElementById(selectId);
+    const hiddenInput = document.getElementById(hiddenInputId);
+
+    // Event listener for changes in the select element
+    selectElement.addEventListener('change', function() {
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const restaurantName = selectedOption.getAttribute('data-restaurant');
+        const userName = selectedOption.getAttribute('data-userName');
+        const review = selectedOption.getAttribute('data-review');
+
+        // Update the value of the corresponding hidden input
+        hiddenInput.value = restaurantName || userName || review;
+    });
+}
+
+// Call the function for the restaurant select element
+handleSelectChange('select-update-restaurant', 'update-restaurant');
+
+// Call the function for the user select element
+handleSelectChange('select-update-user', 'update-user');
+  </script>
 
   </main>
