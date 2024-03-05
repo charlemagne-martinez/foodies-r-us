@@ -33,24 +33,54 @@ app.get('/locations', function(req,res){
         res.render("pages/locations", {data: rows});
     })
 })
+
 app.get('/restaurants', function(req,res){
     res.render("pages/restaurants")
 })
+
 app.get('/restaurantChains', function(req,res){
     res.render("pages/restaurantChains")
 })
 app.get('/restaurantCuisines', function(req,res){
     res.render("pages/restaurantCuisines")
 })
+
 app.get('/users', function(req, res){
     let query2 = "SELECT * FROM Users"
     db.pool.query(query2, function(error, rows, fields){
         res.render("pages/users", {data: rows});
     })
 })
+
 app.get('/reviews', function(req, res){
-    res.render("pages/reviews")
+    let query2 = "SELECT Reviews.reviewID, Restaurants.restaurantID, Users.userID, Restaurants.restaurantName, CONCAT(Users.fName, ' ', Users.lName) AS userName, review FROM Reviews INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID INNER JOIN Users ON Reviews.userID = Users.userID" 
+    // let query2 = "SELECT * FROM Reviews"
+    console.log(query2);
+    db.pool.query(query2, function(error, rows, fields){
+        res.render("pages/reviews", {data: rows});
+    })
 })
+
+app.post('/add-review-form', function(req, res){
+    let data = req.body;
+    console.log(data);
+
+    // !!! add later
+    let query1 = `INSERT INTO Reviews (restaurantID, userID, review) 
+                  SELECT 
+                      (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?), 
+                      (SELECT userID FROM Users WHERE CONCAT(fName, ' ', lName) = ?),
+                      ?`;
+
+    db.pool.query(query1, [data.restaurantName, data.userName, data.review], function(error, results, fields){
+        if(error){
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.redirect('/reviews');
+        }
+    });
+});
 
 // Post
 app.post('/add-location-form', function(req, res){
