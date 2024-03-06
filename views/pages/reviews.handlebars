@@ -7,105 +7,140 @@
 {{>header}}
 {{>navbar}}
 <main>
-            <h1>Reviews</h1>
+  <h1>Reviews</h1>
 
-            <div id="browse">
-                <table border="1" cellpadding="5">
-                  <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Restaurant</th>
-                    <th>User</th>
-                    <th>Review</th>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
-                    <td>1</td>
-                    <td>McDonald's</td>
-                    <td>John Doe</td>
-                    <td>Great place for a quick meal.</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
-                    <td>2</td>
-                    <td>Startbucks</td>
-                    <td>Jane Smith</td>
-                    <td>Love their fries!</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
-                    <td>3</td>
-                    <td>Subway</td>
-                    <td>Michael Johnson</td>
-                    <td>Amazing coffee and atmosphere.</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteReview('this.reviewID')">Delete</a></td>
-                    <td>4</td>
-                    <td>Brigadiers</td>
-                    <td>Emily Brown</td>
-                    <td>Healthy options and fast service.</td>
-                  </tr>
-                </table>
-                <p>&nbsp;</p>
-            </div> <!-- browse -->
-            <p>&nbsp;</p>
-        </div> <!-- browse -->
+  <div id="browse">
+    <table id="reviews-table" border="1" cellpadding="5">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Restaurant</th>
+          <th>User</th>
+          <th>Review</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr data-value="{{this.reviewID}}">
+          <td>{{this.reviewID}}</td>
+          <td>{{this.restaurantID}}</td>
+          <td>{{this.userID}}</td>
+          <td>{{this.review}}</td>
+          <td><button onclick="deleteReview({{this.reviewID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+      <p>&nbsp;</p>
+    </table>
+    {{!-- <script src="./static/deleteReview.js"></script> --}}
+  </div> <!-- browse -->
+  <p>&nbsp;</p>
 
-        <div id="insert" style="display: block">
-            <form id="addReview">
-                <legend><strong>Add Review</strong></legend>
-                  <fieldset class="fields">
-                    <label> Restaurant </label> 
-                      <select name="retaurants">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">McDonald's</option>
-                        <option value="2">Starbucks</option>
-                        <option value="3">Subways</option>
-                        <option value="4">Brigadiers</option>
-                      </select>
-                    <label> User</label> 
-                      <select name="users">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">John Doe</option>
-                        <option value="2">Jane Smith</option>
-                        <option value="3">Michael Johnson</option>
-                        <option value="4">Emily Brown</option>
-                      </select>
-                    <label> Review </label> <input type="text" name="review">
-                  </fieldset>
-                  <input class="btn" type="submit" id="addReview" value="Add a Review">
-                  <input class="btn" type="button" value="Cancel">
-            </form> <!--add new review-->
-        </div><!-- insert -->
-        
-        <p>&nbsp;</p>
-        <div id="update" style="display: block">
-          <form id="updateReview">
-              <legend><strong>Update Review</strong></legend>
-                  <fieldset class="fields">
-                    <label> Restaurant </label>                       
-                      <select name="retaurants">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">McDonald's</option>
-                        <option value="2">Starbucks</option>
-                        <option value="3">Subways</option>
-                        <option value="4">Brigadiers</option>
-                      </select>
-                    <label> User</label>             
-                      <select name="users">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">John Doe</option>
-                        <option value="2">Jane Smith</option>
-                        <option value="3">Michael Johnson</option>
-                        <option value="4">Emily Brown</option>
-                      </select>
-                    <label> Review </label> <input type="text" name="review">
+  <div id="insert" style="display: block">
+      <form id="add-review-form" method="POST" action="/add-review-form">
+          <legend><strong>Add Review</strong></legend>
+            <fieldset class="fields">
+              <label> Restaurant </label> 
+              <select id="select-restaurant">
+                <option>Select a Restaurant</option>
+                {{#each data}}
+                <option data-restaurant="{{this.restaurantName}}">{{this.restaurantName}}</option>
+                {{/each}}
+              </select>
+              <input type="hidden" name="restaurantName" id="input-restaurant">
+              <label> User</label> 
+                <select id="select-user">
+                  <option>Select a User</option>
+                  {{#each data}}
+                  <option data-user="{{this.userName}}">{{this.userName}}</option>
+                  {{/each}}
+                </select>
+                <input type="hidden" name="userName" id="input-user">
+              <label> Review </label> <input type="text" name="review" id="input-review">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveReview" value="Save Update Review">
-                  <input class="btn" type="button" value="Cancel" >
-          </form> 
-        </div><!-- update -->
-        <p>&nbsp;</p>
+            <input class="btn" type="submit" id="addReview" value="Add a Review">
+            <input class="btn" type="button" value="Cancel">
+      </form> <!--add new review-->
+      <script>
+        let addUser = document.querySelector('#select-user')
+        addUser.addEventListener("change", function(e){
+          let selectedOption = addUser.options[addUser.selectedIndex]
 
-        </main>
+          document.getElementById("input-user").value = selectedOption.getAttribute('data-user')
+        })
+
+        let addRestaurant = document.querySelector('#select-restaurant')
+        addRestaurant.addEventListener("change", function(e){
+          let selectedOption = addRestaurant.options[addRestaurant.selectedIndex]
+
+          document.getElementById("input-restaurant").value = selectedOption.getAttribute('data-restaurant')
+        })    
+      </script>
+  </div><!-- insert -->
+  
+  <p>&nbsp;</p>
+  <div id="update" style="display: block">
+    <form id="update-review-form" method="POST" action="/update-review-form">
+        <legend><strong>Update Review</strong></legend>
+
+            <fieldset class="fields">
+              <label> Restaurant </label> 
+              <select id="select-update-restaurant">
+                <option>Select a Restaurant</option>
+                {{#each data}}
+                <option data-restaurant="{{this.restaurantName}}"
+                        data-userName="{{this.userName}}"
+                        data-review="{{this.review}}">
+                    {{this.restaurantName}}
+                </option>
+                {{/each}}
+              </select>
+              <input type="hidden" name="restaurantName" id="update-restaurant">
+              <label> User</label> 
+                <select id="select-update-user">
+                  <option>Select a User</option>
+                  {{#each data}}
+                  <option data-restaurant="{{this.restaurantName}}"
+                        data-userName="{{this.userName}}"
+                        data-review="{{this.review}}">
+                    {{this.userName}}
+                  </option>
+                  {{/each}}
+                </select>
+                <input type="hidden" name="userName" id="update-user">
+              <label> Review </label> <input type="text" name="review" id="update-review">
+            </fieldset>
+           
+      <input class="btn" type="submit" id="UpdateSaveReview" value="Save Update Review">
+      <input class="btn" type="button" value="Cancel" >
+    </form> 
+  </div><!-- update -->
+  <p>&nbsp;</p>
+
+  <script>
+    // Function to handle changes in the select elements
+function handleSelectChange(selectId, hiddenInputId) {
+    const selectElement = document.getElementById(selectId);
+    const hiddenInput = document.getElementById(hiddenInputId);
+
+    // Event listener for changes in the select element
+    selectElement.addEventListener('change', function() {
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const restaurantName = selectedOption.getAttribute('data-restaurant');
+        const userName = selectedOption.getAttribute('data-userName');
+        const review = selectedOption.getAttribute('data-review');
+
+        // Update the value of the corresponding hidden input
+        hiddenInput.value = restaurantName || userName || review;
+    });
+}
+
+// Call the function for the restaurant select element
+handleSelectChange('select-update-restaurant', 'update-restaurant');
+
+// Call the function for the user select element
+handleSelectChange('select-update-user', 'update-user');
+  </script>
+
+  </main>
