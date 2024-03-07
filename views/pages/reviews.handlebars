@@ -6,6 +6,10 @@
  */  --}}
 {{>header}}
 {{>navbar}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 <main>
   <h1>Reviews</h1>
 
@@ -35,7 +39,48 @@
       </tbody>
       <p>&nbsp;</p>
     </table>
-    {{!-- <script src="./static/deleteReview.js"></script> --}}
+    {{!-- So the relative path to js file is found, but not found  --}}
+    {{!-- <script src="../../static/deleteReview.js"></script> --}}
+    <script>
+      function deleteReview(reviewID)
+      {
+        console.log("deleteReview.js is connected!");
+
+        let link = '/delete-review';
+
+        // Put our data we want to send in a javascript object
+        let data = {
+            reviewID: reviewID
+        };
+
+        $.ajax(
+        {
+            url: link,
+            type: 'DELETE',
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            success: function(result)
+            {
+                deleteRow(reviewID)
+            } 
+        });
+      }
+
+      function deleteRow(reviewID)
+      {
+          let table = document.getElementById("reviews-table");
+          for (let i = 0, row; row = table.rows[i]; i++) 
+          {
+            // iterate through rows
+            // rows would be accessed using the "row" variable assigned in the for loop
+            if (table.rows[i].getAttribute("data-value") == reviewID) 
+            {
+                  table.deleteRow(i);
+                  break;
+            }
+          }
+      }
+    </script>
   </div> <!-- browse -->
   <p>&nbsp;</p>
 

@@ -49,6 +49,12 @@ Todo :
     - input validation?
 
 
+    
+    - For some reason, for reviews.handlebars in particular, relateive file path was found for deleteReview.js
+    but not found or referenced when clicking on the delete button. As of rn, deleteReview.js file contents directly
+    in script.
+
+
 
 Update local feature branch with changes from remote main branch:
 git fetch origin 
