@@ -28,7 +28,12 @@
 3/6: 
     - Review UPDATE works with app.js {BWY}
     - NEED to fix textarea on Review UPDATE for styling {BWY}
-    - Starting restaurantChains
+    - Reviews overall works for all crud
+    - RestaurantChains works for all crud
+    - CuisineTypes works for CRU. DELETE left
+
+    - remaining entities: CuisineTypes, Locations, Restaurants, RestaurantCuisines
+
     
 
 
