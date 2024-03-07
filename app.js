@@ -39,8 +39,12 @@ app.get('/restaurants', function(req,res){
 })
 
 app.get('/restaurantChains', function(req,res){
-    res.render("pages/restaurantChains")
+    let query2 = "SELECT * FROM RestaurantChains"
+    db.pool.query(query2, function(error,rows,fields){
+        res.render("pages/restaurantChains", {data: rows})
+    })
 })
+
 app.get('/restaurantCuisines', function(req,res){
     res.render("pages/restaurantCuisines")
 })
@@ -82,6 +86,21 @@ app.post('/add-review-form', function(req, res){
     });
 });
 
+app.post('/add-chain-form', function(req, res){
+    let data = req.body
+
+    query1 = `INSERT INTO RestaurantChains (name) VALUES ('${data.name}')`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/restaurantChains')
+        }
+    })
+})
+
 // Post
 app.post('/add-location-form', function(req, res){
     let data = req.body
@@ -111,6 +130,24 @@ app.post('/add-user-form', function(req, res){
         }
         else{
             res.redirect('/users')
+        }
+    })
+})
+
+app.post('/update-review-form', function(req,res){
+    let data = req.body
+    console.log(data)
+
+    let query1 = `UPDATE Reviews SET 
+    review = '${data.review}'
+    WHERE reviewID = ${data.reviewID}`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/reviews')
         }
     })
 })
