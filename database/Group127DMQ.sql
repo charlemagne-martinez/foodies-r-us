@@ -31,10 +31,11 @@ INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.
 -- INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
 --Select all reviews 
-SELECT reviewID, Restaurants.restaurantName, Users.username, review
+SELECT reviewID, Restaurants.restaurantName, CONCAT(Users.fName, ' ', Users.lName) AS userName, review
 FROM Reviews
 INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID
-INNER JOIN Users ON Reviews.userID = Users.userID;
+INNER JOIN Users ON Reviews.userID = Users.userID
+ORDER BY Reviews.reviewID;
 
 --Select all cuisine types
 SELECT cuisineTypeID, type FROM CuisineTypes;
@@ -170,6 +171,7 @@ DELETE FROM Reviews
 WHERE restaurantID = :restaurantID
   AND userID = :userID;
 
+-- This one works
 DELETE FROM Reviews WHERE reviewID = :reviewID;
 
 --Delete for CusisineTypes

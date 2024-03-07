@@ -97,10 +97,11 @@ app.get('/reviews', fetchDropdownData, function(req, res){
     CONCAT(Users.fName, ' ', Users.lName) AS userName, 
     review FROM Reviews 
     INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID 
-    INNER JOIN Users ON Reviews.userID = Users.userID`
+    INNER JOIN Users ON Reviews.userID = Users.userID
+    ORDER BY Reviews.reviewID`
     // let query2 = "SELECT * FROM Reviews"
-    // console.log(query2);
     db.pool.query(query2, function(error, rows, fields){
+        console.log('Reviews records:\n', rows)
         res.render("pages/reviews", {data: rows, dropdownData: req.dropdownData});
     })
 })
