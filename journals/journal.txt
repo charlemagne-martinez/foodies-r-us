@@ -25,6 +25,12 @@
     - UPDATE (Update) TEEHEE (dropdown corresponding to primary key ID works)
     - made column names more human readable (in Users page; currently hardcoded)
 
+3/6: 
+    - Review UPDATE works with app.js {BWY}
+    - NEED to fix textarea on Review UPDATE for styling {BWY}
+    - Starting restaurantChains
+    
+
 
 Todo : 
     
@@ -41,6 +47,12 @@ Todo :
       in RestaurantCuisines where we allow the user to choose restaurant and cuisine type
 
     - input validation?
+
+
+    
+    - For some reason, for reviews.handlebars in particular, relateive file path was found for deleteReview.js
+    but not found or referenced when clicking on the delete button. As of rn, deleteReview.js file contents directly
+    in script.
 
 
 

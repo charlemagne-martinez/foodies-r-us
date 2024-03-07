@@ -56,20 +56,54 @@ app.get('/users', function(req, res){
     })
 })
 
-app.get('/reviews', function(req, res){
-    let query2 = "SELECT Reviews.reviewID, Restaurants.restaurantID, Users.userID, Restaurants.restaurantName, CONCAT(Users.fName, ' ', Users.lName) AS userName, review FROM Reviews INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID INNER JOIN Users ON Reviews.userID = Users.userID" 
+// Helper function to fetch restaurants and users data
+function fetchDropdownData(req, res, next) {
+    let query1 = "SELECT restaurantName FROM Restaurants";
+    let query2 = "SELECT CONCAT(fName, ' ', lName) AS userName FROM Users";
+
+    // First grab the Restaurants attribute we want, restaurantName
+    db.pool.query(query1, function(error1, restaurantResults, fields) {
+        if (error1) {
+            console.log(error1);
+            return next(error1);
+        }
+
+        // Then grab the Users attributes we want, a concatenation of first and last name for readability
+        db.pool.query(query2, function(error2, userResults, fields) {
+            if (error2) {
+                console.log(error2);
+                return next(error2);
+            }
+
+            // Attach fetched data to request object
+            req.dropdownData = {
+                restaurantName: restaurantResults,
+                fullName: userResults
+            };
+            next();
+        });
+    });
+}
+
+
+app.get('/reviews', fetchDropdownData, function(req, res){
+    let query2 = `SELECT Reviews.reviewID, 
+    Restaurants.restaurantName, 
+    CONCAT(Users.fName, ' ', Users.lName) AS userName, 
+    review FROM Reviews 
+    INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID 
+    INNER JOIN Users ON Reviews.userID = Users.userID`
     // let query2 = "SELECT * FROM Reviews"
-    console.log(query2);
+    // console.log(query2);
     db.pool.query(query2, function(error, rows, fields){
-        res.render("pages/reviews", {data: rows});
+        res.render("pages/reviews", {data: rows, dropdownData: req.dropdownData});
     })
 })
 
 app.post('/add-review-form', function(req, res){
     let data = req.body;
-    console.log(data);
+    console.log("Review record added:", data);
 
-    // !!! add later
     let query1 = `INSERT INTO Reviews (restaurantID, userID, review) 
                   SELECT 
                       (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?), 
@@ -172,6 +206,29 @@ app.post('/update-user-form', function(req, res){
         }
         else{
             res.redirect('/users')
+        }
+    })
+})
+
+
+app.delete('/delete-review', function(req, res, next)
+{
+    console.log("Entered delete-review route!")
+
+    let data = req.body;
+    let reviewID = parseInt(data.reviewID);
+    let deleteReview = `DELETE FROM Reviews WHERE reviewID = ?`;
+
+    db.pool.query(deleteReview, [reviewID], function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
         }
     })
 })

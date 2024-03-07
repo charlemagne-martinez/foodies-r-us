@@ -87,6 +87,13 @@ VALUES (
   WHERE CONCAT(fName, ' ', lName) = :userID, 
   :review);
 
+-- This one works
+INSERT INTO Reviews (restaurantID, userID, review) 
+  SELECT 
+    (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?), 
+    (SELECT userID FROM Users WHERE CONCAT(fName, ' ', lName) = ?),
+    ?;
+
 INSERT INTO CuisineTypes (type)
 VALUES (:type);
 
@@ -162,6 +169,8 @@ DELETE FROM Reviews WHERE userID = :userID;
 DELETE FROM Reviews
 WHERE restaurantID = :restaurantID
   AND userID = :userID;
+
+DELETE FROM Reviews WHERE reviewID = :reviewID;
 
 --Delete for CusisineTypes
 DELETE FROM CuisineTypes
