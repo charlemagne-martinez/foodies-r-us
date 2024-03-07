@@ -24,9 +24,14 @@ app.use(express.static('static'))
 app.get('/', function(req,res){
     res.render('pages/home')
 })
+
 app.get('/cuisineTypes', function(req,res){
-    res.render('pages/cuisineTypes')
+    let query1 = "SELECT * FROM CuisineTypes"
+    db.pool.query(query1, function(error, rows, fields){
+        res.render("pages/cuisineTypes", {data: rows});
+    })
 })
+
 app.get('/locations', function(req,res){
     let query1 = "SELECT * FROM Locations"
     db.pool.query(query1, function(error, rows, fields){
@@ -168,6 +173,22 @@ app.post('/add-user-form', function(req, res){
     })
 })
 
+
+app.post('/add-cuisine-form', function(req, res){
+    let data = req.body
+
+    query1 = `INSERT INTO CuisineTypes (type) VALUES ('${data.type}')`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/cuisineTypes')
+        }
+    })
+})
+
 app.post('/update-review-form', function(req,res){
     let data = req.body
     console.log(data)
@@ -223,6 +244,23 @@ app.post('/update-chain-form', function(req, res){
         }
         else{
             res.redirect('/restaurantChains')
+        }
+    })
+})
+
+
+app.post('/update-cuisine-form', function(req, res){
+    let data = req.body
+    let query1 = `UPDATE CuisineTypes SET
+    type = "${data.type}"
+    WHERE cuisineTypeID = ${data.cuisineID}`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/cuisineTypes')
         }
     })
 })
