@@ -115,6 +115,24 @@ app.post('/add-user-form', function(req, res){
     })
 })
 
+app.post('/update-review-form', function(req,res){
+    let data = req.body
+    console.log(data)
+
+    let query1 = `UPDATE Reviews SET 
+    review = '${data.review}'
+    WHERE reviewID = ${data.reviewID}`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/reviews')
+        }
+    })
+})
+
 app.post('/update-user-form', function(req, res){
     let data = req.body
     console.log("User updated!")

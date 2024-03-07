@@ -52,3 +52,8 @@ section {
 .entity-list p {
     color: #666;
 }
+
+input {
+    width: auto; /* Set initial width to auto */
+    min-width: 50px; /* Set minimum width to prevent inputs from collapsing */
+  }

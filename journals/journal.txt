@@ -25,6 +25,12 @@
     - UPDATE (Update) TEEHEE (dropdown corresponding to primary key ID works)
     - made column names more human readable (in Users page; currently hardcoded)
 
+3/6: 
+    - Review UPDATE works with app.js {BWY}
+    - NEED to fix textarea on Review UPDATE for styling {BWY}
+    - Starting restaurantChains
+    
+
 
 Todo : 
     
