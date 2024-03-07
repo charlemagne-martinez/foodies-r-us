@@ -55,7 +55,7 @@ app.get('/users', function(req, res){
 app.get('/reviews', function(req, res){
     let query2 = "SELECT Reviews.reviewID, Restaurants.restaurantID, Users.userID, Restaurants.restaurantName, CONCAT(Users.fName, ' ', Users.lName) AS userName, review FROM Reviews INNER JOIN Restaurants ON Reviews.restaurantID = Restaurants.restaurantID INNER JOIN Users ON Reviews.userID = Users.userID" 
     // let query2 = "SELECT * FROM Reviews"
-    console.log(query2);
+    // console.log(query2);
     db.pool.query(query2, function(error, rows, fields){
         res.render("pages/reviews", {data: rows});
     })
@@ -63,7 +63,7 @@ app.get('/reviews', function(req, res){
 
 app.post('/add-review-form', function(req, res){
     let data = req.body;
-    console.log(data);
+    console.log("Review record added:", data);
 
     // !!! add later
     let query1 = `INSERT INTO Reviews (restaurantID, userID, review) 
@@ -135,6 +135,29 @@ app.post('/update-user-form', function(req, res){
         }
         else{
             res.redirect('/users')
+        }
+    })
+})
+
+
+app.delete('/delete-review', function(req, res, next)
+{
+    console.log("Entered delete-review route!")
+
+    let data = req.body;
+    let reviewID = parseInt(data.reviewID);
+    let deleteReview = `DELETE FROM Reviews WHERE reviewID = ?`;
+
+    db.pool.query(deleteReview, [reviewID], function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
         }
     })
 })

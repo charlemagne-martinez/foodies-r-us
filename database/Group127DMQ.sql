@@ -163,6 +163,8 @@ DELETE FROM Reviews
 WHERE restaurantID = :restaurantID
   AND userID = :userID;
 
+DELETE FROM Reviews WHERE reviewID = :reviewID;
+
 --Delete for CusisineTypes
 DELETE FROM CuisineTypes
 WHERE cuisineTypeID = :cuisineTypeID;
