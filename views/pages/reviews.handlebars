@@ -1,6 +1,6 @@
 {{!-- /*
  * Citation: Citation is from node.js starter code
- * Date: 02/28/2024
+ * Date: 03/06/2024
  * Adapted from: Github page
  * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
  */  --}}
@@ -91,7 +91,7 @@
               <label> Restaurant </label> 
               <select id="select-restaurant">
                 <option>Select a Restaurant</option>
-                {{#each data}}
+                {{#each dropdownData.restaurantName}}
                 <option data-restaurant="{{this.restaurantName}}">{{this.restaurantName}}</option>
                 {{/each}}
               </select>
@@ -99,7 +99,7 @@
               <label> User</label> 
                 <select id="select-user">
                   <option>Select a User</option>
-                  {{#each data}}
+                  {{#each dropdownData.fullName}}
                   <option data-user="{{this.userName}}">{{this.userName}}</option>
                   {{/each}}
                 </select>
@@ -110,6 +110,9 @@
             <input class="btn" type="button" value="Cancel">
       </form> <!--add new review-->
       <script>
+        // Facilitates passing data because post method can't detect data from select (dropdown)
+        // Hidden inputs will hold needed information from the selected option's attributes for later use
+
         let addUser = document.querySelector('#select-user')
         addUser.addEventListener("change", function(e){
           let selectedOption = addUser.options[addUser.selectedIndex]
