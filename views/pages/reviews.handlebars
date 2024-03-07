@@ -24,8 +24,10 @@
         {{#each data}}
         <tr data-value="{{this.reviewID}}">
           <td>{{this.reviewID}}</td>
-          <td>{{this.restaurantID}}</td>
-          <td>{{this.userID}}</td>
+          {{!-- Replaced restaurantID w/ restaurantName; fetched from app.js --}}
+          <td>{{this.restaurantName}}</td>
+          {{!-- Replaced userID w/ userName; fetched from app.js --}}
+          <td>{{this.userName}}</td>
           <td>{{this.review}}</td>
           <td><button onclick="deleteReview({{this.reviewID}})">Delete</button></td>
         </tr>
