@@ -210,6 +210,23 @@ app.post('/update-user-form', function(req, res){
     })
 })
 
+app.post('/update-chain-form', function(req, res){
+    let data = req.body
+    console.log(data)
+    let query1 = `UPDATE RestaurantChains SET
+    name = "${data.name}"
+    WHERE restaurantChainID = ${data.chainID}`
+    db.pool.query(query1, function(error,rows,fields){
+        if (error){
+            console.log(error)
+            res.sendStatus(400)
+        }
+        else{
+            res.redirect('/restaurantChains')
+        }
+    })
+})
+
 
 app.delete('/delete-review', function(req, res, next)
 {

@@ -54,6 +54,9 @@ Todo :
     but not found or referenced when clicking on the delete button. As of rn, deleteReview.js file contents directly
     in script.
 
+    - Add error handle for fields that are not populated or have input. Data validation handling 
+    - in app route, if data is null, then reroute
+
 
 
 Update local feature branch with changes from remote main branch:
