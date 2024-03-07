@@ -1,68 +1,87 @@
 {{!-- /*
  * Citation: Citation is from node.js starter code
- * Date: 02/28/2024
+ * Date: 03/06/2024
  * Adapted from: Github page
  * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
  */  --}}
 {{>header}}
 {{>navbar}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 <main>
   <h1>Cuisine Types</h1>
 
   <div id="browse">
-      <table border="1" cellpadding="5">
-        <tr>
-          <th></th>
-          <th>ID</th>
-          <th>Type</th>
-        </tr>
-        <tr>
-          <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
-          <td>1</td>
-          <td>Italian</td>
-        </tr>
-        <tr>
-          <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
-          <td>2</td>
-          <td>Mexican</td>
-        </tr>
-        <tr>
-          <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
-          <td>3</td>
-          <td>Chinese</td>
-        </tr>
-        <tr>
-          <td><a href="#" onclick="deleteCuisineType('this.cuisineTypeID')">Delete</a></td>
-          <td>4</td>
-          <td>Indian</td>
-        </tr>
-      </table>
-      <p>&nbsp;</p>
-  </div> <!-- browse -->
+        <table id="cuisine-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.cuisineTypeID}}</td>
+                    <td>{{this.type}}</td>
+                    <td><button onclick="deleteCuisines({{this.cuisineTypeID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <p>&nbsp;</p>
+  </div> <!-- browse --> 
   <p>&nbsp;</p>
-</div> <!-- browse -->
 
-<div id="insert" style="display: block">
-  <form id="addCuisineType">
-      <legend><strong>Add Cuisine Type</strong></legend>
-        <fieldset class="fields">
-          <label> Type </label> <input type="text" name="type">
-        </fieldset>
-        <input class="btn" type="submit" id="addCuisineType" value="Add a Cuisine Type">
-        <input class="btn" type="button" value="Cancel">
-  </form> <!--add new cuisine type-->
-</div><!-- insert -->
+  <div id="insert" style="display: block">
+        <form id="add-cuisine-form" method="POST" action="/add-cuisine-form">
+            <legend><strong>Add Cuisine Type</strong></legend>
+            <fieldset class="fields">
+                <label> Type </label> 
+                <input type="text" name="type" id="input-type">
+            </fieldset>
+
+            <input class="btn" type="submit" id="addCuisineType" value="Add a Cuisine Type">
+            <input class="btn" type="button" value="Cancel">
+        </form> <!--add new cuisine type-->
+  </div><!-- insert -->
 
 <p>&nbsp;</p>
-<div id="update" style="display: block">
-<form id="updateCuisineType">
-    <legend><strong>Update Cuisine Type</strong></legend>
-        <fieldset class="fields">
-          <label> Type </label> <input type="text" name="type">
-  </fieldset>
-  <input class="btn" type="submit" id="UpdateSaveCuisineType" value="Save Update Cuisine Type">
-        <input class="btn" type="button" value="Cancel" >
-</form> 
-</div><!-- update -->
+  <div id="update" style="display: block">
+        <form id="update-cuisine-form" method="POST" action="update-cuisine-form">
+            <legend><strong>Update Cuisine Type</strong></legend>
+            <fieldset class="fields">
+                <label>Current Cuisine Types</label> 
+                <select id="select-type">
+                    <option>Select a Cuisine</option>
+                    {{#each data}}
+                        <option data-type="{{this.type}}" data-cuisineID="{{this.cuisineTypeID}}">
+                            {{this.type}}
+                        </option>
+                    {{/each}}
+                </select>
+
+                <label>New Cuisine Type </label> 
+                <input type="text" name="type" id="update-type">
+                <input type="hidden" name="cuisineID" id="update-cuisineID">
+
+            </fieldset>
+            <input class="btn" type="submit" id="UpdateSaveCuisineType" value="Save Update Cuisine Type">
+            <input class="btn" type="button" value="Cancel" >
+        </form> 
+    </div><!-- update -->
+
+    <script>
+        let selectElement = document.querySelector('#select-type');
+
+        selectElement.addEventListener('change', function(e) {
+            let selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            document.getElementById("update-cuisineID").value = selectedOption.getAttribute('data-cuisineID')
+        });
+  </script>
 
 </main>
