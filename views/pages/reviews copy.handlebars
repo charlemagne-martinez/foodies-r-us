@@ -99,9 +99,9 @@
                 </option>
                 {{/each}}
               </select>
-              <input type="hidden" name="restaurantName" id="update-restaurant">
-              <input type="hidden" name="userName" id="update-user">
-              <label> Review Message</label> <textarea name="review" id="update-review"></textarea>
+              <label> Restaurant </label><input type="text" name="restaurantName" id="update-restaurant">
+              <label> User </label> <input type="text" name="userName" id="update-user">
+              <label> Review </label> <input type="text" name="review" id="update-review">
               <input type="hidden" name="reviewID" id="update-reviewID">
             </fieldset>
            
@@ -129,10 +129,7 @@
   </script>
 
   <style>
-    input {
-    width: auto; /* Set initial width to auto */
-    min-width: 50px; /* Set minimum width to prevent inputs from collapsing */
-  }
+    
   </style>
 
   </main>
