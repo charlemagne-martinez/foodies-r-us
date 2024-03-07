@@ -1,64 +1,82 @@
 {{!-- /*
- * Citation: Citation is from node.js starter code
- * Date: 02/28/2024
- * Adapted from: Github page
- * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
- */  --}}
+* Citation: Citation is from node.js starter code
+* Date: 02/28/2024
+* Adapted from: Github page
+* Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+*/  --}}
 {{>header}}
 {{>navbar}}
 <main>
-            <h1>Restaurant Chains</h1>
+	<h1>Restaurant Chains</h1>
+	<div id="browse">
+		<table id="chains-table" border="1" cellpadding="5">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each data}}
+				<tr>
+					<td>{{this.restaurantChainID}}</td>
+					<td>{{this.name}}</td>
+					<td><button onclick="deleteChains({{this.restaurantChainID}})">Delete</button></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		<p>&nbsp;</p>
+	</div> <!-- browse -->
+	<p>&nbsp;</p>
 
-            <div id="browse">
-                <table border="1" cellpadding="5">
-                  <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Name</th>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurantChain('this.restaurantChainID')">Delete</a></td>
-                    <td align="right" >1</td>
-                    <td >McDonald's</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurantChain('this.restaurantChainID')">Delete</a></td>
-                    <td align="right" >2</td>
-                    <td>Starbucks</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurantChain('this.restaurantChainID')">Delete</a></td>
-                    <td align="right" >3</td>
-                    <td>Subway</td>
-                  </tr>
-                </table>
-                <p>&nbsp;</p>
-            </div> <!-- browse -->
-            <p>&nbsp;</p>
-        </div> <!-- browse -->
+	<div id="insert" style="display: block">
+		<form id="add-chain-form" method="POST" action="/add-chain-form">
+			<legend><strong>Add Restaurant Chain</strong></legend>
+			<fieldset class="fields">
+				<label> Restaurant Chain Name </label> 
+				<input type="text" name="name" id="input-chain">
+			</fieldset>
 
-        <div id="insert" style="display: block">
-            <form id="addRestaurantChain">
-                <legend><strong>Add Restaurant Chain</strong></legend>
-                  <fieldset class="fields">
-                    <label> Restaurant Chain Name </label> <input type="text" name="name">
-                  </fieldset>
-                  <input class="btn" type="submit" id="addRestaurantChain" value="Add a Restaurant Chain">
-                  <input class="btn" type="button" value="Cancel">
-            </form> <!--add new restaurantChain-->
-        </div><!-- insert -->
-        
-        <p>&nbsp;</p>
-        <div id="update" style="display: block">
-          <form id="updateRestaurantChain">
-              <legend><strong>Update Restaurant Chain</strong></legend>
-                  <fieldset class="fields">
-                    <label> Restaurant Chain Name</label> <input type="text" name="name">
-            </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveRestaurantChain" value="Save Update Restaurant Chain">
-                  <input class="btn" type="button" value="Cancel" >
-          </form> 
-        </div><!-- update -->
-        <p>&nbsp;</p>
+			<input class="btn" type="submit" id="addRestaurantChain" value="Add a Restaurant Chain">
+			<input class="btn" type="button" value="Cancel">
+		</form> <!--add new restaurantChain-->
+	</div><!-- insert -->
 
-        </main>
+	<p>&nbsp;</p>
+	<div id="update" style="display: block">
+		<form id="update-chain-form" mathod="POST" action="/update-chain-form">
+			<legend><strong>Update Restaurant Chain</strong></legend>
+			<fieldset class="fields">
+				<label>Restaurant Chain</label> 
+				<select id="select-chain">
+					<option>Select a Chain</option>
+					{{#each data}}
+						<option data-name="{{this.name}}" data-chainID="{{this.restaurantChainID}}">
+							{{this.name}}
+						</option>
+					{{/each}}
+				</select>
+				{{!-- second input --}}
+				<label>New Restaurant Chain Name</label>
+				<input type="text" name="name" >
+        <input type="hidden" name="chainID">
+			</fieldset>
+			<input class="btn" type="submit" id="UpdateSaveRestaurantChain" value="Save Update Restaurant Chain">
+			<input class="btn" type="button" value="Cancel" >
+		</form> 
+	</div><!-- update -->
+	<p>&nbsp;</p>
+	{{!-- <script>
+		let selectElement = document.querySelector('#select-update-review');
+
+		selectElement.addEventListener('change', function(e) {
+			let selectedOption = selectElement.options[selectElement.selectedIndex];
+
+			document.getElementById("update-restaurant").value = selectedOption.getAttribute('data-restaurant')
+		});
+
+	</script> --}}
+
+</main>
