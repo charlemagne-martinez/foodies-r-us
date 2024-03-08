@@ -96,14 +96,14 @@
             <legend><strong>Update Cuisine Type</strong></legend>
             <fieldset class="fields">
                 <label>Current Cuisine Types</label> 
-                <select id="select-type">
-                    <option>Select a Cuisine</option>
-                    {{#each data}}
-                        <option data-type="{{this.type}}" data-cuisineID="{{this.cuisineTypeID}}">
-                            {{this.type}}
-                        </option>
-                    {{/each}}
-                </select>
+                    <select id="select-type">
+                        <option>Select a Cuisine</option>
+                        {{#each data}}
+                            <option data-type="{{this.type}}" data-cuisineID="{{this.cuisineTypeID}}">
+                                {{this.type}}
+                            </option>
+                        {{/each}}
+                    </select>
 
                 <label>New Cuisine Type </label> 
                 <input type="text" name="type" id="update-type">
