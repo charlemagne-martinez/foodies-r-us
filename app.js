@@ -453,6 +453,54 @@ app.delete('/delete-location', function(req, res, next)
 })
 
 
+app.delete('/delete-restaurant', function(req, res, next) 
+{
+    console.log("In delete-restaurant route!")
+
+    let data = req.body;
+    let restaurantID = parseInt(data.restaurantID);
+    let deleteRestaurantCuisine = `DELETE FROM RestaurantCuisines WHERE restaurantID = ?`;
+    let deleteReview = `DELETE FROM ReviewsERE restaurantID = ?`;
+    let deleteRestaurant = `DELETE FROM Restaurants WHERE restaurantID = ?`;
+
+    // First, we delete the record from RestaurantCuisine, as it has a FK referring to restaurantID of Restaurants
+    db.pool.query(deleteRestaurantCuisine, [restaurantID], function(error, rows, fields) {
+        if (error) 
+        {
+            console.log(error);
+            res.sendStatus(400);
+        } 
+        else 
+        {
+            // Then, we delete the record from Reviews, as it also has a FK referring to restaurantID of Restaurants
+            db.pool.query(deleteReview, [restaurantID], function(error, rows, fields) {
+                if (error) 
+                {
+                    console.log(error);
+                    res.sendStatus(400);
+                } 
+                else 
+                {
+                    // Finally, we delete the Restaurants record itself
+                    db.pool.query(deleteRestaurant, [restaurantID], function(error, rows, fields) 
+                    {
+                        if (error) 
+                        {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } 
+                        else 
+                        {
+                            res.sendStatus(204);
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+
 /*
     LISTENER
 */
