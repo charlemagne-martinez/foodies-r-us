@@ -67,8 +67,26 @@
 
             <label> Restaurant Name </label> <input type="text" name="restaurantName">
             <label> Description </label> <input type="text" name="description">
-            <label> Average Rating </label> <input type="text" name="avgRating">
-            <label> Average Price </label> <input type="text" name="avgPrice">
+            <label> Average Rating </label> 
+                <select>
+                    <option>Select Rating</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+
+                </select>
+            <input type="hidden" name="avgRating">
+            <label> Average Price </label>
+                <select>
+                    <option>Select Price Icon</option>
+                    <option>$</option>
+                    <option>$$</option>
+                    <option>$$$</option>
+                    <option>$$$$</option>
+                </select> 
+            <input type="hidden" name="avgPrice">
             <label> Popular Order </label> <input type="text" name="popularOrder">
 
             </fieldset>
