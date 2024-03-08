@@ -41,7 +41,23 @@ app.get('/locations', function(req,res){
 })
 
 app.get('/restaurants', function(req,res){
-    res.render("pages/restaurants")
+    let query1 = `SELECT Restaurants.restaurantID, 
+                Locations.locationID,
+                RestaurantChains.restaurantChainID,
+                CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, 
+                RestaurantChains.name, 
+                restaurantName, 
+                description, 
+                avgRating, 
+                avgPrice, 
+                popularOrder 
+                FROM Restaurants
+                INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
+                LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;`
+    db.pool.query(query1, function(error, rows, fields){
+        res.render("pages/restaurants", {data: rows});
+    })
+
 })
 
 app.get('/restaurantChains', function(req,res){
