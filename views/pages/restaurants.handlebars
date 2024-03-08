@@ -1,19 +1,19 @@
 {{!-- /*
- * Citation: Citation is from node.js starter code
- * Date: 02/28/2024
- * Adapted from: Github page
- * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
- */  --}}
+* Citation: Citation is from node.js starter code
+* Date: 02/28/2024
+* Adapted from: Github page
+* Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+*/  --}}
 
 {{>header}}
 {{>navbar}}
 <main>
-            <h1>Restaurants</h1>
+    <h1>Restaurants</h1>
 
-            <div id="browse">
-                <table border="1" cellpadding="5">
-                  <tr>
-                    <th></th>
+    <div id="browse">
+        <table id="restaurant-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
                     <th>ID</th>
                     <th>Location</th>
                     <th>Restaurant Chain</th>
@@ -22,131 +22,111 @@
                     <th>Average Rating</th>
                     <th>Average Price</th>
                     <th>Popular Order</th>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
-                    <td>1</td>
-                    <td>New York, NY, USA</td>
-                    <td>McDonald's</td>
-                    <td>McDonald's Times Square</td>
-                    <td>Fast food restaurant in Times Square</td>
-                    <td>4.2</td>
-                    <td>$$</td>
-                    <td>Big Mac</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
-                    <td>2</td>
-                    <td>Los Angeles, CA, USA</td>
-                    <td>Starbucks</td>
-                    <td>Starbucks Central Plaza</td>
-                    <td>Coffee shop in Central Park</td>
-                    <td>4.5</td>
-                    <td>$</td>
-                    <td>Caramel Macchiato</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
-                    <td>3</td>
-                    <td>Los Angeles, CA, USA</td>
-                    <td>Subway</td>
-                    <td>Subway Downtown LA</td>
-                    <td>Sandwich restaurant in Downtown LA</td>
-                    <td>4.0</td>
-                    <td>$</td>
-                    <td>Chicken Teriyaki Sub</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" onclick="deleteRestaurant('this.restaurantID')">Delete</a></td>
-                    <td>4</td>
-                    <td>London, UK</td>
-                    <td>NULL</td>
-                    <td>Brigadiers</td>
-                    <td>Indian restaurant in London</td>
-                    <td>4.5</td>
-                    <td>$$$</td>
-                    <td>Chicken Tikka Butter Masala</td>
-                  </tr>
-                </table>
-                <p>&nbsp;</p>
-            </div> <!-- browse -->
-            <p>&nbsp;</p>
-        </div> <!-- browse -->
-
-        <div id="insert" style="display: block">
-            <form id="addRestaurant">
-                <legend><strong>Add Restaurant</strong></legend>
-                  <fieldset class="fields">
-                    <label> Location </label> 
-                      <select name="locations">
-                        <option value="0">&nbsp;</option>
-                        <option value="1" >New York, NY, USA</option>
-                        <option value="2">Los Angeles, CA, USA</option>
-                        <option value="3">London, UK</option>
-                    </select>
-                    <label> Restaurant Chain</label> 
-                      <select name="locations">
-                        <option value="0">&nbsp;</option>
-                        <option value="1" >McDonald's</option>
-                        <option value="2">Starbucks</option>
-                        <option value="3">Subway</option>
-                      </select>
-                    <!-- <label> Cuisine Type </label> 
-                      <select name="cuisineType">
-                        <option value="0">&nbsp;</option>
-                        <option value="1" >Italian</option>
-                        <option value="2">Mexican</option>
-                        <option value="3">Chinese</option>
-                        <option value="4">Indian</option>
-                      </select> -->
-                    <label> Restaurant Name </label> <input type="text" name="restaurantName">
-                    <label> Description </label> <input type="text" name="description">
-                    <label> Average Rating </label> <input type="text" name="avgRating">
-                    <label> Average Price </label> <input type="text" name="avgPrice">
-                    <label> Popular Order </label> <input type="text" name="popularOrder">
-
-                  </fieldset>
-                  <input class="btn" type="submit" id="addRestaurant" value="Add a Restaurant">
-                  <input class="btn" type="button" value="Cancel">
-            </form> <!--add new restaurant-->
-        </div><!-- insert -->
-        
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.restaurantID}}</td>
+                    <td>{{this.locationID}}</td>
+                    <td>{{this.restaurantChainID}}</td>
+                    <td>{{this.restaurantName}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.avgRating}}</td>
+                    <td>{{this.avgPrice}}</td>
+                    <td>{{this.popularOrder}}</td>
+                    <td><button onclick="deleteRestaurant({{this.restaurantID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
         <p>&nbsp;</p>
-        <div id="update" style="display: block">
-          <form id="updateRestaurant">
-              <legend><strong>Update Restaurant</strong></legend>
-                  <fieldset class="fields">
-                    <label> Location </label> 
-                      <select name="locations">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">New York, NY, USA</option>
-                        <option value="2">Los Angeles, CA, USA</option>
-                        <option value="3">London, UK</option>
-                      </select>
-                    <label> Restaurant Chain</label> 
-                      <select name="locations">
-                        <option value="0">&nbsp;</option>
-                        <option value="1">McDonald's</option>
-                        <option value="2">Starbucks</option>
-                        <option value="3">Subway</option>
-                      </select>
-                    <!-- <label> Cuisine Type </label> 
-                      <select name="cuisineType">
-                        <option value="0">&nbsp;</option>
-                        <option value="1" >Italian</option>
-                        <option value="2">Mexican</option>
-                        <option value="3">Chinese</option>
-                        <option value="4">Indian</option>
-                      </select> -->
-                    <label> Restaurant Name </label> <input type="text" name="restaurantName" >
-                    <label> Description </label> <input type="text" name="description" >
-                    <label> Average Rating </label> <input type="text" name="avgRating" >
-                    <label> Average Price </label> <input type="text" name="avgPrice" >
-                    <label> Popular Order </label> <input type="text" name="popularOrder" >
+    </div> <!-- browse -->
+    <p>&nbsp;</p>
+
+    <div id="insert" style="display: block">
+        <form id="add-restaurant-form" method="POST" action="/add-restaurant-form">
+            <legend><strong>Add Restaurant</strong></legend>
+            <fieldset class="fields">
+            <label> Location </label> 
+                <select name="locations">
+                    <option>Select Location</option>
+                    {{#each data}}
+                    <option>{{this.location}}</option>
+                    {{/each}}
+                </select>
+
+            <label> Restaurant Chain</label> 
+                <select name="chain">
+                    <option>Select a Restaurant Chain</option>
+                    {{#each data}}
+                    <option> {{this.name}} </option>
+                    {{/each}}
+                </select>
+
+            <label> Restaurant Name </label> <input type="text" name="restaurantName">
+            <label> Description </label> <input type="text" name="description">
+            <label> Average Rating </label> <input type="text" name="avgRating">
+            <label> Average Price </label> <input type="text" name="avgPrice">
+            <label> Popular Order </label> <input type="text" name="popularOrder">
+
+            </fieldset>
+            <input class="btn" type="submit" id="addRestaurant" value="Add a Restaurant">
+            <input class="btn" type="button" value="Cancel">
+        </form> <!--add new restaurant-->
+    </div><!-- insert -->
+
+    <p>&nbsp;</p>
+    <div id="update" style="display: block">
+        <form id="updateRestaurant">
+            <legend><strong>Update Restaurant</strong></legend>
+            <fieldset class="fields">
+            <label> Location </label> 
+                <select name="locations" id="select-update-location">
+                    <option>Select Location</option>
+                    {{#each data}}
+                    <option data-location="{{this.location}}" data-locationID="{{this.locationID}}">{{this.location}}</option>
+                    {{/each}}
+                </select>
+
+            <label> Restaurant Chain</label> 
+                <select name="chain" id="select-update-chain">
+                    <option>Select a Restaurant Chain</option>
+                    {{#each data}}
+                    <option data-name="{{this.name}}" data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
+                    {{/each}}
+                </select>
+
+            <label> Restaurant Name </label> <input type="text" name="restaurantName" id="update-restaurantName">
+            <label> Description </label> <input type="text" name="description" id="udpate-description" >
+            <label> Average Rating </label> <input type="text" name="avgRating" id="update-avgRating" >
+            <label> Average Price </label> <input type="text" name="avgPrice" id="update-avgPrice" >
+            <label> Popular Order </label> <input type="text" name="popularOrder" id="popularOrder" >
+            <input type="hidden" name="location" id="update-location">
+            <input type="hidden" name="name" id="update-name">
+
             </fieldset>
             <input class="btn" type="submit" id="UpdateSaveRestaurant" value="Save Update Restaurant">
-                  <input class="btn" type="button" value="Cancel" >
-          </form> 
-        </div><!-- update -->
+            <input class="btn" type="button" value="Cancel" >
+        </form> 
+    </div><!-- update -->
 
-        </main>
+    <script>
+        let chain = document.querySelector('#select-update-chain');
+        let location = document.querySelector('#select-update-location');
+
+        chain.addEventListener('change', function(e) {
+            let selectedOption = chain.options[chain.selectedIndex];
+
+            document.getElementById("update-chain").value = selectedOption.getAttribute('data-chainID')
+        });
+
+        location.addEventListener('change', function(e) {
+            let selectedOption = location.options[location.selectedIndex];
+
+            document.getElementById("update-location").value = selectedOption.getAttribute('data-locationID')
+        });
+    </script>
+
+</main>
