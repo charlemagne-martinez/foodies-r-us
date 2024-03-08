@@ -53,43 +53,47 @@
             <legend><strong>Add Restaurant</strong></legend>
             <fieldset class="fields">
             <label> Location </label> 
-                <select name="locations">
+                <select id="insert-locationSelect">
                     <option>Select Location</option>
                     {{#each data}}
-                    <option>{{this.location}}</option>
+                    <option data-locationID="{{this.locationID}}">{{this.location}}</option>
                     {{/each}}
                 </select>
+            <input type="hidden" name="locationID" id="insert-locationID">
+            
 
             <label> Restaurant Chain</label> 
-                <select name="chain">
+                <select id="insert-chainSelect">
                     <option>Select a Restaurant Chain</option>
                     {{#each data}}
-                    <option> {{this.name}} </option>
+                    <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
                     {{/each}}
                 </select>
+            <input type="hidden" name="chainID" id="insert-restaurantChainID">
+
 
             <label> Restaurant Name </label> <input type="text" name="restaurantName">
             <label> Description </label> <input type="text" name="description">
             <label> Average Rating </label> 
-                <select>
+                <select id="insert-rating-select">
                     <option>Select Rating</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
-
                 </select>
-            <input type="hidden" name="avgRating">
+            <input type="hidden" name="avgRating" id="insert-avgRating">
+
             <label> Average Price </label>
-                <select>
+                <select id="insert-price-select">
                     <option>Select Price Icon</option>
                     <option>$</option>
                     <option>$$</option>
                     <option>$$$</option>
                     <option>$$$$</option>
                 </select> 
-            <input type="hidden" name="avgPrice">
+            <input type="hidden" name="avgPrice" id="insert-avgPrice">
             <label> Popular Order </label> <input type="text" name="popularOrder">
 
             </fieldset>
@@ -97,6 +101,37 @@
             <input class="btn" type="button" value="Cancel">
         </form> <!--add new restaurant-->
     </div><!-- insert -->
+
+    <script>
+        let locationSelect = document.querySelector('#insert-locationSelect');
+        locationSelect.addEventListener('change', function(e) {
+            let selectedOption = locationSelect.options[locationSelect.selectedIndex];
+            
+            document.getElementById("insert-locationID").value = selectedOption.getAttribute('data-locationID');
+        });
+
+        let chainSelect = document.querySelector('#insert-chainSelect');
+        chainSelect.addEventListener('change', function(e) {
+            let selectedOption = chainSelect.options[chainSelect.selectedIndex];
+            
+            document.getElementById("insert-restaurantChainID").value = selectedOption.getAttribute('data-chainID');
+        });
+
+        let ratingSelect = document.querySelector('#insert-rating-select');
+        ratingSelect.addEventListener('change', function(e) {
+            let selectedOption = ratingSelect.options[ratingSelect.selectedIndex];
+            
+            document.getElementById("insert-avgRating").value = selectedOption.value;
+        });
+
+        let priceSelect = document.querySelector('#insert-price-select');
+        priceSelect.addEventListener('change', function(e) {
+            let selectedOption = priceSelect.options[priceSelect.selectedIndex];
+            
+            document.getElementById("insert-avgPrice").value = selectedOption.value;
+        });
+
+    </script>
 
     <p>&nbsp;</p>
     <div id="update" style="display: block">
@@ -107,7 +142,7 @@
                 <select name="locations" id="select-update-location">
                     <option>Select Location</option>
                     {{#each data}}
-                    <option data-location="{{this.location}}" data-locationID="{{this.locationID}}">{{this.location}}</option>
+                    <option data-locationID="{{this.locationID}}">{{this.location}}</option>
                     {{/each}}
                 </select>
 
@@ -115,7 +150,7 @@
                 <select name="chain" id="select-update-chain">
                     <option>Select a Restaurant Chain</option>
                     {{#each data}}
-                    <option data-name="{{this.name}}" data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
+                    <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
                     {{/each}}
                 </select>
 
