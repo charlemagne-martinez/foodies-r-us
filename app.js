@@ -394,6 +394,45 @@ app.delete('/delete-cuisine-type', function(req, res, next)
 })
 
 
+app.delete('/delete-location', function(req, res, next)
+{
+    console.log("In delete-location route!")
+
+    let data = req.body;
+    let locationID = parseInt(data.locationID);
+    let deleteRestaurant = `DELETE FROM Restaurants WHERE locationID = ?`;
+    let deleteLocation = `DELETE FROM Locations WHERE locationID = ?`;
+
+    // First we delete respective Restaurants record, as there is a locationID FK it references for Locations
+    db.pool.query(deleteRestaurant, [locationID], function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log(error)
+            res.sendStatus(400)
+        }
+        
+        // Afterwards we then delete the Locations record itself based on locationID
+        else
+        {
+            db.pool.query(deleteLocation, [locationID], function(error, rows, fields)
+            {
+                if (error)
+                {
+                    console.log(error)
+                    res.sendStatus(400)
+                }
+
+                else
+                {
+                    res.sendStatus(204)
+                }
+            })
+        }
+    })
+})
+
+
 /*
     LISTENER
 */
