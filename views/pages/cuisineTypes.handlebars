@@ -24,15 +24,56 @@
             </thead>
             <tbody>
                 {{#each data}}
-                <tr>
+                <tr data-value="{{this.cuisineTypeID}}">
                     <td>{{this.cuisineTypeID}}</td>
                     <td>{{this.type}}</td>
-                    <td><button onclick="deleteCuisines({{this.cuisineTypeID}})">Delete</button></td>
+                    <td><button onclick="deleteCuisineType({{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
+            <p>&nbsp;</p>
         </table>
-        <p>&nbsp;</p>
+        {{!-- <script src="./static/deleteCuisineType.js"></script> --}}
+        <script>
+            function deleteCuisineType(cuisineTypeID) {
+                console.log("deleteCuisineType.js is connected!");
+
+                let link = '/delete-cuisine-type';
+
+                // Put our data we want to send in a javascript object
+                let data = {
+                    cuisineTypeID: cuisineTypeID
+                };
+
+                $.ajax(
+                {
+                    url: link,
+                    type: 'DELETE',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function(result)
+                    {
+                        deleteRow(cuisineTypeID)
+                    } 
+                });
+
+            }
+
+            function deleteRow(cuisineTypeID)
+            {
+                let table = document.getElementById("cuisine-table");
+                for (let i = 0, row; row = table.rows[i]; i++) 
+                {
+                // iterate through rows
+                // rows would be accessed using the "row" variable assigned in the for loop
+                if (table.rows[i].getAttribute("data-value") == cuisineTypeID) 
+                {
+                        table.deleteRow(i);
+                        break;
+                }
+                }
+            }            
+        </script>
   </div> <!-- browse --> 
   <p>&nbsp;</p>
 
@@ -81,6 +122,7 @@
             let selectedOption = selectElement.options[selectElement.selectedIndex];
 
             document.getElementById("update-cuisineID").value = selectedOption.getAttribute('data-cuisineID')
+            document.getElementById("update-type").value = selectedOption.getAttribute('data-type')
         });
   </script>
 
