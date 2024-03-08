@@ -49,7 +49,8 @@ SELECT locationID, city, state, country FROM Locations;
 -- Select all restaurant cuisines (intersection table)
 SELECT Restaurants.restaurantName, CuisineTypes.type FROM RestaurantCuisines
 INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
-INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID;
+INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID
+ORDER BY RestaurantCuisines.restaurantID;
 
 -- Selects for drop down menus
 SELECT locationID, CONCAT(city, ", ", IFNULL(state, ""), ", ", country) as Locations FROM Locations;
@@ -185,3 +186,11 @@ WHERE restaurantChainID = :restaurantChainID;
 --Delete Locations
 DELETE FROM Locations
 WHERE locationID = :locationID;
+
+
+-- Delete RestaurantCuisines
+DELETE FROM RestaurantCuisines
+WHERE cuisineTypeID = :cuisineTypeID;
+
+DELETE FROM RestaurantCuisines
+WHERE restaurantID = :restaurantID;

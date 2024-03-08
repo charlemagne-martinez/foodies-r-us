@@ -28,6 +28,7 @@ app.get('/', function(req,res){
 app.get('/cuisineTypes', function(req,res){
     let query1 = "SELECT * FROM CuisineTypes"
     db.pool.query(query1, function(error, rows, fields){
+        console.log("CuisineTypes records:", rows)
         res.render("pages/cuisineTypes", {data: rows});
     })
 })
@@ -340,6 +341,43 @@ app.delete('/delete-restaurant-chain', function(req, res, next)
         else
         {
             db.pool.query(deleteChain, [restaurantChainID], function(error, rows, fields)
+            {
+                if (error)
+                {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else
+                {
+                    res.sendStatus(204);
+                }
+            })
+        }
+    })
+})
+
+app.delete('/delete-cuisine-type', function(req, res, next)
+{
+    console.log("In delete-cuisine-type route!")
+
+    let data = req.body;
+    let cuisineTypeID = parseInt(data.cuisineTypeID);
+    let deleteRestaurantCuisine = `DELETE FROM RestaurantCuisines WHERE cuisineTypeID = ?`;
+    let deleteCuisineType = `DELETE FROM CuisineTypes WHERE cuisineTypeID = ?`;
+
+    // First delete from RestaurantCuisines, which has a FK reference to cuisineTypeID
+    db.pool.query(deleteRestaurantCuisine, [cuisineTypeID], function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // Afterwards, delete from CuisineTypes based on the same cuisineTypeID
+        else 
+        {
+            db.pool.query(deleteCuisineType, [cuisineTypeID], function(error, rows, fields)
             {
                 if (error)
                 {
