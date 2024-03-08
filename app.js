@@ -53,7 +53,8 @@ app.get('/restaurants', function(req,res){
                 popularOrder 
                 FROM Restaurants
                 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
-                LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;`
+                LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
+                ORDER BY Restaurants.restaurantID;`
     db.pool.query(query1, function(error, rows, fields){
         res.render("pages/restaurants", {data: rows});
     })
@@ -158,6 +159,22 @@ app.post('/add-chain-form', function(req, res){
     })
 })
 
+app.post('/add-restaurant-form', function(req, res) {
+    let data = req.body;
+    console.log(data);
+
+    let query = `INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+    db.pool.query(query, [data.locationID, data.chainID, data.restaurantName, data.description, data.avgRating, data.avgPrice, data.popularOrder], function(error, rows, fields) {
+        if (error) {
+            console.error(error);
+            res.sendStatus(400);
+        } else {
+            res.redirect('/restaurants');
+        }
+    });
+});
 // Post
 app.post('/add-location-form', function(req, res){
     let data = req.body
