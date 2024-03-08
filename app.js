@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 7678;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7677;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -451,6 +451,54 @@ app.delete('/delete-location', function(req, res, next)
         }
     })
 })
+
+
+app.delete('/delete-restaurant', function(req, res, next) 
+{
+    console.log("In delete-restaurant route!")
+
+    let data = req.body;
+    let restaurantID = parseInt(data.restaurantID);
+    let deleteRestaurantCuisine = `DELETE FROM RestaurantCuisines WHERE restaurantID = ?`;
+    let deleteReview = `DELETE FROM ReviewsERE restaurantID = ?`;
+    let deleteRestaurant = `DELETE FROM Restaurants WHERE restaurantID = ?`;
+
+    // First, we delete the record from RestaurantCuisine, as it has a FK referring to restaurantID of Restaurants
+    db.pool.query(deleteRestaurantCuisine, [restaurantID], function(error, rows, fields) {
+        if (error) 
+        {
+            console.log(error);
+            res.sendStatus(400);
+        } 
+        else 
+        {
+            // Then, we delete the record from Reviews, as it also has a FK referring to restaurantID of Restaurants
+            db.pool.query(deleteReview, [restaurantID], function(error, rows, fields) {
+                if (error) 
+                {
+                    console.log(error);
+                    res.sendStatus(400);
+                } 
+                else 
+                {
+                    // Finally, we delete the Restaurants record itself
+                    db.pool.query(deleteRestaurant, [restaurantID], function(error, rows, fields) 
+                    {
+                        if (error) 
+                        {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } 
+                        else 
+                        {
+                            res.sendStatus(204);
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
 
 
 /*

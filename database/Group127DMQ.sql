@@ -26,7 +26,7 @@ SELECT userID as ID, username as Username, email as Email, password as Password,
 SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, restaurantName, description, avgRating, avgPrice, popularOrder 
 FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
-INNER JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;
+LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;
 -- INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
 -- INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 

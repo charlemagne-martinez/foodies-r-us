@@ -32,12 +32,13 @@
     - RestaurantChains works for all crud
     - CuisineTypes works for CRU. DELETE left
 
-    - remaining entities: Locations, Restaurants, RestaurantCuisines
+    - remaining entities: Restaurants, RestaurantCuisines
 
 3/7:
     - fixed Reviews SELECT not being in order by reviewID
     - CuisineTypes DELETE works
-
+    - Locations CRUD all works
+    
 
 Todo : 
     
