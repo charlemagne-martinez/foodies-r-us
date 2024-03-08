@@ -1,9 +1,9 @@
 {{!-- /*
- * Citation: Citation is from node.js starter code
- * Date: 02/28/2024
- * Adapted from: Github page
- * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
- */  --}}
+* Citation: Citation is from node.js starter code
+* Date: 02/28/2024
+* Adapted from: Github page
+* Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+*/  --}}
 {{>header}}
 {{>navbar}}
 <main>
@@ -11,61 +11,87 @@
 
     <div id="browse">
         <table id="locations-table" border="1" cellpadding="5">
-          <thead>
-              {{!-- For just the first row, we print each key of the row object as a header cell so we
-              know what each column means when the page renders --}}
-              <tr>
-                <th></th>
-                {{#each data.[0]}}
-                <th>
-                    {{@key}}
-                </th>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.locationID}}</td>
+                    <td>{{this.city}}</td>
+                    <td>{{this.state}}</td>
+                    <td>{{this.country}}</td>
+                    <td><button onclick="deleteLocation({{this.locationID}})">Delete</button></td>
+                </tr>
                 {{/each}}
-              </tr>
-          </thead>
-          <tbody>
-              {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-              {{#each data}}
-              <tr>
-                  <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
-                  <td>{{this.locationID}}</td>
-                  <td>{{this.city}}</td>
-                  <td>{{this.state}}</td>
-                  <td>{{this.country}}</td>
-              </tr>
-              {{/each}}
-          </tbody>
+            </tbody>
         </table>
         <p>&nbsp;</p>
     </div> <!-- browse -->
     <p>&nbsp;</p>
 
-<div id="insert" style="display: block">
-    <form id="add-location-form" method="POST" action="/add-location-form">
-        <legend><strong>Add Location</strong></legend>
-          <fieldset class="fields">
-            <label> City </label> <input type="text" name="city" id="input-city">
-            <label> State </label> <input type="text" name="state" id="input-state">
-            <label> Country </label> <input type="text" name="country" id="input-country">
-          </fieldset>
-          <input class="btn" type="submit" id="addLocation" value="Add a Location">
-          <input class="btn" type="button" value="Cancel">
-    </form> <!--add new location-->
-</div><!-- insert -->
+    <div id="insert" style="display: block">
+        <form id="add-location-form" method="POST" action="/add-location-form">
+            <legend><strong>Add Location</strong></legend>
+            <fieldset class="fields">
+                <label> City </label> <input type="text" name="city" id="input-city">
+                <label> State </label> <input type="text" name="state" id="input-state">
+                <label> Country </label> <input type="text" name="country" id="input-country">
+            </fieldset>
 
-<p>&nbsp;</p>
-<div id="update" style="display: block">
-  <form id="updateLocation">
-      <legend><strong>Update Location</strong></legend>
-          <fieldset class="fields">
-            <label> City </label> <input type="text" name="city">
-            <label> State </label> <input type="text"  name="state">
-            <label> Country </label> <input type="text" name="country">
-    </fieldset>
-    <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
-          <input class="btn" type="button" value="Cancel" >
-  </form> 
-</div><!-- update -->
+            <input class="btn" type="submit" id="addLocation" value="Add a Location">
+            <input class="btn" type="button" value="Cancel">
+        </form> <!--add new location-->
+    </div><!-- insert -->
 
+    <p>&nbsp;</p>
+
+    <div id="update" style="display: block">
+        <form id="updateLocation">
+            <legend><strong>Update Location</strong></legend>
+            <fieldset class="fields">
+                <label>Location</label>
+                <select id="select-update-location">
+                    <option>Select Location</option>
+                    {{#each data}}
+                    <option data-city="{{this.city}}" data-state="{{this.state}}" data-country="{{this.country}}" data-locationID="{{this.locationID}}">
+                        {{#if this.state}}
+                            {{this.city}}, {{this.state}}, {{this.country}}
+                        {{else}}
+                            {{this.city}}, {{this.country}}
+                        {{/if}}
+                    </option>
+                    {{/each}}
+                </select>
+                <label> City </label> <input type="text" name="city" id="update-city">
+                <label> State </label> <input type="text"  name="state" id="update-state">
+                <label> Country </label> <input type="text" name="country" id="update-country">
+                <input type="hidden" name="locationID" id="update-locationID">
+            </fieldset>
+
+            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+            <input class="btn" type="button" value="Cancel" >
+        </form> 
+    </div><!-- update -->
+
+        <script>
+        let selectElement = document.querySelector('#select-update-location');
+
+        selectElement.addEventListener('change', function(e) {
+            let selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            document.getElementById("update-locationID").value = selectedOption.getAttribute('data-locationID')
+            document.getElementById("update-city").value = selectedOption.getAttribute('data-city')
+            document.getElementById("update-state").value = selectedOption.getAttribute('data-state')
+            document.getElementById("update-country").value = selectedOption.getAttribute('data-country')
+
+        });
+  </script>
 
 </main>
