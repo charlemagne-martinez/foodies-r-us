@@ -68,10 +68,6 @@ function hideCuisineTypeModal() {
 }
 
 
-
-
-
-
 window.addEventListener('DOMContentLoaded', function () {
     var modalAcceptButton1 = document.getElementById('modal-accept')
     if (modalAcceptButton1) {
@@ -88,26 +84,6 @@ window.addEventListener('DOMContentLoaded', function () {
         modalHideButtons1[i].addEventListener('click', hideUserModal)
 
     }
-
-    // var modalAcceptButton2 = document.getElementById('modal-accept')
-    // if (modalAcceptButton2) {
-    //     modalAcceptButton2.addEventListener('click', hideUserModal)
-    // }
-
-    // var modalHideButtons2 = document.getElementsByClassName('modal-hide-button')
-    // for (var i = 0; i < modalHideButtons2.length; i++) {
-    //     modalHideButtons2[i].addEventListener('click', hideUserModal)
-    // }
-
-    // var modalAcceptButton3 = document.getElementById('modal-accept')
-    // if (modalAcceptButton3) {
-    //     modalAcceptButton3.addEventListener('click', hideCuisineTypeModal)
-    // }
-
-    // var modalHideButtons3 = document.getElementsByClassName('modal-hide-button')
-    // for (var i = 0; i < modalHideButtons3.length; i++) {
-    //     modalHideButtons3[i].addEventListener('click', hideCuisineTypeModal)
-    // }
 
 })
 
