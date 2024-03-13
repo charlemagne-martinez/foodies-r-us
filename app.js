@@ -68,9 +68,19 @@ app.get('/restaurantChains', function(req,res){
     })
 })
 
-app.get('/restaurantCuisines', function(req,res){
-    res.render("pages/restaurantCuisines")
-})
+app.get('/restaurantCuisines', function(req, res){
+    let query1 = `SELECT Restaurants.restaurantID, 
+                        Cuisines.cuisineID, 
+                        Cuisines.type,
+                        Restaurants.restaurantName
+                    FROM RestaurantCuisines
+                    INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
+                    LEFT JOIN Cuisines ON RestaurantCuisines.cuisineID = Cuisines.cuisineID
+                    ORDER BY Restaurants.restaurantID;`;
+    db.pool.query(query1, function(error, rows, fields){
+        res.render("pages/restaurantCuisines", {data: rows});
+    });
+});
 
 app.get('/users', function(req, res){
     let query2 = "SELECT * FROM Users"
