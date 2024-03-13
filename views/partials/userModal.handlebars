@@ -1,0 +1,48 @@
+<div id="modal-backdrop-user" class="hidden"></div>
+<div id="update-modal-user" class="hidden">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <h3>Edit User</h3>
+            <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+        <form id="update-user-form" method="POST" action="/update-user-form">
+            <div class="modal-body">
+                <input type="hidden" name="userID" id="update-userID">
+
+                <div class="post-input-element">
+                    <label for="update-username">City</label>
+                    <input type="text" name="username" id="update-username">
+                </div>
+
+                <div class="post-input-element">
+                    <label for="update-fName">State</label>
+                    <input type="text" name="fName" id="update-fName">
+                </div>
+
+                <div class="post-input-element">
+                    <label for="update-lName">Country</label>
+                    <input type="text" name="lName" id="update-lName">
+                </div>
+
+
+                <div class="post-input-element">
+                    <label for="update-email">Country</label>
+                    <input type="text" name="email" id="update-email">
+                </div>
+
+
+                <div class="post-input-element">
+                    <label for="update-password">Country</label>
+                    <input type="text" name="password" id="update-password">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                <button type="submit" id="modal-accept" class="action-button">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>
