@@ -1,18 +1,18 @@
-<div id="modal-backdrop-cuisine" class="hidden"></div>
-<div id="update-modal-cuisine" class="hidden">
+<div id="modal-backdrop-chain" class="hidden"></div>
+<div id="update-modal-chain" class="hidden">
     <div class="modal-dialog">
 
         <div class="modal-header">
-            <h3>Edit Cuisine</h3>
+            <h3>Edit Restaurant Chain</h3>
             <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
         </div>
-        <form id="update-cuisine-form" method="POST" action="/update-cuisine-form">
+        <form id="update-chain-form" method="POST" action="/update-chain-form">
             <div class="modal-body">
-                <input type="hidden" name="cuisineID" id="update-cuisineID">
+                <input type="hidden" name="chainID" id="update-chainID">
 
                 <div class="post-input-element">
-                    <label for="update-type">Cuisine Type</label>
-                    <input type="text" name="type" id="update-type">
+                    <label for="update-name">Restaurant Chain Name</label>
+                    <input type="text" name="name" id="update-name">
                 </div>
             </div>
 

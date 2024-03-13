@@ -67,6 +67,27 @@ function hideCuisineTypeModal() {
 
 }
 
+function updateChains(chainID, name){
+    var showSomethingModal = document.getElementById('update-modal-chain');
+    var modalBackdrop = document.getElementById('modal-backdrop-chain');
+
+    showSomethingModal.classList.remove('hidden');
+    modalBackdrop.classList.remove('hidden');
+
+    document.getElementById("update-chainID").value = chainID
+    document.getElementById("update-name").value = name
+
+}
+
+function hideChainModal() {
+    var showSomethingModal = document.getElementById('update-modal-chain')
+    var modalBackdrop = document.getElementById('modal-backdrop-chain')
+
+    showSomethingModal.classList.add('hidden')
+    modalBackdrop.classList.add('hidden')
+
+}
+
 
 window.addEventListener('DOMContentLoaded', function () {
     var modalAcceptButton1 = document.getElementById('modal-accept')
@@ -74,6 +95,7 @@ window.addEventListener('DOMContentLoaded', function () {
         modalAcceptButton1.addEventListener('click', hideLocationgModal)
         modalAcceptButton1.addEventListener('click', hideCuisineTypeModal)
         modalAcceptButton1.addEventListener('click', hideUserModal)
+        modalAcceptButton1.addEventListener('click', hideChainModal)
 
     }
 
@@ -82,6 +104,7 @@ window.addEventListener('DOMContentLoaded', function () {
         modalHideButtons1[i].addEventListener('click', hideLocationgModal)
         modalHideButtons1[i].addEventListener('click', hideCuisineTypeModal)
         modalHideButtons1[i].addEventListener('click', hideUserModal)
+        modalHideButtons1[i].addEventListener('click', hideChainModal)
 
     }
 
