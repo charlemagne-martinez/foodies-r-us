@@ -46,31 +46,68 @@ function hideUserModal() {
 
 }
 
+function updateCuisineType(cuisineID, type){
+    var showSomethingModal = document.getElementById('update-modal-cuisine');
+    var modalBackdrop = document.getElementById('modal-backdrop-cuisine');
+
+    showSomethingModal.classList.remove('hidden');
+    modalBackdrop.classList.remove('hidden');
+
+    document.getElementById("update-cuisineID").value = cuisineID
+    document.getElementById("update-type").value = type
+
+}
+
+function hideCuisineTypeModal() {
+    var showSomethingModal = document.getElementById('update-modal-cuisine')
+    var modalBackdrop = document.getElementById('modal-backdrop-cuisine')
+
+    showSomethingModal.classList.add('hidden')
+    modalBackdrop.classList.add('hidden')
+
+}
+
 
 
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
-    var modalAcceptButton = document.getElementById('modal-accept')
-    if (modalAcceptButton) {
-        modalAcceptButton.addEventListener('click', hideLocationgModal)
+    var modalAcceptButton1 = document.getElementById('modal-accept')
+    if (modalAcceptButton1) {
+        modalAcceptButton1.addEventListener('click', hideLocationgModal)
+        modalAcceptButton1.addEventListener('click', hideCuisineTypeModal)
+        modalAcceptButton1.addEventListener('click', hideUserModal)
+
     }
 
-    var modalHideButtons = document.getElementsByClassName('modal-hide-button')
-    for (var i = 0; i < modalHideButtons.length; i++) {
-        modalHideButtons[i].addEventListener('click', hideLocationgModal)
+    var modalHideButtons1 = document.getElementsByClassName('modal-hide-button')
+    for (var i = 0; i < modalHideButtons1.length; i++) {
+        modalHideButtons1[i].addEventListener('click', hideLocationgModal)
+        modalHideButtons1[i].addEventListener('click', hideCuisineTypeModal)
+        modalHideButtons1[i].addEventListener('click', hideUserModal)
+
     }
 
-    var modalAcceptButton = document.getElementById('modal-accept')
-    if (modalAcceptButton) {
-        modalAcceptButton.addEventListener('click', hideUserModal)
-    }
+    // var modalAcceptButton2 = document.getElementById('modal-accept')
+    // if (modalAcceptButton2) {
+    //     modalAcceptButton2.addEventListener('click', hideUserModal)
+    // }
 
-    var modalHideButtons = document.getElementsByClassName('modal-hide-button')
-    for (var i = 0; i < modalHideButtons.length; i++) {
-        modalHideButtons[i].addEventListener('click', hideUserModal)
-    }
+    // var modalHideButtons2 = document.getElementsByClassName('modal-hide-button')
+    // for (var i = 0; i < modalHideButtons2.length; i++) {
+    //     modalHideButtons2[i].addEventListener('click', hideUserModal)
+    // }
+
+    // var modalAcceptButton3 = document.getElementById('modal-accept')
+    // if (modalAcceptButton3) {
+    //     modalAcceptButton3.addEventListener('click', hideCuisineTypeModal)
+    // }
+
+    // var modalHideButtons3 = document.getElementsByClassName('modal-hide-button')
+    // for (var i = 0; i < modalHideButtons3.length; i++) {
+    //     modalHideButtons3[i].addEventListener('click', hideCuisineTypeModal)
+    // }
 
 })
 
