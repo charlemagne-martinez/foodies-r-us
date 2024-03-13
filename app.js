@@ -70,13 +70,12 @@ app.get('/restaurantChains', function(req,res){
 
 app.get('/restaurantCuisines', function(req, res){
     let query1 = `SELECT Restaurants.restaurantID, 
-                        Cuisines.cuisineID, 
-                        Cuisines.type,
-                        Restaurants.restaurantName
+                        CuisineTypes.cuisineTypeID, 
+                        CuisineTypes.type as cuisine,
+                        Restaurants.restaurantName as restaurant
                     FROM RestaurantCuisines
                     INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
-                    LEFT JOIN Cuisines ON RestaurantCuisines.cuisineID = Cuisines.cuisineID
-                    ORDER BY Restaurants.restaurantID;`;
+                    LEFT JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID;`
     db.pool.query(query1, function(error, rows, fields){
         res.render("pages/restaurantCuisines", {data: rows});
     });
@@ -150,6 +149,23 @@ app.post('/add-review-form', function(req, res){
             res.sendStatus(400);
         } else {
             res.redirect('/reviews');
+        }
+    });
+});
+
+app.post('/add-restaurantCuisine-form', function(req, res){
+    let data = req.body;
+    console.log("Review record added:", data);
+
+    let query1 = `INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID) 
+                  VALUES (?,?)`
+    
+    db.pool.query(query1, [data.restaurant, data.type], function(error, results, fields){
+        if(error){
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.redirect('/restaurantCuisines');
         }
     });
 });
