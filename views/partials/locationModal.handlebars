@@ -1,0 +1,36 @@
+<div id="modal-backdrop" class="hidden"></div>
+<div id="update-modal" class="hidden">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <h3>Edit Location</h3>
+            <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+        <form id="update-location-form" method="POST" action="/update-location-form">
+            <div class="modal-body">
+                <input type="hidden" name="locationID" id="update-locationID">
+
+                <div class="post-input-element">
+                    <label for="update-city">City</label>
+                    <input type="text" name="city" id="update-city">
+                </div>
+
+                <div class="post-input-element">
+                    <label for="update-state">State</label>
+                    <input type="text" name="state" id="update-state">
+                </div>
+
+                <div class="post-input-element">
+                    <label for="update-country">Country</label>
+                    <input type="text" name="country" id="update-country">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                <button type="submit" id="modal-accept" class="action-button">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>
