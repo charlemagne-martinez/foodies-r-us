@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 7678;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7679;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -68,9 +68,19 @@ app.get('/restaurantChains', function(req,res){
     })
 })
 
-app.get('/restaurantCuisines', function(req,res){
-    res.render("pages/restaurantCuisines")
-})
+app.get('/restaurantCuisines', function(req, res){
+    let query1 = `SELECT Restaurants.restaurantID, 
+                        Cuisines.cuisineID, 
+                        Cuisines.type,
+                        Restaurants.restaurantName
+                    FROM RestaurantCuisines
+                    INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
+                    LEFT JOIN Cuisines ON RestaurantCuisines.cuisineID = Cuisines.cuisineID
+                    ORDER BY Restaurants.restaurantID;`;
+    db.pool.query(query1, function(error, rows, fields){
+        res.render("pages/restaurantCuisines", {data: rows});
+    });
+});
 
 app.get('/users', function(req, res){
     let query2 = "SELECT * FROM Users"

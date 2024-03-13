@@ -19,6 +19,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Type</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -27,53 +28,14 @@
                 <tr data-value="{{this.cuisineTypeID}}">
                     <td>{{this.cuisineTypeID}}</td>
                     <td>{{this.type}}</td>
+                    <td><button onClick="updateCuisineType('{{this.cuisineTypeID}}', '{{this.type}}')">Edit</button></td>
                     <td><button onclick="deleteCuisineType({{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
             <p>&nbsp;</p>
         </table>
-        {{!-- <script src="./static/deleteCuisineType.js"></script> --}}
-        <script>
-            function deleteCuisineType(cuisineTypeID) {
-                console.log("deleteCuisineType.js is connected!");
-
-                let link = '/delete-cuisine-type';
-
-                // Put our data we want to send in a javascript object
-                let data = {
-                    cuisineTypeID: cuisineTypeID
-                };
-
-                $.ajax(
-                {
-                    url: link,
-                    type: 'DELETE',
-                    data: JSON.stringify(data),
-                    contentType: "application/json; charset=utf-8",
-                    success: function(result)
-                    {
-                        deleteRow(cuisineTypeID)
-                    } 
-                });
-
-            }
-
-            function deleteRow(cuisineTypeID)
-            {
-                let table = document.getElementById("cuisine-table");
-                for (let i = 0, row; row = table.rows[i]; i++) 
-                {
-                // iterate through rows
-                // rows would be accessed using the "row" variable assigned in the for loop
-                if (table.rows[i].getAttribute("data-value") == cuisineTypeID) 
-                {
-                        table.deleteRow(i);
-                        break;
-                }
-                }
-            }            
-        </script>
+      
   </div> <!-- browse --> 
   <p>&nbsp;</p>
 
@@ -91,39 +53,8 @@
   </div><!-- insert -->
 
 <p>&nbsp;</p>
-  <div id="update" style="display: block">
-        <form id="update-cuisine-form" method="POST" action="update-cuisine-form">
-            <legend><strong>Update Cuisine Type</strong></legend>
-            <fieldset class="fields">
-                <label>Current Cuisine Types</label> 
-                    <select id="select-type">
-                        <option>Select a Cuisine</option>
-                        {{#each data}}
-                            <option data-type="{{this.type}}" data-cuisineID="{{this.cuisineTypeID}}">
-                                {{this.type}}
-                            </option>
-                        {{/each}}
-                    </select>
 
-                <label>New Cuisine Type </label> 
-                <input type="text" name="type" id="update-type">
-                <input type="hidden" name="cuisineID" id="update-cuisineID">
-
-            </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveCuisineType" value="Save Update Cuisine Type">
-            <input class="btn" type="button" value="Cancel" >
-        </form> 
-    </div><!-- update -->
-
-    <script>
-        let selectElement = document.querySelector('#select-type');
-
-        selectElement.addEventListener('change', function(e) {
-            let selectedOption = selectElement.options[selectElement.selectedIndex];
-
-            document.getElementById("update-cuisineID").value = selectedOption.getAttribute('data-cuisineID')
-            document.getElementById("update-type").value = selectedOption.getAttribute('data-type')
-        });
-  </script>
 
 </main>
+
+{{>cuisineTypeModal}}

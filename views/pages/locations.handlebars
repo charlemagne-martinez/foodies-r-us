@@ -20,6 +20,7 @@
                     <th>City</th>
                     <th>State</th>
                     <th>Country</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -30,54 +31,15 @@
                     <td>{{this.city}}</td>
                     <td>{{this.state}}</td>
                     <td>{{this.country}}</td>
+                    <td><button onclick="updateLocation('{{this.locationID}}', '{{this.city}}', '{{this.state}}', '{{this.country}}')">Edit</button></td>
                     <td><button onclick="deleteLocation({{this.locationID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
         <p>&nbsp;</p>
-
-        <script>
-          function deleteLocation(locationID) 
-          {
-            console.log("deleteLocation.js is connected!");
-
-            let link = '/delete-location';
-
-            // Put our data we want to send in a javascript object
-            let data = {
-                locationID: locationID
-            };
-
-            $.ajax(
-            {
-                url: link,
-                type: 'DELETE',
-                data: JSON.stringify(data),
-                contentType: "application/json; charset=utf-8",
-                success: function(result)
-                {
-                    deleteRow(locationID)
-                } 
-            });
-          }
-
-          function deleteRow(locationID)
-          {
-              let table = document.getElementById("locations-table");
-              for (let i = 0, row; row = table.rows[i]; i++) 
-              {
-                // iterate through rows
-                // rows would be accessed using the "row" variable assigned in the for loop
-                if (table.rows[i].getAttribute("data-value") == locationID) 
-                {
-                      table.deleteRow(i);
-                      break;
-                }
-              }
-          }
-        </script>
     </div> <!-- browse -->
+    
     <p>&nbsp;</p>
 
     <div id="insert" style="display: block">
@@ -96,46 +58,8 @@
 
     <p>&nbsp;</p>
 
-    <div id="update" style="display: block">
-        <form id="update-location-form" method="POST" action="/update-location-form">
-            <legend><strong>Update Location</strong></legend>
-            <fieldset class="fields">
-                <label>Location</label>
-                <select id="select-update-location">
-                    <option>Select Location</option>
-                    {{#each data}}
-                    <option data-city="{{this.city}}" data-state="{{this.state}}" data-country="{{this.country}}" data-locationID="{{this.locationID}}">
-                        {{#if this.state}}
-                            {{this.city}}, {{this.state}}, {{this.country}}
-                        {{else}}
-                            {{this.city}}, {{this.country}}
-                        {{/if}}
-                    </option>
-                    {{/each}}
-                </select>
-                <label> City </label> <input type="text" name="city" id="update-city">
-                <label> State </label> <input type="text"  name="state" id="update-state">
-                <label> Country </label> <input type="text" name="country" id="update-country">
-                <input type="hidden" name="locationID" id="update-locationID">
-            </fieldset>
-
-            <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
-            <input class="btn" type="button" value="Cancel" >
-        </form> 
-    </div><!-- update -->
-
-        <script>
-        let selectElement = document.querySelector('#select-update-location');
-
-        selectElement.addEventListener('change', function(e) {
-            let selectedOption = selectElement.options[selectElement.selectedIndex];
-
-            document.getElementById("update-locationID").value = selectedOption.getAttribute('data-locationID')
-            document.getElementById("update-city").value = selectedOption.getAttribute('data-city')
-            document.getElementById("update-state").value = selectedOption.getAttribute('data-state')
-            document.getElementById("update-country").value = selectedOption.getAttribute('data-country')
-
-        });
-  </script>
-
 </main>
+
+{{>locationModal}}
+
+

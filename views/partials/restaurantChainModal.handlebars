@@ -1,0 +1,26 @@
+<div id="modal-backdrop-chain" class="hidden"></div>
+<div id="update-modal-chain" class="hidden">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <h3>Edit Restaurant Chain</h3>
+            <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+        <form id="update-chain-form" method="POST" action="/update-chain-form">
+            <div class="modal-body">
+                <input type="hidden" name="chainID" id="update-chainID">
+
+                <div class="post-input-element">
+                    <label for="update-name">Restaurant Chain Name</label>
+                    <input type="text" name="name" id="update-name">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                <button type="submit" id="modal-accept" class="action-button">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>

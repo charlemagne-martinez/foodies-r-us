@@ -10,43 +10,50 @@
     <h1>Restaurant Cuisines</h1>
 
     <div id="browse">
-        <table border="1" cellpadding="5">
-        <tr>
-            <th></th>
-            <th>Restaurant</th>
-            <th>Cuisine</th>
-        </tr>
-        <tr>
-            <td><a href="#" onclick="deleteRestaurantCuisine('this.restaurantCuisineID')">Delete</a></td>
-            <td>McDonald's</td>
-            <td>Italian</td>
-        </tr>
-        <tr>
-            <td><a href="#" onclick="deleteRestaurantCuisine('this.restaurantCuisineID')">Delete</a></td>
-            <td>Starbucks</td>
-            <td>Chinese</td>
-        </tr>
-        <tr>
-            <td><a href="#" onclick="deleteRestaurantCuisine('this.restaurantCuisineID')">Delete</a></td>
-            <td>Subway</td>
-            <td>Mexican</td>
-        </tr>
-        <tr>
-            <td><a href="#" onclick="deleteRestaurantCuisine('this.restaurantCuisineID')">Delete</a></td>
-            <td>Subway</td>
-            <td>Indian</td>
-        </tr>
+        <table id="restaurantCuisines-table" border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Restaurant</th>
+                    <th>Cuisine</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tf>
+                    <td>{{this.restaurantID}}</td>
+                    <td>{{this.cuisineID}}</td>
+                    <td><button onclick="updateRestaurantCusine({{this.restaurantID}}, {{this.cuisineID}})">Edit</button></td>
+                    <td><button onclick="deleteRestaurantCusine({{this.restaurantID}}, {{this.cuisineID}})">Delete</button></td>
+                </tf>
+                {{/each}}
+            </tbody>
         </table>
         <p>&nbsp;</p>
     </div> <!-- browse -->
     <p>&nbsp;</p>
-    </div> <!-- browse -->
 
     <div id="insert" style="display: block">
-        <form id="addRestaurantCuisine">
+        <form id="add-restaurantCuisine-form" method="POST" action="/add-restaurantCuisine-form">
             <legend><strong>Add Restaurant Cuisine</strong></legend>
             <fieldset class="fields">
-                <label> Type </label> <input type="text" name="type">
+                
+                <label> Restaurant </label> 
+                <select id="select-restaurant-input">
+                    <option>Select a Restaurant</option>
+                    {{#each data}}
+                    <option data-restaurant="{{this.restaurantID}}">{{this.restaurant}}</option>
+                    {{/each}}
+                </select>
+
+                <label> Cuisine </label> 
+                <select id="select-cuisine-input">
+                    <option>Select a Cuisine</option>
+                    {{#each data}}
+                    <option data-cuisine="{{this.cuisineID}}">{{this.cuisine}}</option>
+                    {{/each}}
+                </select>
             </fieldset>
             <input class="btn" type="submit" id="addRestaurantCuisine" value="Add a Restaurant Cuisine">
             <input class="btn" type="button" value="Cancel">
