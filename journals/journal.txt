@@ -38,6 +38,11 @@
     - fixed Reviews SELECT not being in order by reviewID
     - CuisineTypes DELETE works
     - Locations CRUD all works
+
+3/13:
+    - Changed Modal Update for Users, Locations, Chains, CuisineTypes
+    - RetaurantCuisines has issue when adding if it already exists
+    - RC add + read is done
     
 
 Todo : 
@@ -55,6 +60,8 @@ Todo :
       in RestaurantCuisines where we allow the user to choose restaurant and cuisine type
 
     - input validation?
+    - validation for RC add to avoid duplicates
+    - add drop downs in modal updates for rest of entities suchs as restaurants, reviews, RC 
 
 
     
