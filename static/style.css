@@ -131,7 +131,8 @@ flex: 1 75px;
 margin-right: 10px;
 }
 
-.post-input-element input {
+.post-input-element input,
+.post-input-element select {
 flex: 6 200px;
 padding: 8px;
 font-size: 20px;

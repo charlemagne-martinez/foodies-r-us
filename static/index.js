@@ -110,21 +110,42 @@ function hideReviewModal() {
 
 }
 
-function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop, loc, chain){
+
+
+function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
     var showSomethingModal = document.getElementById('update-modal-restaurant');
     var modalBackdrop = document.getElementById('modal-backdrop-restaurant');
 
     showSomethingModal.classList.remove('hidden');
     modalBackdrop.classList.remove('hidden');
+    console.log("Why are you notworking")
 
     document.getElementById("update-restaurantID").value = resID
     document.getElementById("update-location").value = locID
     document.getElementById("update-name").value = chainID
     document.getElementById("update-restaurantName").value = name
     document.getElementById("update-description").value = des
-    document.getElementById("update-avgRating").value = avgR 
-    document.getElementById("update-avgPrice").value = avgP
+    // document.getElementById("update-avgRating").value = avgR 
+    // document.getElementById("update-avgPrice").value = avgP
     document.getElementById("popularOrder").value = pop 
+
+    var avgRatingSelect = document.getElementById("update-avgRating");
+    for (var i = 0; i < avgRatingSelect.options.length; i++) {
+
+        if (avgRatingSelect.options[i].value === avgR) {
+            avgRatingSelect.selectedIndex = i;
+            break;
+        }
+    }
+
+    // Set the value of the select dropdown for Average Price
+    var avgPriceSelect = document.getElementById("update-avgPrice");
+    for (var j = 0; j < avgPriceSelect.options.length; j++) {
+        if (avgPriceSelect.options[j].value === avgP) {
+            avgPriceSelect.selectedIndex = j;
+            break;
+        }
+    }
 
     var locationDropdown = document.getElementById("select-update-location");
     for (var i = 0; i < locationDropdown.options.length; i++) {
@@ -154,6 +175,27 @@ function hideRestaurantModal() {
     modalBackdrop.classList.add('hidden')
 
 }
+
+// Select all edit buttons with class "edit-button"
+const editButtons = document.querySelectorAll('.edit-button');
+
+// Add event listener to each edit button
+editButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Extract restaurant details from button attributes
+        const restaurantID = this.getAttribute('data-restaurantID');
+        const locationID = this.getAttribute('data-locationID');
+        const chainID = this.getAttribute('data-chainID');
+        const restaurantName = this.getAttribute('data-restaurantName');
+        const description = this.getAttribute('data-description');
+        const avgRating = this.getAttribute('data-avgRating');
+        const avgPrice = this.getAttribute('data-avgPrice');
+        const popularOrder = this.getAttribute('data-popularOrder');
+
+        // Call updateRestaurant function with extracted parameters
+        updateRestaurant(restaurantID, locationID, chainID, restaurantName, description, avgRating, avgPrice, popularOrder);
+    });
+});
 
 
 
