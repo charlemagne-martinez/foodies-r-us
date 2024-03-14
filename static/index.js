@@ -13,7 +13,7 @@ function updateLocation(locationID, city, state, country) {
 
 }
 
-function hideLocationgModal() {
+function hideLocationModal() {
     var showSomethingModal = document.getElementById('update-modal')
     var modalBackdrop = document.getElementById('modal-backdrop')
 
@@ -88,24 +88,48 @@ function hideChainModal() {
 
 }
 
+function updateReview(reviewID, review) {
+    var showSomethingModal = document.getElementById('update-modal-review');
+    var modalBackdrop = document.getElementById('modal-backdrop-review');
+
+    showSomethingModal.classList.remove('hidden');
+    modalBackdrop.classList.remove('hidden');
+
+    
+    document.getElementById("update-reviewID").value = reviewID
+    document.getElementById("update-review").value = review
+
+}
+
+function hideReviewModal() {
+    var showSomethingModal = document.getElementById('update-modal-review')
+    var modalBackdrop = document.getElementById('modal-backdrop-review')
+
+    showSomethingModal.classList.add('hidden')
+    modalBackdrop.classList.add('hidden')
+
+}
+
+
 
 window.addEventListener('DOMContentLoaded', function () {
     var modalAcceptButton1 = document.getElementById('modal-accept')
     if (modalAcceptButton1) {
-        modalAcceptButton1.addEventListener('click', hideLocationgModal)
+        modalAcceptButton1.addEventListener('click', hideLocationModal)
         modalAcceptButton1.addEventListener('click', hideCuisineTypeModal)
         modalAcceptButton1.addEventListener('click', hideUserModal)
         modalAcceptButton1.addEventListener('click', hideChainModal)
+        modalAcceptButton1.addEventListener('click', hideReviewModal)
 
     }
 
     var modalHideButtons1 = document.getElementsByClassName('modal-hide-button')
     for (var i = 0; i < modalHideButtons1.length; i++) {
-        modalHideButtons1[i].addEventListener('click', hideLocationgModal)
+        modalHideButtons1[i].addEventListener('click', hideLocationModal)
         modalHideButtons1[i].addEventListener('click', hideCuisineTypeModal)
         modalHideButtons1[i].addEventListener('click', hideUserModal)
         modalHideButtons1[i].addEventListener('click', hideChainModal)
-
+        modalHideButtons1[i].addEventListener('click', hideReviewModal)
     }
 
 })
