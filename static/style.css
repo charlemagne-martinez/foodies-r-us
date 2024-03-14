@@ -59,7 +59,7 @@ input {
   }
 
 
-#modal-backdrop, #modal-backdrop-user, #modal-backdrop-cuisine, #modal-backdrop-chain{
+#modal-backdrop, #modal-backdrop-user, #modal-backdrop-cuisine, #modal-backdrop-chain, #modal-backdrop-review,  #modal-backdrop-restaurant{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -69,7 +69,7 @@ input {
     background-color: rgba(0, 0, 0, 0.85);
 }
 
-#update-modal, #update-modal-user, #update-modal-cuisine, #update-modal-chain{
+#update-modal, #update-modal-user, #update-modal-cuisine, #update-modal-chain, #update-modal-review, #update-modal-restaurant{
     position: fixed;
     top: 0;
     bottom: 0;

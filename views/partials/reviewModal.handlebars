@@ -1,0 +1,26 @@
+<div id="modal-backdrop-review" class="hidden"></div>
+<div id="update-modal-review" class="hidden">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <h3>Edit Review</h3>
+            <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+        <form id="update-review-form" method="POST" action="/update-review-form">
+            <div class="modal-body">
+                <input type="hidden" name="reviewID" id="update-reviewID">
+
+                <div class="post-input-element">
+                    <label for="update-review">Review</label>
+                    <input type="text" name="review" id="update-review">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                <button type="submit" id="modal-accept" class="action-button">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>

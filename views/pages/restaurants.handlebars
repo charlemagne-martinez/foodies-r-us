@@ -25,6 +25,7 @@
                     <th>Average Rating</th>
                     <th>Average Price</th>
                     <th>Popular Order</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -39,6 +40,10 @@
                     <td>{{this.avgRating}}</td>
                     <td>{{this.avgPrice}}</td>
                     <td>{{this.popularOrder}}</td>
+                    <td><button onclick="updateRestaurant('{{this.restaurantID}}', '{{this.locationID}}', 
+                                                        '{{this.restaurantChainID}}', '{{this.restaurantName}}', 
+                                                        '{{this.description}}', '{{this.avgRating}}', 
+                                                        '{{this.avgPrice}}', '{{this.popularOrder}}', '{{this.location}}', '{{this.name}}')">Delete</button></td>
                     <td><button onclick="deleteRestaurant({{this.restaurantID}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -134,7 +139,7 @@
     </script>
 
     <p>&nbsp;</p>
-    <div id="update" style="display: block">
+    {{!-- <div id="update" style="display: block">
         <form id="updateRestaurant">
             <legend><strong>Update Restaurant</strong></legend>
             <fieldset class="fields">
@@ -166,7 +171,7 @@
             <input class="btn" type="submit" id="UpdateSaveRestaurant" value="Save Update Restaurant">
             <input class="btn" type="button" value="Cancel" >
         </form> 
-    </div><!-- update -->
+    </div><!-- update --> --}}
 
     <script>
         let chain = document.querySelector('#select-update-chain');

@@ -21,6 +21,7 @@
           <th>Restaurant</th>
           <th>User</th>
           <th>Review</th>
+          <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@
           {{!-- Replaced userID w/ userName; fetched from app.js --}}
           <td>{{this.userName}}</td>
           <td>{{this.review}}</td>
+          <td><button onclick="updateReview('{{this.reviewID}}', '{{this.review}}')">Edit</button></td>
           <td><button onclick="deleteReview({{this.reviewID}})">Delete</button></td>
         </tr>
         {{/each}}
@@ -130,51 +132,6 @@
   </div><!-- insert -->
   
   <p>&nbsp;</p>
-      <div id="update" style="display: block">
-    <form id="update-review-form" method="POST" action="/update-review-form">
-        <legend><strong>Update Review</strong></legend>
-
-            <fieldset class="fields">
-              <label> Review Label</label> 
-              <select id="select-update-review">
-                <option>Select a Review</option>
-                {{#each data}}
-                <option data-reviewID="{{this.reviewID}}"
-                        data-restaurant="{{this.restaurantName}}"
-                        data-userName="{{this.userName}}"
-                        data-review="{{this.review}}">
-                    {{this.restaurantName}}, {{this.userName}}
-                </option>
-                {{/each}}
-              </select>
-              <input type="hidden" name="restaurantName" id="update-restaurant">
-              <input type="hidden" name="userName" id="update-user">
-              <label> Review Message</label> <textarea name="review" id="update-review"></textarea>
-              <input type="hidden" name="reviewID" id="update-reviewID">
-            </fieldset>
-           
-      <input class="btn" type="submit" id="UpdateSaveReview" value="Save Update Review">
-      <input class="btn" type="button" value="Cancel" >
-    </form> 
-  </div><!-- update -->
-  <p>&nbsp;</p>
-
-  <script>
-    let selectElement = document.querySelector('#select-update-review');
-
-      selectElement.addEventListener('change', function(e) {
-        let selectedOption = selectElement.options[selectElement.selectedIndex];
-      
-        document.getElementById("update-restaurant").value = selectedOption.getAttribute('data-restaurant')
-        document.getElementById("update-user").value = selectedOption.getAttribute('data-userName')
-        document.getElementById("update-review").value = selectedOption.getAttribute('data-review')
-        document.getElementById("update-reviewID").value = selectedOption.getAttribute('data-reviewID')
-
-      }
-
-    );
-
-  </script>
 
   <style>
     input {
@@ -184,3 +141,5 @@
   </style>
 
   </main>
+
+  {{>reviewModal}}
