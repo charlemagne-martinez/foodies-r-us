@@ -169,7 +169,6 @@ app.get('/reviews', fetchDropdownData, function(req, res){
     ORDER BY Reviews.reviewID`
     // let query2 = "SELECT * FROM Reviews"
     db.pool.query(query2, function(error, rows, fields){
-        console.log('Reviews records:\n', rows)
         res.render("pages/reviews", {data: rows, dropdownData: req.dropdownData});
     })
 })
@@ -399,6 +398,40 @@ app.post('/update-cuisine-form', function(req, res){
     })
 })
 
+app.post('/update-restaurant-form', function(req, res) {
+    let data = req.body;
+
+    // Use parameterized queries to prevent SQL injection
+    let query1 = `UPDATE Restaurants SET 
+                    locationID = ?,
+                    restaurantChainID = ?,
+                    restaurantName = ?,
+                    description = ?,
+                    avgRating = ?,
+                    avgPrice = ?,
+                    popularOrder = ?
+                  WHERE restaurantID = ?`;
+
+    let queryParams = [
+        data.location,
+        data.name || null,
+        data.restaurantName,
+        data.description,
+        data.avgRating,
+        data.avgPrice,
+        data.popularOrder,
+        data.restaurantID
+    ];
+
+    db.pool.query(query1, queryParams, function(error, rows, fields) {
+        if (error) {
+            console.error('Error updating restaurant:', error);
+            res.sendStatus(500); // Internal Server Error
+        } else {
+            res.redirect('/restaurants');
+        }
+    });
+});
 
 app.delete('/delete-review', function(req, res, next)
 {

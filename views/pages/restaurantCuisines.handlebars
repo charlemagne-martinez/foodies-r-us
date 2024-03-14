@@ -24,7 +24,7 @@
                 <tr>
                     <td>({{this.restaurantID}}) {{this.restaurant}}</td>
                     <td>({{this.cuisineTypeID}}) {{this.cuisine}}</td>
-                    <td><button onclick="updateRestaurantCuisine({{this.restaurantID}}, {{this.cuisineTypeID}})">Edit</button></td>
+                    <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.cuisineTypeID}}')">Edit</button></td>
                     <td><button onclick="deleteRestaurantCuisine({{this.restaurantID}}, {{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -69,16 +69,16 @@
 
         let addCuisine = document.querySelector('#select-cuisine-input')
         addCuisine.addEventListener("change", function(e){
-          let selectedOption = addCuisine.options[addCuisine.selectedIndex]
+            let selectedOption = addCuisine.options[addCuisine.selectedIndex]
 
-          document.getElementById("insert-type").value = selectedOption.getAttribute('data-cuisine')
+            document.getElementById("insert-type").value = selectedOption.getAttribute('data-cuisine')
         })
 
         let addRest = document.querySelector('#select-restaurant-input')
         addRest.addEventListener("change", function(e){
-          let selectedOption = addRest.options[addRest.selectedIndex]
+            let selectedOption = addRest.options[addRest.selectedIndex]
 
-          document.getElementById("insert-restaurant").value = selectedOption.getAttribute('data-restaurant')
+            document.getElementById("insert-restaurant").value = selectedOption.getAttribute('data-restaurant')
         })    
     </script>
 
@@ -93,5 +93,10 @@
             <input class="btn" type="button" value="Cancel" >
     </form> 
     </div><!-- update -->
+        <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
 
 </main>
+
+{{>restaurantCuisineModal}}

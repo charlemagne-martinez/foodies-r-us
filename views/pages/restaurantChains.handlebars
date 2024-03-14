@@ -27,7 +27,7 @@
 				<tr data-value="{{this.restaurantChainID}}">
 					<td>{{this.restaurantChainID}}</td>
 					<td>{{this.name}}</td>
-					<td><button onclick="updateChains('{{this.restaurantChainID}}', '{{this.name}}')">Edit</button></td>
+					<td><button class="edit-button-chain" data-chainID="{{this.restaurantChainID}}" data-name="{{this.name}}">Edit</button></td>
 					<td><button onclick="deleteChains({{this.restaurantChainID}})">Delete</button></td>
 				</tr>
 				{{/each}}
