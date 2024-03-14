@@ -23,10 +23,11 @@ SELECT * FROM Users;
 SELECT userID as ID, username as Username, email as Email, password as Password, fName as `First Name`, lName as `Last Name` FROM Users;
 
 --Select all restaurants
-SELECT Restaurants.restaurantID, CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, RestaurantChains.name, restaurantName, description, avgRating, avgPrice, popularOrder 
+SELECT Restaurants.restaurantID, CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) as location, RestaurantChains.name, restaurantName, description, avgRating, avgPrice, popularOrder 
 FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
-LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID;
+LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
+ORDER BY Restaurants.restaurantID;
 -- INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
 -- INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
@@ -53,15 +54,15 @@ INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisi
 ORDER BY RestaurantCuisines.restaurantID;
 
 -- Selects for drop down menus
-SELECT locationID, CONCAT(city, ", ", IFNULL(state, ""), ", ", country) as Locations FROM Locations;
+SELECT CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) as location FROM Locations;
 
-SELECT restaurantChainID, name FROM RestaurantChains;
+SELECT name as chainName FROM RestaurantChains;
 
 SELECT cuisineTypeID, type FROM CuisineTypes;
 
-SELECT restaurantID, restaurantName FROM Restaurants;
+SELECT restaurantName FROM Restaurants;
 
-SELECT userID, CONCAT(fName, " ", lName) as User FROM Users;
+SELECT CONCAT(fName, " ", lName) as userName FROM Users;
 
 
 --Create (INSERT)

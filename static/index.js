@@ -110,7 +110,7 @@ function hideReviewModal() {
 
 }
 
-function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop, loc, chain){
+function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
     var showSomethingModal = document.getElementById('update-modal-restaurant');
     var modalBackdrop = document.getElementById('modal-backdrop-restaurant');
 

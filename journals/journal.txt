@@ -32,8 +32,6 @@
     - RestaurantChains works for all crud
     - CuisineTypes works for CRU. DELETE left
 
-    - remaining entities: Restaurants, RestaurantCuisines
-
 3/7:
     - fixed Reviews SELECT not being in order by reviewID
     - CuisineTypes DELETE works
@@ -43,6 +41,18 @@
     - Changed Modal Update for Users, Locations, Chains, CuisineTypes, Reviews
     - RetaurantCuisines has issue when adding if it already exists
     - RC add + read is done
+    - Restaurants page: location and chain are no longer the ID, 
+    dropdowns for adding are dynamic now. ADD doesn't work, 
+    INSERT works
+    - reminder: NO LONGER using hidden inputs ;_;
+
+
+    - LEFT TO DO:
+    - Restaurants: DELETE 
+    - RestaurantCuisines: TEST INSERT, UPDATE needs route, DELETE
+    - need contraint handling for RC. Duplicates specifically such that
+      dropdown is updated based on previously selected values (vice versa)
+    - UI stuff (based on Alexander's feedback, what visuals we like change)
     
 
 Todo : 

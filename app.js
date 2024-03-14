@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 7679;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7676;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -40,11 +40,49 @@ app.get('/locations', function(req,res){
     })
 })
 
-app.get('/restaurants', function(req,res){
+// Helper function to fetch locations and restaurant chain data.
+// Using to populate dropdown for Adding a Restaurant to directly grab all FK references
+// from their respective entities, rather than populating based on current attributes in Restaurants
+function fetchDropdownRestaurants(req, res, next)
+{
+    let query1 = `SELECT CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) as location FROM Locations`;
+    let query2 = `SELECT name FROM RestaurantChains`;
+
+    // First we grab the Locations attribute we want, a concat of city, state, country
+    db.pool.query(query1, function(error1, locationResults, fields)
+    {
+        if (error1)
+        {
+            console.log(error1);
+            return next(error1);
+        }
+
+        // Then we grab the RestaurantChains attribute we want, name
+        db.pool.query(query2, function(error2, restaurantChainResults, fields)
+        {
+            if (error2)
+            {
+                console.log(error2);
+                return next(error2);
+            }
+
+            // If no error, attach fetched data to request object
+            req.restaurantsDropdownData = 
+            {
+                locationName: locationResults,
+                chainName: restaurantChainResults
+            }
+            next();
+        });
+    });
+}
+
+
+app.get('/restaurants', fetchDropdownRestaurants, function(req,res){
     let query1 = `SELECT Restaurants.restaurantID, 
                 Locations.locationID,
                 RestaurantChains.restaurantChainID,
-                CONCAT(Locations.city, ", ", IFNULL(Locations.state, ", "), ", ", Locations.country) as location, 
+                CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) as location, 
                 RestaurantChains.name, 
                 restaurantName, 
                 description, 
@@ -56,7 +94,8 @@ app.get('/restaurants', function(req,res){
                 LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
                 ORDER BY Restaurants.restaurantID;`
     db.pool.query(query1, function(error, rows, fields){
-        res.render("pages/restaurants", {data: rows});
+        console.log('Restaurants records:\n', rows)
+        res.render("pages/restaurants", {data: rows, restaurantsDropdownData: req.restaurantsDropdownData});
     })
 
 })
@@ -88,7 +127,9 @@ app.get('/users', function(req, res){
     })
 })
 
-// Helper function to fetch restaurants and users data
+// Helper function to fetch restaurants and users data.
+// Using to populate dropdown for Adding a Review to directly grab all FK references
+// from their respective entities, rather than populating based on current attributes in Reviews.
 function fetchDropdownData(req, res, next) {
     let query1 = "SELECT restaurantName FROM Restaurants";
     let query2 = "SELECT CONCAT(fName, ' ', lName) AS userName FROM Users";
@@ -187,12 +228,22 @@ app.post('/add-chain-form', function(req, res){
 
 app.post('/add-restaurant-form', function(req, res) {
     let data = req.body;
-    console.log(data);
+    console.log("Restaurant record added:", data);
 
-    let query = `INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    let query = `INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder)
+    SELECT 
+        (SELECT locationID FROM Locations WHERE CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) = ?),
+        (SELECT restaurantChainID FROM RestaurantChains WHERE name = ?),
+        ?, ?, ?, ?, ?`;
 
-    db.pool.query(query, [data.locationID, data.chainID, data.restaurantName, data.description, data.avgRating, data.avgPrice, data.popularOrder], function(error, rows, fields) {
+
+    // `INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder)
+    // VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    
+
+    
+
+    db.pool.query(query, [data.location, data.name, data.restaurantName, data.description, data.avgRating, data.avgPrice, data.popularOrder], function(error, rows, fields) {
         if (error) {
             console.error(error);
             res.sendStatus(400);
@@ -201,6 +252,8 @@ app.post('/add-restaurant-form', function(req, res) {
         }
     });
 });
+
+
 // Post
 app.post('/add-location-form', function(req, res){
     let data = req.body
