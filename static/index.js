@@ -125,8 +125,6 @@ function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
     document.getElementById("update-name").value = chainID
     document.getElementById("update-restaurantName").value = name
     document.getElementById("update-description").value = des
-    // document.getElementById("update-avgRating").value = avgR 
-    // document.getElementById("update-avgPrice").value = avgP
     document.getElementById("popularOrder").value = pop 
 
     var avgRatingSelect = document.getElementById("update-avgRating");
@@ -173,11 +171,11 @@ function hideRestaurantModal() {
 
     showSomethingModal.classList.add('hidden')
     modalBackdrop.classList.add('hidden')
-
 }
 
 // Select all edit buttons with class "edit-button"
 const editButtons = document.querySelectorAll('.edit-button');
+const chainButton = document.querySelectorAll('.edit-button-chain')
 
 // Add event listener to each edit button
 editButtons.forEach(button => {
@@ -197,6 +195,41 @@ editButtons.forEach(button => {
     });
 });
 
+chainButton.forEach(button => {
+    button.addEventListener('click', function() {
+        const chainID = this.getAttribute('data-chainID')
+        const name = this.getAttribute('data-name')
+        updateChains(chainID,name)
+    })
+})
+
+function updateRC(restID, cuisineID){
+    var showSomethingModal = document.getElementById('update-modal-RC');
+    var modalBackdrop = document.getElementById('modal-backdrop-RC');
+
+    showSomethingModal.classList.remove('hidden');
+    modalBackdrop.classList.remove('hidden');
+
+    document.getElementById("update-restaurantID").value = restID
+
+    var cuisineDropdown = document.getElementById("select-cuisine-update");
+    for (var j = 0; j < cuisineDropdown.options.length; j++) {
+        if (cuisineDropdown.options[j].getAttribute("data-cuisineTypeID") === cuisineID) {
+            cuisineDropdown.selectedIndex = j;
+            break;
+        }
+    }
+}
+
+function hideRCModal() {
+    var showSomethingModal = document.getElementById('update-modal-RC')
+    var modalBackdrop = document.getElementById('modal-backdrop-RC')
+
+    showSomethingModal.classList.add('hidden')
+    modalBackdrop.classList.add('hidden')
+
+}
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -208,6 +241,7 @@ window.addEventListener('DOMContentLoaded', function () {
         modalAcceptButton1.addEventListener('click', hideChainModal)
         modalAcceptButton1.addEventListener('click', hideReviewModal)
         modalAcceptButton1.addEventListener('click', hideRestaurantModal)
+        modalAcceptButton1.addEventListener('click', hideRCModal)
 
 
     }
@@ -220,7 +254,8 @@ window.addEventListener('DOMContentLoaded', function () {
         modalHideButtons1[i].addEventListener('click', hideChainModal)
         modalHideButtons1[i].addEventListener('click', hideReviewModal)
         modalHideButtons1[i].addEventListener('click', hideRestaurantModal)
-        
+        modalHideButtons1[i].addEventListener('click', hideRCModal)
+
     }
 
 })

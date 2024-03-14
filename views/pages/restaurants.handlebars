@@ -139,7 +139,7 @@
 
     <script>
         let chain = document.querySelector('#select-update-chain');
-        let location = document.querySelector('#select-update-location');
+        let locations = document.querySelector('#select-update-location');
 
         chain.addEventListener('change', function(e) {
             let selectedOption = chain.options[chain.selectedIndex];
@@ -147,8 +147,8 @@
             document.getElementById("update-chain").value = selectedOption.getAttribute('data-chainID')
         });
 
-        location.addEventListener('change', function(e) {
-            let selectedOption = location.options[location.selectedIndex];
+        locations.addEventListener('change', function(e) {
+            let selectedOption = locations.options[location.selectedIndex];
 
             document.getElementById("update-location").value = selectedOption.getAttribute('data-locationID')
         });
