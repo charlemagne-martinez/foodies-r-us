@@ -15,7 +15,7 @@
                 <div class="post-input-element">
                     <label> Location </label> 
                     <select name="locations" id="select-update-location">
-                        {{#each data}}
+                        {{#each restaurantsDropdownData.locationName}}
                         <option data-locationID="{{this.locationID}}">{{this.location}}</option>
                         {{/each}}
                     </select>
@@ -24,7 +24,7 @@
                 <div class="post-input-element">
                     <label> Chain </label>
                     <select name="chain" id="select-update-chain">
-                        {{#each data}}
+                        {{#each restaurantsDropdownData.chainName}}
                         <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
                         {{/each}}
                     </select>
