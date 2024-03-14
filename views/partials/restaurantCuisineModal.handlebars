@@ -1,0 +1,30 @@
+<div id="modal-backdrop-RC" class="hidden"></div>
+<div id="update-modal-RC" class="hidden">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <h3>Edit Restaurants Cuisine</h3>
+            <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+        <form id="update-rc-form" method="POST" action="/update-rc-form">
+            <div class="modal-body">
+                <input type="hidden" name="cuisineID" id="update-cuisineID">
+                {{!-- <input type="hidden" name="restaurantID" id="update-resaurantID"> --}}
+                <div class="post-input-element">
+                    <label>Cuisine</label>
+                    <select name="restaurantID" id="select-cuisine-update">
+                        {{#each data}}
+                        <option data-cuisine="{{this.cuisineTypeID}}">{{this.cuisine}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modal-cancel" class="modal-hide-button action-button">Cancel</button>
+                <button type="submit" id="modal-accept" class="action-button">Confirm</button>
+            </div>
+        </form>
+
+    </div>
+</div>
