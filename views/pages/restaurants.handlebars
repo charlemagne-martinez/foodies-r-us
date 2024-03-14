@@ -33,8 +33,10 @@
                 {{#each data}}
                 <tr>
                     <td>{{this.restaurantID}}</td>
-                    <td>{{this.locationID}}</td>
-                    <td>{{this.restaurantChainID}}</td>
+                    {{!-- Updated with data passed from app.js, especially helper function --}}
+                    <td>{{this.location}}</td> 
+                    {{!-- Updated with data passed from app.js, especially helper function --}}
+                    <td>{{this.name}}</td>
                     <td>{{this.restaurantName}}</td>
                     <td>{{this.description}}</td>
                     <td>{{this.avgRating}}</td>
@@ -55,9 +57,9 @@
             <legend><strong>Add Restaurant</strong></legend>
             <fieldset class="fields">
             <label> Location </label> 
-                <select id="insert-locationSelect">
+                <select name="location" id="insert-locationSelect">
                     <option>Select Location</option>
-                    {{#each data}}
+                    {{#each restaurantsDropdownData.locationName}}
                     <option data-locationID="{{this.locationID}}">{{this.location}}</option>
                     {{/each}}
                 </select>
@@ -65,13 +67,13 @@
             
 
             <label> Restaurant Chain</label> 
-                <select id="insert-chainSelect">
+                <select name="name" id="insert-chainSelect">
                     <option>Select a Restaurant Chain</option>
-                    {{#each data}}
+                    {{#each restaurantsDropdownData.chainName}}
                     <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
                     {{/each}}
                 </select>
-            <input type="hidden" name="chainID" id="insert-restaurantChainID">
+            <input type="hidden" name="restaurantChainID" id="insert-restaurantChainID">
 
 
             <label> Restaurant Name </label> <input type="text" name="restaurantName">
@@ -105,6 +107,27 @@
     </div><!-- insert -->
 
     <script>
+        // Script for changing hidden fields for location and chain
+        // Facilitates passing data because post method can't detect data from select (dropdown)
+        // Hidden inputs will hold needed information from the selected option's attributes for later use
+
+        let addLocation = document.querySelector('#insert-locationSelect')
+        addLocation.addEventListener("change", function(e){
+          let selectedOption = addLocation.options[addLocation.selectedIndex]
+
+          document.getElementById("insert-locationID").value = selectedOption.getAttribute('data-locationID')
+        })
+
+        let addChain = document.querySelector('#insert-chainSelect')
+        addChain.addEventListener("change", function(e){
+          let selectedOption = addChain.options[addChain.selectedIndex]
+
+          document.getElementById("insert-restaurantChainID").value = selectedOption.getAttribute('data-chainID')
+        })   
+
+
+
+        // Script for modal 
         let locationSelect = document.querySelector('#insert-locationSelect');
         locationSelect.addEventListener('change', function(e) {
             let selectedOption = locationSelect.options[locationSelect.selectedIndex];
