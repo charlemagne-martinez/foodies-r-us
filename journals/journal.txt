@@ -40,7 +40,7 @@
     - Locations CRUD all works
 
 3/13:
-    - Changed Modal Update for Users, Locations, Chains, CuisineTypes
+    - Changed Modal Update for Users, Locations, Chains, CuisineTypes, Reviews
     - RetaurantCuisines has issue when adding if it already exists
     - RC add + read is done
     

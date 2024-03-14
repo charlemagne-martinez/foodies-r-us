@@ -110,6 +110,51 @@ function hideReviewModal() {
 
 }
 
+function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop, loc, chain){
+    var showSomethingModal = document.getElementById('update-modal-restaurant');
+    var modalBackdrop = document.getElementById('modal-backdrop-restaurant');
+
+    showSomethingModal.classList.remove('hidden');
+    modalBackdrop.classList.remove('hidden');
+
+    document.getElementById("update-restaurantID").value = resID
+    document.getElementById("update-location").value = locID
+    document.getElementById("update-name").value = chainID
+    document.getElementById("update-restaurantName").value = name
+    document.getElementById("update-description").value = des
+    document.getElementById("update-avgRating").value = avgR 
+    document.getElementById("update-avgPrice").value = avgP
+    document.getElementById("popularOrder").value = pop 
+
+    var locationDropdown = document.getElementById("select-update-location");
+    for (var i = 0; i < locationDropdown.options.length; i++) {
+        if (locationDropdown.options[i].getAttribute("data-locationID") === locID) {
+            locationDropdown.selectedIndex = i;
+            break;
+        }
+    }
+
+    // Select the option in the chain dropdown whose data-chainID matches chainID
+    var chainDropdown = document.getElementById("select-update-chain");
+    for (var j = 0; j < chainDropdown.options.length; j++) {
+        if (chainDropdown.options[j].getAttribute("data-chainID") === chainID) {
+            chainDropdown.selectedIndex = j;
+            break;
+        }
+    }
+
+
+}
+
+function hideRestaurantModal() {
+    var showSomethingModal = document.getElementById('update-modal-restaurant')
+    var modalBackdrop = document.getElementById('modal-backdrop-restaurant')
+
+    showSomethingModal.classList.add('hidden')
+    modalBackdrop.classList.add('hidden')
+
+}
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -120,6 +165,8 @@ window.addEventListener('DOMContentLoaded', function () {
         modalAcceptButton1.addEventListener('click', hideUserModal)
         modalAcceptButton1.addEventListener('click', hideChainModal)
         modalAcceptButton1.addEventListener('click', hideReviewModal)
+        modalAcceptButton1.addEventListener('click', hideRestaurantModal)
+
 
     }
 
@@ -130,6 +177,8 @@ window.addEventListener('DOMContentLoaded', function () {
         modalHideButtons1[i].addEventListener('click', hideUserModal)
         modalHideButtons1[i].addEventListener('click', hideChainModal)
         modalHideButtons1[i].addEventListener('click', hideReviewModal)
+        modalHideButtons1[i].addEventListener('click', hideRestaurantModal)
+        
     }
 
 })
