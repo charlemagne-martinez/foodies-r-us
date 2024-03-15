@@ -25,6 +25,12 @@ app.get('/', function(req,res){
     res.render('pages/home')
 })
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+SELECT (Read)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 app.get('/cuisineTypes', function(req,res){
     let query1 = "SELECT * FROM CuisineTypes"
     db.pool.query(query1, function(error, rows, fields){
@@ -173,6 +179,14 @@ app.get('/reviews', fetchDropdownData, function(req, res){
     })
 })
 
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+INSERT (Create)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 app.post('/add-review-form', function(req, res){
     let data = req.body;
     console.log("Review record added:", data);
@@ -253,7 +267,6 @@ app.post('/add-restaurant-form', function(req, res) {
 });
 
 
-// Post
 app.post('/add-location-form', function(req, res){
     let data = req.body
 
@@ -302,9 +315,15 @@ app.post('/add-cuisine-form', function(req, res){
     })
 })
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+UPDATE (Update)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 app.post('/update-review-form', function(req,res){
     let data = req.body
-    console.log(data)
+    console.log("Review record updated: ", data)
 
     let query1 = `UPDATE Reviews SET 
     review = '${data.review}'
@@ -432,6 +451,13 @@ app.post('/update-restaurant-form', function(req, res) {
         }
     });
 });
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+DELETE (Delete)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 app.delete('/delete-review', function(req, res, next)
 {
@@ -605,7 +631,7 @@ app.delete('/delete-restaurant', function(req, res, next)
     let data = req.body;
     let restaurantID = parseInt(data.restaurantID);
     let deleteRestaurantCuisine = `DELETE FROM RestaurantCuisines WHERE restaurantID = ?`;
-    let deleteReview = `DELETE FROM ReviewsERE restaurantID = ?`;
+    let deleteReview = `DELETE FROM Reviews WHERE restaurantID = ?`;
     let deleteRestaurant = `DELETE FROM Restaurants WHERE restaurantID = ?`;
 
     // First, we delete the record from RestaurantCuisine, as it has a FK referring to restaurantID of Restaurants
@@ -649,6 +675,7 @@ app.delete('/delete-restaurant', function(req, res, next)
 /*
     LISTENER
 */
-app.listen(PORT, function(){            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+app.listen(PORT, function(){ 
+    // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });

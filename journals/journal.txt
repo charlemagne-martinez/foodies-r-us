@@ -48,11 +48,18 @@
 
 
     - LEFT TO DO:
-    - Restaurants: DELETE 
     - RestaurantCuisines: TEST INSERT, UPDATE needs route, DELETE
     - need contraint handling for RC. Duplicates specifically such that
       dropdown is updated based on previously selected values (vice versa)
     - UI stuff (based on Alexander's feedback, what visuals we like change)
+
+    THINGS found 3/14:
+    - FOUND WEIRD ERROR. Deleting a record (tested w/ Reviews, Users, RestaurantChains, CuisineTypes, Restaurants)
+      doesn't visually remove it from table until you reload page. not sure what changed since last week
+      so troubleshoot this later.
+      Locations does work as expected where deleting a record does remove from table w/o reloading... ?!?!?
+    - UPDATE Review does not work with apostrophe
+    - Should change dropdowns when editing a record to be the current option
     
 
 Todo : 
