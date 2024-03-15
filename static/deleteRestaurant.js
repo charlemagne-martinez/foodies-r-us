@@ -31,7 +31,7 @@ function deleteRestaurant(restaurantID) {
 
 function deleteRow(restaurantID)
 {
-    let table = document.getElementById("locations-table");
+    let table = document.getElementById("restaurant-table");
     for (let i = 0, row; row = table.rows[i]; i++) 
     {
        // iterate through rows
