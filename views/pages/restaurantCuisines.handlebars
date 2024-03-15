@@ -22,8 +22,8 @@
             <tbody>
                 {{#each data}}
                 <tr>
-                    <td>({{this.restaurantID}}) {{this.restaurant}}</td>
-                    <td>({{this.cuisineTypeID}}) {{this.cuisine}}</td>
+                    <td>({{this.restaurantID}}) {{this.restaurantName}}</td>
+                    <td>({{this.cuisineTypeID}}) {{this.type}}</td>
                     <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.cuisineTypeID}}')">Edit</button></td>
                     <td><button onclick="deleteRestaurantCuisine({{this.restaurantID}}, {{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
@@ -42,16 +42,16 @@
                 <label> Restaurant </label> 
                 <select id="select-restaurant-input">
                     <option>Select a Restaurant</option>
-                    {{#each data}}
-                    <option data-restaurant="{{this.restaurantID}}">{{this.restaurant}}</option>
+                    {{#each restaurantCuisinesDropdownData.restaurantName}}
+                    <option data-restaurant="{{this.restaurantID}}">{{this.restaurantName}}</option>
                     {{/each}}
                 </select>
 
                 <label> Cuisine </label> 
                 <select id="select-cuisine-input">
                     <option>Select a Cuisine</option>
-                    {{#each data}}
-                    <option data-cuisine="{{this.cuisineTypeID}}">{{this.cuisine}}</option>
+                    {{#each restaurantCuisinesDropdownData.cuisineTypeName}}
+                    <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                     {{/each}}
                 </select>
 
