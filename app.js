@@ -113,16 +113,59 @@ app.get('/restaurantChains', function(req,res){
     })
 })
 
-app.get('/restaurantCuisines', function(req, res){
+
+// Helper function to fetch restaurants and cuisine type data.
+// Using to populate dropdown for Adding a RestaurantCuisine record to directly grab all FK references
+// from their respective entities, rather than populating based on current attributes in RestaurantCuisines
+function fetchDropdownRestaurantCuisines(req, res, next)
+{
+    let query1 = `SELECT restaurantName FROM Restaurants;`;
+    let query2 = `SELECT type FROM CuisineTypes`;
+
+    // First we grab the Restaurants attribute we want, restaurantName
+    db.pool.query(query1, function(error1, restaurantResults, fields)
+    {
+        if (error1)
+        {
+            console.log(error1);
+            return next(error1);
+        }
+
+        // Then we grab the CuisineTypes attribute we want, type
+        db.pool.query(query2, function(error2, cuisineTypeResults, fields)
+        {
+            if (error2)
+            {
+                console.log(error2);
+                return next(error2);
+            }
+
+            console.log("Restaurants:", restaurantResults);
+            console.log("Cuisine Types:", cuisineTypeResults);
+
+            // If no error, attach fetched data to request object
+            req.restaurantCuisinesDropdownData = 
+            {
+                restaurantName: restaurantResults,
+                cuisineTypeName: cuisineTypeResults
+            }
+            next();
+        });
+    });
+}
+
+app.get('/restaurantCuisines', fetchDropdownRestaurantCuisines, function(req, res){
     let query1 = `SELECT Restaurants.restaurantID, 
                         CuisineTypes.cuisineTypeID, 
-                        CuisineTypes.type as cuisine,
-                        Restaurants.restaurantName as restaurant
+                        Restaurants.restaurantName,
+                        CuisineTypes.type
                     FROM RestaurantCuisines
                     INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
-                    LEFT JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID;`
+                    INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID
+                    ORDER BY Restaurants.restaurantID, CuisineTypes.cuisineTypeID;`
     db.pool.query(query1, function(error, rows, fields){
-        res.render("pages/restaurantCuisines", {data: rows});
+        console.log('RestaurantCuisines records:\n', rows)
+        res.render("pages/restaurantCuisines", {data: rows, restaurantCuisinesDropdownData: req.restaurantCuisinesDropdownData});
     });
 });
 
