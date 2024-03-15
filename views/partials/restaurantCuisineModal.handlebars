@@ -13,8 +13,8 @@
                 <div class="post-input-element">
                     <label>Cuisine</label>
                     <select name="restaurantID" id="select-cuisine-update">
-                        {{#each data}}
-                        <option data-cuisine="{{this.cuisineTypeID}}">{{this.cuisine}}</option>
+                        {{#each restaurantCuisinesDropdownData.cuisineTypeName}}
+                        <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                         {{/each}}
                     </select>
                 </div>

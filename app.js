@@ -140,8 +140,8 @@ function fetchDropdownRestaurantCuisines(req, res, next)
                 return next(error2);
             }
 
-            console.log("Restaurants:", restaurantResults);
-            console.log("Cuisine Types:", cuisineTypeResults);
+            // console.log("Restaurants:", restaurantResults);
+            // console.log("Cuisine Types:", cuisineTypeResults);
 
             // If no error, attach fetched data to request object
             req.restaurantCuisinesDropdownData = 
@@ -254,10 +254,13 @@ app.post('/add-restaurantCuisine-form', function(req, res){
     let data = req.body;
     console.log("Review record added:", data);
 
-    let query1 = `INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID) 
-                  VALUES (?,?)`
+    let query1 = `INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID)
+                  SELECT
+                      (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?),
+                      (SELECT cuisineTypeID FROM CuisineTypes WHERE type = ?)` 
+            
     
-    db.pool.query(query1, [data.restaurant, data.type], function(error, results, fields){
+    db.pool.query(query1, [data.restaurantName, data.type], function(error, results, fields){
         if(error){
             console.log(error);
             res.sendStatus(400);
