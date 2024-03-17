@@ -51,8 +51,6 @@
     - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
       doesn't visually remove it from table until you reload page. not sure what changed since last week
       so troubleshoot this later.
-      Locations does work as expected where deleting a record does remove from table w/o reloading... ?!?!?
-    - UPDATE Review does not work with apostrophe
     - Should change dropdowns when editing a record to be the current option
 
     - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
@@ -60,7 +58,7 @@
 
 - LEFT TO DO:
 - Restaurants: UPDATE (FK dropdown for Location/Chain doesn't get updated if different selection made...)
-- RestaurantCuisines: UPDATE needs route and needs to work
+- RestaurantCuisines: UPDATE needs route and needs to work. created a route but may have to update again...
 - need contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
     dropdown is updated based on previously selected values (vice versa)
 - UI stuff (based on Alexander's feedback, what visuals we like change)
@@ -68,10 +66,9 @@
 3/16:
     - RestaurantCuisine DELETE works
     - RestaurantCuisine INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
-
-
     - Review UPDATE does not work with apostrophe. 3/16 UPDATE: Fixed it seems kinda. 
       If a review has more than one apostrophre tho, seems to get truncated to before that second one
+    - 
 
 Todo : 
     
