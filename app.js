@@ -257,7 +257,7 @@ app.post('/add-restaurantCuisine-form', function(req, res){
     let query1 = `INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID)
                   SELECT
                       (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?),
-                      (SELECT cuisineTypeID FROM CuisineTypes WHERE type = ?)` 
+                      (SELECT cuisineTypeID FROM CuisineTypes WHERE type = ?)`;
             
     
     db.pool.query(query1, [data.restaurantName, data.type], function(error, results, fields){
@@ -464,6 +464,8 @@ app.post('/update-cuisine-form', function(req, res){
 
 app.post('/update-restaurant-form', function(req, res) {
     let data = req.body;
+    console.log("Restaurant record update: ", data);
+
 
     // Use parameterized queries to prevent SQL injection
     let query1 = `UPDATE Restaurants SET 

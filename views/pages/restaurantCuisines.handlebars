@@ -40,47 +40,28 @@
             <fieldset class="fields">
                 
                 <label> Restaurant </label> 
-                <select id="select-restaurant-input">
+                <select name="restaurantName" id="select-restaurant-input">
                     <option>Select a Restaurant</option>
                     {{#each restaurantCuisinesDropdownData.restaurantName}}
                     <option data-restaurant="{{this.restaurantID}}">{{this.restaurantName}}</option>
                     {{/each}}
                 </select>
-                <input type="hidden" name="restaurantName" id="insert-restaurant">
+                {{!-- <input type="hidden" name="restaurantName" id="insert-restaurant"> --}}
 
                 <label> Cuisine </label> 
-                <select id="select-cuisine-input">
+                <select name="type" id="select-cuisine-input">
                     <option>Select a Cuisine</option>
                     {{#each restaurantCuisinesDropdownData.cuisineTypeName}}
                     <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                     {{/each}}
                 </select>
-                <input type="hidden" name="type" id="insert-type">
+                {{!-- <input type="hidden" name="type" id="insert-type"> --}}
 
             </fieldset>
             <input class="btn" type="submit" id="addRestaurantCuisine" value="Add a Restaurant Cuisine">
             <input class="btn" type="button" value="Cancel">
         </form> <!--add new Restaurant Cuisine-->
     </div><!-- insert -->
-
-    {{!-- <script>
-        // Facilitates passing data because post method can't detect data from select (dropdown)
-        // Hidden inputs will hold needed information from the selected option's attributes for later use
-
-        let addCuisine = document.querySelector('#select-cuisine-input')
-        addCuisine.addEventListener("change", function(e){
-            let selectedOption = addCuisine.options[addCuisine.selectedIndex]
-
-            document.getElementById("insert-type").value = selectedOption.getAttribute('data-cuisine')
-        })
-
-        let addRest = document.querySelector('#select-restaurant-input')
-        addRest.addEventListener("change", function(e){
-            let selectedOption = addRest.options[addRest.selectedIndex]
-
-            document.getElementById("insert-restaurant").value = selectedOption.getAttribute('data-restaurant')
-        })    
-    </script> --}}
 
     {{!-- <p>&nbsp;</p>
     <div id="update" style="display: block">

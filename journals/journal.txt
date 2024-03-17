@@ -67,8 +67,9 @@
     
 3/16:
     - RestaurantCuisine DELETE works
-    - RestaurantCuisine INSERT and UPDATE needs work...
+    - RestaurantCuisine INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
 
+    - RestaurantCuisine UPDATE left
     - Restaurants UPDATE dropdown for Location and Chain doesn't work...
 
 Todo : 
