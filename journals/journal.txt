@@ -46,13 +46,6 @@
     INSERT works
     - reminder: NO LONGER using hidden inputs ;_;
 
-
-    - LEFT TO DO:
-    - RestaurantCuisines: TEST INSERT, UPDATE needs route
-    - need contraint handling for RC. Duplicates specifically such that
-      dropdown is updated based on previously selected values (vice versa)
-    - UI stuff (based on Alexander's feedback, what visuals we like change)
-
 3/14:
     THINGS found:
     - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
@@ -64,13 +57,21 @@
 
     - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
       HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
+
+- LEFT TO DO:
+- Restaurants: UPDATE (FK dropdown for Location/Chain doesn't get updated if different selection made...)
+- RestaurantCuisines: UPDATE needs route and needs to work
+- need contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
+    dropdown is updated based on previously selected values (vice versa)
+- UI stuff (based on Alexander's feedback, what visuals we like change)
     
 3/16:
     - RestaurantCuisine DELETE works
     - RestaurantCuisine INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
 
-    - RestaurantCuisine UPDATE left
-    - Restaurants UPDATE dropdown for Location and Chain doesn't work...
+
+    - Review UPDATE does not work with apostrophe. 3/16 UPDATE: Fixed it seems kinda. 
+      If a review has more than one apostrophre tho, seems to get truncated to before that second one
 
 Todo : 
     

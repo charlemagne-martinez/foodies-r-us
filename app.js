@@ -372,9 +372,10 @@ app.post('/update-review-form', function(req,res){
     console.log("Review record updated: ", data)
 
     let query1 = `UPDATE Reviews SET 
-    review = '${data.review}'
-    WHERE reviewID = ${data.reviewID}`
-    db.pool.query(query1, function(error,rows,fields){
+    review = ?
+    WHERE reviewID = ?`;
+
+    db.pool.query(query1, [data.reviewID, data.review], function(error,rows,fields){
         if (error){
             console.log(error)
             res.sendStatus(400)

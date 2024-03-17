@@ -34,7 +34,7 @@
           {{!-- Replaced userID w/ userName; fetched from app.js --}}
           <td>{{this.userName}}</td>
           <td>{{this.review}}</td>
-          <td><button onclick="updateReview('{{this.reviewID}}', '{{this.review}}')">Edit</button></td>
+          <td><button onclick="updateReview(`{{this.reviewID}}`, `{{this.review}}`)">Edit</button></td>
           <td><button onclick="deleteReview({{this.reviewID}})">Delete</button></td>
         </tr>
         {{/each}}
