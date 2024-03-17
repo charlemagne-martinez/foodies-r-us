@@ -387,7 +387,7 @@ app.post('/update-review-form', function(req,res){
 
 app.post('/update-location-form', function(req,res){
     let data = req.body
-    console.log(data)
+    console.log("Location record updated: ", data)
 
     let query1 = `UPDATE Locations SET 
     city = '${data.city}',
@@ -407,8 +407,7 @@ app.post('/update-location-form', function(req,res){
 
 app.post('/update-user-form', function(req, res){
     let data = req.body
-    console.log("User updated!")
-    console.log(data)
+    console.log("User record updated: ", data)
 
     let query1 = `UPDATE Users SET 
     username = '${data.username}', 
@@ -741,6 +740,32 @@ app.delete('/delete-restaurant', function(req, res, next)
         }
     });
 });
+
+app.delete('/delete-restaurant-cuisine', function(req, res, next)
+{
+    console.log("In delete-restaurant-cuisine route!")
+
+    let data = req.body;
+    let restaurantID = parseInt(data.restaurantID);
+    let cuisineTypeID = parseInt(data.cuisineTypeID);
+
+    let deleteRestaurantCuisine = `DELETE FROM RestaurantCuisines
+    WHERE restaurantID = ? AND cuisineTypeID = ?`;
+
+    db.pool.query(deleteRestaurantCuisine, [restaurantID, cuisineTypeID], function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else
+        {
+            res.sendStatus(204);
+        }
+    })
+})
 
 
 /*
