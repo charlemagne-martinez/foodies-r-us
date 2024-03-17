@@ -155,6 +155,9 @@ SET city = :city,
     country = :country
 WHERE locationID = :locationID;
 
+UPDATE RestaurantCuisines
+SET cuisineTypeID = :cuisineTypeID
+WHERE restaurantID = :restaurantID;
 
 --Delete (DELETE)
 

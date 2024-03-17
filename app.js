@@ -252,7 +252,7 @@ app.post('/add-review-form', function(req, res){
 
 app.post('/add-restaurantCuisine-form', function(req, res){
     let data = req.body;
-    console.log("Review record added:", data);
+    console.log("RestaurantCuisines record added:", data);
 
     let query1 = `INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID)
                   SELECT
@@ -497,6 +497,31 @@ app.post('/update-restaurant-form', function(req, res) {
         }
     });
 });
+
+app.post('/update-rc-form', function(req, res)
+{
+    let data = req.body;
+    console.log("RestaurantCuisines record update: ", data);
+
+    let query = `UPDATE RestaurantCuisines
+    SET cuisineTypeID = "${data.cuisineTypeID}"
+    WHERE restaurantID = "${data.restaurantID}"`;
+
+    db.pool.query(query, function(error, rows, fields)
+    {
+        if (error)
+        {
+            console.log("Error updating RestaurantCuisines record: ", error)
+            res.sendStatus(400)
+        }
+
+        else
+        {
+            res.redirect('/restaurantCuisines')
+        }
+    })
+
+})
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *

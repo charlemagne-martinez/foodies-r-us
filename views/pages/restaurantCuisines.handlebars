@@ -46,6 +46,7 @@
                     <option data-restaurant="{{this.restaurantID}}">{{this.restaurantName}}</option>
                     {{/each}}
                 </select>
+                <input type="hidden" name="restaurantName" id="insert-restaurant">
 
                 <label> Cuisine </label> 
                 <select id="select-cuisine-input">
@@ -54,16 +55,15 @@
                     <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                     {{/each}}
                 </select>
-
                 <input type="hidden" name="type" id="insert-type">
-                <input type="hidden" name="restaurantName" id="insert-restaurant">
+
             </fieldset>
             <input class="btn" type="submit" id="addRestaurantCuisine" value="Add a Restaurant Cuisine">
             <input class="btn" type="button" value="Cancel">
         </form> <!--add new Restaurant Cuisine-->
     </div><!-- insert -->
 
-    <script>
+    {{!-- <script>
         // Facilitates passing data because post method can't detect data from select (dropdown)
         // Hidden inputs will hold needed information from the selected option's attributes for later use
 
@@ -80,7 +80,7 @@
 
             document.getElementById("insert-restaurant").value = selectedOption.getAttribute('data-restaurant')
         })    
-    </script>
+    </script> --}}
 
     {{!-- <p>&nbsp;</p>
     <div id="update" style="display: block">

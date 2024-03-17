@@ -63,8 +63,11 @@
     - Should change dropdowns when editing a record to be the current option
 
     - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
-    - HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
+      HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
     
+3/16:
+    - ACTUALLY, just tested delete w/ Locations and does the same thing as other entities...
+    - Restaurants dropdown for Location and Chain doesn't work...
 
 Todo : 
     
