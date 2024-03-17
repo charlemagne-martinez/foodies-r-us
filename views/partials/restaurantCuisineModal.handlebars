@@ -8,11 +8,11 @@
         </div>
         <form id="update-rc-form" method="POST" action="/update-rc-form">
             <div class="modal-body">
-                <input type="hidden" name="cuisineID" id="update-cuisineID">
-                {{!-- <input type="hidden" name="restaurantID" id="update-resaurantID"> --}}
+                <input type="hidden" name="restaurantID" id="update-resaurantID">
+
                 <div class="post-input-element">
                     <label>Cuisine</label>
-                    <select name="restaurantID" id="select-cuisine-update">
+                    <select name="cuisineTypeID" id="select-cuisine-update">
                         {{#each restaurantCuisinesDropdownData.cuisineTypeName}}
                         <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                         {{/each}}
@@ -28,3 +28,7 @@
 
     </div>
 </div>
+
+<script>
+    
+</script>
