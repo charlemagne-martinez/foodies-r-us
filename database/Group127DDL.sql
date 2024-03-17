@@ -91,11 +91,11 @@ INSERT INTO Locations (city, state, country) VALUES
 
 -- Inserting dummy data into Restaurants
 INSERT INTO Restaurants (restaurantChainID, locationID, restaurantName, description, avgRating, avgPrice, popularOrder) VALUES 
-(1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 4.2, '$$', 'Big Mac'),
-(2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4.5, '$', 'Caramel Macchiato'),
-(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4.0, '$', 'Chicken Teriyaki Sub'),
-(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4.5, '$$$', 'Chicken Tikka Butter Masala'),
-(1, 3, 'McDonald''s Piccadilly', 'Fast food restaurant in Piccadilly Circus', '3.8', '$$', 'Chicken McNuggets');
+(1, 1, 'McDonald''s Times Square', 'Fast food restaurant in Times Square', 3., '$$', 'Big Mac'),
+(2, 1, 'Starbucks Central Park', 'Coffee shop in Central Park', 4., '$', 'Caramel Macchiato'),
+(3, 2, 'Subway Downtown LA', 'Sandwich restaurant in Downtown LA', 4., '$', 'Chicken Teriyaki Sub'),
+(NULL, 3, 'Brigadiers', 'Indian restaurant in London', 4., '$$$', 'Chicken Tikka Butter Masala'),
+(1, 3, 'McDonald''s Piccadilly', 'Fast food restaurant in Piccadilly Circus', 4., '$$', 'Chicken McNuggets');
 
 
 -- Inserting dummy data into RestaurantChains
