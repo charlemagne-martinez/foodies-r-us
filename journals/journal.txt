@@ -48,14 +48,14 @@
 
 
     - LEFT TO DO:
-    - RestaurantCuisines: TEST INSERT, UPDATE needs route, DELETE
+    - RestaurantCuisines: TEST INSERT, UPDATE needs route
     - need contraint handling for RC. Duplicates specifically such that
       dropdown is updated based on previously selected values (vice versa)
     - UI stuff (based on Alexander's feedback, what visuals we like change)
 
 3/14:
     THINGS found:
-    - FOUND WEIRD ERROR. Deleting a record (tested w/ Reviews, Users, RestaurantChains, CuisineTypes, Restaurants)
+    - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
       doesn't visually remove it from table until you reload page. not sure what changed since last week
       so troubleshoot this later.
       Locations does work as expected where deleting a record does remove from table w/o reloading... ?!?!?
@@ -66,8 +66,10 @@
       HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
     
 3/16:
-    - ACTUALLY, just tested delete w/ Locations and does the same thing as other entities...
-    - Restaurants dropdown for Location and Chain doesn't work...
+    - RestaurantCuisine DELETE works
+    - RestaurantCuisine INSERT and UPDATE needs work...
+
+    - Restaurants UPDATE dropdown for Location and Chain doesn't work...
 
 Todo : 
     

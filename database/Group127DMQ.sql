@@ -198,3 +198,6 @@ WHERE cuisineTypeID = :cuisineTypeID;
 
 DELETE FROM RestaurantCuisines
 WHERE restaurantID = :restaurantID;
+
+DELETE FROM RestaurantCuisines
+WHERE restaurantID = :restaurantID AND cuisineTypeID = :cuisineTypeID
