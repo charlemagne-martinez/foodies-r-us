@@ -121,8 +121,8 @@ function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
     console.log("Why are you notworking")
 
     document.getElementById("update-restaurantID").value = resID
-    document.getElementById("update-location").value = locID
-    document.getElementById("update-name").value = chainID
+    // document.getElementById("update-location").value = locID
+    // document.getElementById("update-name").value = chainID
     document.getElementById("update-restaurantName").value = name
     document.getElementById("update-description").value = des
     document.getElementById("popularOrder").value = pop 

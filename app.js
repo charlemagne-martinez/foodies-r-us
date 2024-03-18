@@ -469,19 +469,24 @@ app.post('/update-restaurant-form', function(req, res) {
 
 
     // Use parameterized queries to prevent SQL injection
-    let query1 = `UPDATE Restaurants SET 
-                    locationID = ?,
-                    restaurantChainID = ?,
-                    restaurantName = ?,
-                    description = ?,
-                    avgRating = ?,
-                    avgPrice = ?,
-                    popularOrder = ?
-                  WHERE restaurantID = ?`;
+    let query1 = `UPDATE Restaurants 
+                    SET 
+                        locationID = (SELECT locationID 
+                                        FROM Locations 
+                                        WHERE CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) = ?),
+                        restaurantChainID = (SELECT restaurantChainID
+                                                FROM RestaurantChains
+                                                WHERE name = ?),
+                        restaurantName = ?,
+                        description = ?,
+                        avgRating = ?,
+                        avgPrice = ?,
+                        popularOrder = ?
+                    WHERE restaurantID = ?`;
 
     let queryParams = [
         data.location,
-        data.name || null,
+        data.chain || null,
         data.restaurantName,
         data.description,
         data.avgRating,
