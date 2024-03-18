@@ -8,7 +8,7 @@
 
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 7676;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7675;                 // Set a port number at the top so it's easy to change in the future
 var db = require('./database/db-connector') // connect to our database file
 
 const { engine } = require('express-handlebars');
@@ -506,8 +506,16 @@ app.post('/update-rc-form', function(req, res)
     console.log("RestaurantCuisines record update: ", data);
 
     let query = `UPDATE RestaurantCuisines
-    SET cuisineTypeID = "${data.cuisineTypeID}"
+    SET cuisineTypeID = (
+        SELECT cuisineTypeID
+        FROM CuisineTypes
+        WHERE type = "${data.type}"
+    )
     WHERE restaurantID = "${data.restaurantID}"`;
+    
+    // `UPDATE RestaurantCuisines
+    // SET cuisineTypeID = "${data.cuisineTypeID}"
+    // WHERE restaurantID = "${data.restaurantID}"`;
 
     db.pool.query(query, function(error, rows, fields)
     {

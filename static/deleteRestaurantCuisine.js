@@ -15,7 +15,7 @@ function deleteRestaurantCuisine(restaurantID, cuisineTypeID) {
         restaurantID: restaurantID,
         cuisineTypeID: cuisineTypeID
     };
-
+ 
     $.ajax({
         url: link,
         type: 'DELETE',
