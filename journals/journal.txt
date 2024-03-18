@@ -49,28 +49,31 @@
 3/14:
     - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
       HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
-
-    THINGS found to fix/edit:
-    - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
-      doesn't visually remove it from table until you reload page. not sure what changed since last week
-      so troubleshoot this later.
-    - Should change dropdowns when editing a record to be the current option
-
-
-- LEFT TO DO:
-- Restaurants: UPDATE (FK dropdown for Location/Chain doesn't get updated if different selection made...)
-- need contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
-    dropdown is updated based on previously selected values (vice versa)
-- UI stuff (based on Alexander's feedback, what visuals we like change)
     
 3/16:
-    - RestaurantCuisine DELETE works
-    - RestaurantCuisine INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
+    - RestaurantCuisines DELETE works
+    - RestaurantCuisines INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
     - Review UPDATE does not work with apostrophe. 3/16 UPDATE: Fixed it seems kinda. 
       If a review has more than one apostrophre tho, seems to get truncated to before that second one
 
 3/17:
-    - RestaurantCuisine UPDATE WORKS. HOWEVER, any record where restaurant has apostrophe, can't get past clicking edit button...
+    - RestaurantCuisines UPDATE WORKS. HOWEVER, any record where restaurant has apostrophe, can't get past clicking edit button...
+    FK Dropdown updated is updated to be current rather than the first one of the options
+    UPDATE: added forEach listener.
+
+- THINGS FOUND TO FIX / LEFT TO DO:
+    - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
+      doesn't visually remove it from table until you reload page. not sure what changed since last week
+      so troubleshoot this later.
+    - should have contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
+    dropdown is updated based on previously selected values (vice versa)
+    
+    - UI stuff (based on Alexander's feedback, what visuals we like change)
+
+3/18:
+    - Restaurants FK dropdown UPDATE WORKSSSSSSSSSSSSSSS. 
+    - Restaurants FK dropdown is now updated such that option goes to current selected one for particular record
+    - Should have a NULL option for chain in Restaurants, 
 
 Todo / thoughts to consider later: 
     - when we get to Locations, consider removing the UPDATE step as we don't see it making sense

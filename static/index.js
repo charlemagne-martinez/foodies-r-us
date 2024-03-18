@@ -112,7 +112,7 @@ function hideReviewModal() {
 
 }
 
-function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
+function updateRestaurant(resID, locID, location, chainID, chainName, name, des, avgR, avgP, pop){
     var showSomethingModal = document.getElementById('update-modal-restaurant');
     var modalBackdrop = document.getElementById('modal-backdrop-restaurant');
 
@@ -145,18 +145,19 @@ function updateRestaurant(resID, locID, chainID, name, des, avgR, avgP, pop){
         }
     }
 
+    // Update location FK dropdown such that it goes to current value for record
     var locationDropdown = document.getElementById("select-update-location");
     for (var i = 0; i < locationDropdown.options.length; i++) {
-        if (locationDropdown.options[i].getAttribute("data-locationID") === locID) {
+        if (locationDropdown.options[i].getAttribute("data-location") === location) {
             locationDropdown.selectedIndex = i;
             break;
         }
     }
 
-    // Select the option in the chain dropdown whose data-chainID matches chainID
+    // Update chain name FK dropdown such that it goes to current value for record
     var chainDropdown = document.getElementById("select-update-chain");
     for (var j = 0; j < chainDropdown.options.length; j++) {
-        if (chainDropdown.options[j].getAttribute("data-chainID") === chainID) {
+        if (chainDropdown.options[j].getAttribute("data-chainName") === chainName) {
             chainDropdown.selectedIndex = j;
             break;
         }
@@ -176,6 +177,8 @@ function hideRestaurantModal() {
 // Select all edit buttons with class "edit-button"
 const editButtons = document.querySelectorAll('.edit-button');
 const chainButton = document.querySelectorAll('.edit-button-chain')
+const rcButton = document.querySelectorAll('.edit-button-rc')
+
 
 // Add event listener to each edit button
 editButtons.forEach(button => {
@@ -183,7 +186,9 @@ editButtons.forEach(button => {
         // Extract restaurant details from button attributes
         const restaurantID = this.getAttribute('data-restaurantID');
         const locationID = this.getAttribute('data-locationID');
+        const location = this.getAttribute('data-location');
         const chainID = this.getAttribute('data-chainID');
+        const chainName = this.getAttribute('data-chainName');
         const restaurantName = this.getAttribute('data-restaurantName');
         const description = this.getAttribute('data-description');
         const avgRating = this.getAttribute('data-avgRating');
@@ -191,7 +196,7 @@ editButtons.forEach(button => {
         const popularOrder = this.getAttribute('data-popularOrder');
 
         // Call updateRestaurant function with extracted parameters
-        updateRestaurant(restaurantID, locationID, chainID, restaurantName, description, avgRating, avgPrice, popularOrder);
+        updateRestaurant(restaurantID, locationID, location, chainID, chainName, restaurantName, description, avgRating, avgPrice, popularOrder);
     });
 });
 
@@ -200,6 +205,16 @@ chainButton.forEach(button => {
         const chainID = this.getAttribute('data-chainID')
         const name = this.getAttribute('data-name')
         updateChains(chainID,name)
+    })
+})
+
+rcButton.forEach(button => {
+    button.addEventListener('click', function() {
+        const restID = this.getAttribute('data-restaurantID')
+        const name = this.getAttribute('data-restaurantName')
+        const cuisineID = this.getAttribute('data-cuisineID')
+        const type = this.getAttribute('data-type')
+        updateRC(restID, name, cuisineID, type)
     })
 })
 
@@ -219,6 +234,7 @@ function updateRC(restID, restaurantName, cuisineID, type){
     document.getElementById("update-resaurantID").value = restID;
     document.getElementById("restaurantNameNoChange").innerHTML = restaurantName;
 
+    // Update the dropdown option so that it goes to the current selected cuisine for the record
     var cuisineDropdown = document.getElementById("select-cuisine-update");
     for (var j = 0; j < cuisineDropdown.options.length; j++) {
         if (cuisineDropdown.options[j].getAttribute("data-cuisineType") === type) {

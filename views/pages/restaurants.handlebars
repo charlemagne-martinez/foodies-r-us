@@ -42,7 +42,7 @@
                     <td>{{this.avgRating}}</td>
                     <td>{{this.avgPrice}}</td>
                     <td>{{this.popularOrder}}</td>
-                    <td><button class="edit-button" data-restaurantID="{{this.restaurantID}}" data-locationID="{{this.locationID}}" data-chainID="{{this.restaurantChainID}}" data-restaurantName="{{this.restaurantName}}" data-description="{{this.description}}" data-avgRating="{{this.avgRating}}" data-avgPrice="{{this.avgPrice}}" data-popularOrder="{{this.popularOrder}}">Edit</button></td>
+                    <td><button class="edit-button" data-restaurantID="{{this.restaurantID}}" data-locationID="{{this.locationID}}" data-location="{{this.location}}" data-chainID="{{this.restaurantChainID}}" data-chainName="{{this.name}}" data-restaurantName="{{this.restaurantName}}" data-description="{{this.description}}" data-avgRating="{{this.avgRating}}" data-avgPrice="{{this.avgPrice}}" data-popularOrder="{{this.popularOrder}}">Edit</button></td>
                     <td><button onclick="deleteRestaurant({{this.restaurantID}})">Delete</button></td>
                 </tr>
                 {{/each}}
