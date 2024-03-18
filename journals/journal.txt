@@ -47,18 +47,18 @@
     - reminder: NO LONGER using hidden inputs ;_;
 
 3/14:
-    THINGS found:
+    - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
+      HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
+
+    THINGS found to fix/edit:
     - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
       doesn't visually remove it from table until you reload page. not sure what changed since last week
       so troubleshoot this later.
     - Should change dropdowns when editing a record to be the current option
 
-    - RestaurantCuisines dropdown for adding a record and editing are now dynamic. 
-      HOWEVER, after making dynamic, INSERT does not seem to work anymore ;/
 
 - LEFT TO DO:
 - Restaurants: UPDATE (FK dropdown for Location/Chain doesn't get updated if different selection made...)
-- RestaurantCuisines: UPDATE needs route and needs to work. created a route but may have to update again...
 - need contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
     dropdown is updated based on previously selected values (vice versa)
 - UI stuff (based on Alexander's feedback, what visuals we like change)
@@ -68,12 +68,11 @@
     - RestaurantCuisine INSERT WORKS AGAIN EUSHAHAHDHAFJSDFOIHWIDJFWK
     - Review UPDATE does not work with apostrophe. 3/16 UPDATE: Fixed it seems kinda. 
       If a review has more than one apostrophre tho, seems to get truncated to before that second one
-    - 
 
-Todo : 
-    
+3/17:
+    - RestaurantCuisine UPDATE WORKS. HOWEVER, any record where restaurant has apostrophe, can't get past clicking edit button...
 
-    (thoughts to consider later)
+Todo / thoughts to consider later: 
     - when we get to Locations, consider removing the UPDATE step as we don't see it making sense
     - see why adding script tag for updateUser.js in users.handlebars for the UPDATE does not work.... 
       also see if it's alright to keep that script in the users.handlebars like how we have it rn
