@@ -16,7 +16,7 @@
                     <label> Location </label> 
                     <select name="location" id="select-update-location">
                         {{#each restaurantsDropdownData.locationName}}
-                        <option data-locationID="{{this.locationID}}">{{this.location}}</option>
+                        <option data-location="{{this.location}}">{{this.location}}</option>
                         {{/each}}
                     </select>
                 </div>       
@@ -25,7 +25,7 @@
                     <label> Chain </label>
                     <select name="chain" id="select-update-chain">
                         {{#each restaurantsDropdownData.chainName}}
-                        <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
+                        <option data-chainName="{{this.name}}"> {{this.name}} </option>
                         {{/each}}
                     </select>
                 </div>
