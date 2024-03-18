@@ -1,4 +1,6 @@
 function updateLocation(locationID, city, state, country) {
+    console.log("locationID: ", locationID);
+
     var showSomethingModal = document.getElementById('update-modal');
     var modalBackdrop = document.getElementById('modal-backdrop');
 
@@ -201,14 +203,21 @@ chainButton.forEach(button => {
     })
 })
 
-function updateRC(restID, cuisineID){
+function updateRC(restID, restaurantName, cuisineID){
+    console.log("updateRC function in index.js is being called!!")
+    console.log("restaurantID: ", restID);
+    console.log("restaurantName: ", restaurantName);
+    console.log("cuisineID: ", cuisineID);
+    // console.log("type: ", type);
+
     var showSomethingModal = document.getElementById('update-modal-RC');
     var modalBackdrop = document.getElementById('modal-backdrop-RC');
 
     showSomethingModal.classList.remove('hidden');
     modalBackdrop.classList.remove('hidden');
 
-    document.getElementById("update-restaurantID").value = restID
+    document.getElementById("update-resaurantID").value = restID;
+    document.getElementById("restaurantNameNoChange").innerHTML = restaurantName;
 
     var cuisineDropdown = document.getElementById("select-cuisine-update");
     for (var j = 0; j < cuisineDropdown.options.length; j++) {
@@ -217,6 +226,7 @@ function updateRC(restID, cuisineID){
             break;
         }
     }
+    // document.getElementById("update-type").value = type;
 }
 
 function hideRCModal() {

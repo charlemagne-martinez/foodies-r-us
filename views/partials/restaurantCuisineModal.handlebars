@@ -10,14 +10,19 @@
             <div class="modal-body">
                 <input type="hidden" name="restaurantID" id="update-resaurantID">
 
+                {{!-- <label>Restaurant</label> --}}
+                <h2 id="restaurantNameNoChange"></h2>
+
                 <div class="post-input-element">
                     <label>Cuisine</label>
-                    <select name="cuisineTypeID" id="select-cuisine-update">
+                    <select name="type" id="select-cuisine-update">
                         {{#each restaurantCuisinesDropdownData.cuisineTypeName}}
                         <option data-cuisine="{{this.cuisineTypeID}}">{{this.type}}</option>
                         {{/each}}
                     </select>
                 </div>
+
+                {{!-- <input type="hidden" name="cuisineType" id="update-type"> --}}
             </div>
 
             <div class="modal-footer">

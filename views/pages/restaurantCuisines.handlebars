@@ -24,7 +24,7 @@
                 <tr>
                     <td>({{this.restaurantID}}) {{this.restaurantName}}</td>
                     <td>({{this.cuisineTypeID}}) {{this.type}}</td>
-                    <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.cuisineTypeID}}')">Edit</button></td>
+                    <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.restaurantName}}', '{{this.cuisineTypeID}}')">Edit</button></td>
                     <td><button onclick="deleteRestaurantCuisine({{this.restaurantID}}, {{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
                 {{/each}}
@@ -81,3 +81,9 @@
 </main>
 
 {{>restaurantCuisineModal}}
+{{!-- 
+<script>
+    Handlebars.registerHelper('jsonStringify', function(context) {
+    return JSON.stringify(context);
+});
+</script> --}}
