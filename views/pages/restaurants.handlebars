@@ -160,7 +160,7 @@
 
     <p>&nbsp;</p>
 
-    <script>
+    {{!-- <script>
         let chain = document.querySelector('#select-update-chain');
         let locations = document.querySelector('#select-update-location');
 
@@ -171,11 +171,11 @@
         });
 
         locations.addEventListener('change', function(e) {
-            let selectedOption = locations.options[location.selectedIndex];
+            let selectedOption = locations.options[locations.selectedIndex];
 
             document.getElementById("update-location").value = selectedOption.getAttribute('data-locationID')
         });
-    </script>
+    </script> --}}
 
 </main>
 

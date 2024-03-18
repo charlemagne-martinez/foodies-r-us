@@ -9,12 +9,12 @@
         <form id="update-restaurant-form" method="POST" action="/update-restaurant-form">
             <div class="modal-body">
                 <input type="hidden" name="restaurantID" id="update-restaurantID">
-                <input type="hidden" name="location" id="update-location">
-                <input type="hidden" name="name" id="update-name">
+                {{!-- <input type="hidden" name="locationID" id="update-location">
+                <input type="hidden" name="chainID" id="update-name"> --}}
 
                 <div class="post-input-element">
                     <label> Location </label> 
-                    <select name="locations" id="select-update-location">
+                    <select name="location" id="select-update-location">
                         {{#each restaurantsDropdownData.locationName}}
                         <option data-locationID="{{this.locationID}}">{{this.location}}</option>
                         {{/each}}
