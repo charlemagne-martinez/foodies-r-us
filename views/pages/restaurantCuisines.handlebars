@@ -24,7 +24,7 @@
                 <tr>
                     <td>({{this.restaurantID}}) {{this.restaurantName}}</td>
                     <td>({{this.cuisineTypeID}}) {{this.type}}</td>
-                    <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.restaurantName}}', '{{this.cuisineTypeID}}')">Edit</button></td>
+                    <td><button onclick="updateRC('{{this.restaurantID}}', '{{this.restaurantName}}', '{{this.cuisineTypeID}}', '{{this.type}}')">Edit</button></td>
                     <td><button onclick="deleteRestaurantCuisine({{this.restaurantID}}, {{this.cuisineTypeID}})">Delete</button></td>
                 </tr>
                 {{/each}}

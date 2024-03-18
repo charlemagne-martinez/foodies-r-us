@@ -203,12 +203,12 @@ chainButton.forEach(button => {
     })
 })
 
-function updateRC(restID, restaurantName, cuisineID){
+function updateRC(restID, restaurantName, cuisineID, type){
     console.log("updateRC function in index.js is being called!!")
     console.log("restaurantID: ", restID);
     console.log("restaurantName: ", restaurantName);
     console.log("cuisineID: ", cuisineID);
-    // console.log("type: ", type);
+    console.log("type: ", type);
 
     var showSomethingModal = document.getElementById('update-modal-RC');
     var modalBackdrop = document.getElementById('modal-backdrop-RC');
@@ -221,7 +221,7 @@ function updateRC(restID, restaurantName, cuisineID){
 
     var cuisineDropdown = document.getElementById("select-cuisine-update");
     for (var j = 0; j < cuisineDropdown.options.length; j++) {
-        if (cuisineDropdown.options[j].getAttribute("data-cuisineTypeID") === cuisineID) {
+        if (cuisineDropdown.options[j].getAttribute("data-cuisineType") === type) {
             cuisineDropdown.selectedIndex = j;
             break;
         }
