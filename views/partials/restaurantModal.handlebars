@@ -24,6 +24,7 @@
                 <div class="post-input-element">
                     <label> Chain </label>
                     <select name="chain" id="select-update-chain">
+                        <option>None</option>
                         {{#each restaurantsDropdownData.chainName}}
                         <option data-chainName="{{this.name}}"> {{this.name}} </option>
                         {{/each}}

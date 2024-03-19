@@ -1,6 +1,7 @@
 2/14:
     - Created repo
     - Initial setup
+
 2/15: 
     - Added html skeleton for each page
     - Added Select for table information
@@ -10,15 +11,20 @@
     - Update entities, crud list google doc so that we have checklist of things
     - Update HTML pages to be specialized to their own information tables
     - DMQ.sql
+
 2/21:
     - checklist of what to do for step 3 based on peer feedback from reviews
+
 2/22:
     - step 3 final submission based on peer feedback
+
 2/27:
     - checklist of what to edit on project based on TA feedback from step 3 final submission, also for step 4
+
 2/28:
     - decided on doing Users entity
     - got READ (Select) working
+
 2/29:
     - got CREATE (Insert) working
     - DELETE (Delete) WORKSSSSSSSSSSSSSSS
@@ -61,47 +67,24 @@
     FK Dropdown updated is updated to be current rather than the first one of the options
     UPDATE: added forEach listener.
 
-- THINGS FOUND TO FIX / LEFT TO DO:
-    - FOUND WEIRD ERROR. Deleting a record (tested w/ ALL entities, including intersection tables)
-      doesn't visually remove it from table until you reload page. not sure what changed since last week
-      so troubleshoot this later.
-    - should have contraint handling for RC INSERT/UPDATE. Duplicates specifically such that
-    dropdown is updated based on previously selected values (vice versa)
-    
-    - UI stuff (based on Alexander's feedback, what visuals we like change)
-
 3/18:
     - Restaurants FK dropdown UPDATE WORKSSSSSSSSSSSSSSS. 
     - Restaurants FK dropdown is now updated such that option goes to current selected one for particular record
     - Users DELETE now updates table again w/o having to reload page. Will do same for other entities
-    
-    - Should have a NULL option for chain in Restaurants, 
+    - Restaurants, Locations, Reviews, CuisineTypes, RestaurantChains, RestaurantCuisines (AKA every other entity)
+      tables, when deleting a record, updates w/o having to refresh page again
+    - Added a 'NULL' option for chain in Restaurants add and delete
 
 
+Things found to fix / To-do / thoughts to consider later (if we can get to it): 
+    - UI stuff (based on Alexander's feedback, what visuals we like change)
 
-
-Todo / thoughts to consider later: 
-    - when we get to Locations, consider removing the UPDATE step as we don't see it making sense
-    - see why adding script tag for updateUser.js in users.handlebars for the UPDATE does not work.... 
-      also see if it's alright to keep that script in the users.handlebars like how we have it rn
-    - regarding deleteUser.js, see if what we have to update dropdown option for update user when deleting a record works...
-    - for Restaurants when adding and updating entry, consider having a dropdown for cuisine type that hooks
-      up similarly to automatically insert similar to TA's method mentioned in ed post?
-      AKA Could possibly handle RestaurantCuisines intersection table within form in Restaurants, 
-      where we allow users to choose the cuisine type, instead of having another form specifically 
-      in RestaurantCuisines where we allow the user to choose restaurant and cuisine type
-
-    - input validation?
-    - validation for RC add to avoid duplicates
-    - add drop downs in modal updates for rest of entities suchs as restaurants, reviews, RC 
-
-    - For some reason, for reviews.handlebars in particular, relateive file path was found for deleteReview.js
-    but not found or referenced when clicking on the delete button. As of rn, deleteReview.js file contents directly
-    in script.
+    - data input validation for specific fields? (like email in users page?)
+    - validation for RC add to avoid duplicates. AKA should have contraint handling for RC INSERT/UPDATE. 
+      Duplicates specifically such that dropdown is updated based on previously selected values (vice versa)
 
     - Add error handle for fields that are not populated or have input. Data validation handling 
     - in app route, if data is null, then reroute
-
 
 
 Update local feature branch with changes from remote main branch:
