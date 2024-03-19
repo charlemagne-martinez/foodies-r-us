@@ -368,20 +368,20 @@ UPDATE (Update)
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 app.post('/update-review-form', function(req,res){
-    let data = req.body
-    console.log("Review record updated: ", data)
+    let data = req.body;
+    console.log("Review record updated: ", data);
 
     let query1 = `UPDATE Reviews SET 
     review = ?
     WHERE reviewID = ?`;
 
-    db.pool.query(query1, [data.reviewID, data.review], function(error,rows,fields){
+    db.pool.query(query1, [data.review, data.reviewID], function(error,rows,fields){
         if (error){
-            console.log(error)
-            res.sendStatus(400)
+            console.log(error);
+            res.sendStatus(400);
         }
         else{
-            res.redirect('/reviews')
+            res.redirect('/reviews');
         }
     })
 })

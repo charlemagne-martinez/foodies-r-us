@@ -23,23 +23,34 @@ function deleteRestaurant(restaurantID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            deleteRow(restaurantID)
+            // moving this similar to in deleteUser.js which should update table w/o reloading page as well
+            let table = document.getElementById("restaurant-table");
+            for (let i = 0, row; row = table.rows[i]; i++) 
+            {
+               // iterate through rows
+               // rows would be accessed using the "row" variable assigned in the for loop
+               if (table.rows[i].getAttribute("data-value") == restaurantID) 
+               {
+                    table.deleteRow(i);
+                    break;
+               }
+            }
         } 
     });
 
 }
 
-function deleteRow(restaurantID)
-{
-    let table = document.getElementById("restaurant-table");
-    for (let i = 0, row; row = table.rows[i]; i++) 
-    {
-       // iterate through rows
-       // rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == restaurantID) 
-       {
-            table.deleteRow(i);
-            break;
-       }
-    }
-}
+// function deleteRow(restaurantID)
+// {
+//     let table = document.getElementById("restaurant-table");
+//     for (let i = 0, row; row = table.rows[i]; i++) 
+//     {
+//        // iterate through rows
+//        // rows would be accessed using the "row" variable assigned in the for loop
+//        if (table.rows[i].getAttribute("data-value") == restaurantID) 
+//        {
+//             table.deleteRow(i);
+//             break;
+//        }
+//     }
+// }
