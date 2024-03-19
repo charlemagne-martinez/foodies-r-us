@@ -23,23 +23,34 @@ function deleteCuisineType(cuisineTypeID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            deleteRow(cuisineTypeID)
+            // moving this directly here similar to deleteUser.js and other entities
+            let table = document.getElementById("cuisine-table");
+            for (let i = 0, row; row = table.rows[i]; i++) 
+            {
+                // iterate through rows
+                // rows would be accessed using the "row" variable assigned in the for loop
+                if (table.rows[i].getAttribute("data-value") == cuisineTypeID) 
+                {
+                        table.deleteRow(i);
+                        break;
+                }
+            }
         } 
     });
 
 }
 
-function deleteRow(cuisineTypeID)
-{
-    let table = document.getElementById("cuisine-table");
-    for (let i = 0, row; row = table.rows[i]; i++) 
-    {
-    // iterate through rows
-    // rows would be accessed using the "row" variable assigned in the for loop
-    if (table.rows[i].getAttribute("data-value") == cuisineTypeID) 
-    {
-            table.deleteRow(i);
-            break;
-    }
-    }
-}      
+// function deleteRow(cuisineTypeID)
+// {
+//     let table = document.getElementById("cuisine-table");
+//     for (let i = 0, row; row = table.rows[i]; i++) 
+//     {
+//         // iterate through rows
+//         // rows would be accessed using the "row" variable assigned in the for loop
+//         if (table.rows[i].getAttribute("data-value") == cuisineTypeID) 
+//         {
+//                 table.deleteRow(i);
+//                 break;
+//         }
+//     }
+// }      

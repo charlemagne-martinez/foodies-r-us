@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 {{#each data}}
-                <tr>
+                <tr data-valueRestaurant="{{this.restaurantID}}" data-valueCuisineType="{{this.cuisineTypeID}}">
                     <td>({{this.restaurantID}}) {{this.restaurantName}}</td>
                     <td>({{this.cuisineTypeID}}) {{this.type}}</td>
 					<td><button class="edit-button-rc" data-restaurantID="{{this.restaurantID}}" data-restaurantName="{{this.restaurantName}}" data-cuisineID="{{this.cuisineTypeID}}" data-type="{{this.type}}">Edit</button></td>

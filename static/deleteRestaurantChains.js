@@ -22,19 +22,28 @@ function deleteChains(restaurantChainID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            deleteRow(restaurantChainID)
+            // moving here similar to deleteUser.js and other entity delete js functions
+            let table = document.getElementById("chains-table");
+            for (let i = 0, row; row = table.rows[i]; i++) {
+                // iterate through rows
+                // rows would be accessed using the "row" variable assigned in the for loop
+                if (table.rows[i].getAttribute("data-value") == restaurantChainID) {
+                    table.deleteRow(i);
+                    break;
+                }
+            }
         } 
     });
 }
 
-function deleteRow(restaurantChainID){
-    let table = document.getElementById("chains-table");
-    for (let i = 0, row; row = table.rows[i]; i++) {
-        // iterate through rows
-        // rows would be accessed using the "row" variable assigned in the for loop
-        if (table.rows[i].getAttribute("data-value") == restaurantChainID) {
-            table.deleteRow(i);
-            break;
-        }
-    }
-}
+// function deleteRow(restaurantChainID){
+//     let table = document.getElementById("chains-table");
+//     for (let i = 0, row; row = table.rows[i]; i++) {
+//         // iterate through rows
+//         // rows would be accessed using the "row" variable assigned in the for loop
+//         if (table.rows[i].getAttribute("data-value") == restaurantChainID) {
+//             table.deleteRow(i);
+//             break;
+//         }
+//     }
+// }

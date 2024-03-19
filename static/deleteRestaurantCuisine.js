@@ -23,25 +23,39 @@ function deleteRestaurantCuisine(restaurantID, cuisineTypeID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            deleteRow(restaurantID, cuisineTypeID)
+            // deleteRow(restaurantID, cuisineTypeID)
+            // moving here similar to deleteUser.js and other files which should
+            // make table update after deleting record w/o refreshing page
+            let table = document.getElementById("restaurantCuisines-table");
+            for (let i = 0, row; row = table.rows[i]; i++) 
+            {
+                // iterate through rows
+                // rows would be accessed using the "row" variable assigned in the for loop
+                if (table.rows[i].getAttribute("data-valueRestaurant") == restaurantID && 
+                table.rows[i].getAttribute("data-valueCuisineType") == cuisineTypeID)
+                {
+                    table.deleteRow(i);
+                    break;
+                }
+            }
         } 
     });
 }
 
-function deleteRow(restaurantID, cuisineTypeID){
-    let table = document.getElementById("restaurantCuisines-table");
-    for (let i = 0, row; row = table.rows[i]; i++) 
-    {
-        // iterate through rows
-        // rows would be accessed using the "row" variable assigned in the for loop
-        let rowRestaurantID = table.rows[i].getAttribute("data-restaurant-id")
-        let rowCuisineTypeID = table.rows[i].getAttribute("data-cuisine-type-id")
+// function deleteRow(restaurantID, cuisineTypeID){
+//     let table = document.getElementById("restaurantCuisines-table");
+//     for (let i = 0, row; row = table.rows[i]; i++) 
+//     {
+//         // iterate through rows
+//         // rows would be accessed using the "row" variable assigned in the for loop
+//         let rowRestaurantID = table.rows[i].getAttribute("data-restaurant-id")
+//         let rowCuisineTypeID = table.rows[i].getAttribute("data-cuisine-type-id")
 
 
-        if (rowRestaurantID == restaurantID && rowCuisineTypeID == cuisineTypeID) 
-        {
-            table.deleteRow(i);
-            break;
-        }
-    }
-}
+//         if (rowRestaurantID == restaurantID && rowCuisineTypeID == cuisineTypeID) 
+//         {
+//             table.deleteRow(i);
+//             break;
+//         }
+//     }
+// }
