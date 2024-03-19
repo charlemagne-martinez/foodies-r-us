@@ -69,6 +69,7 @@
             <label> Restaurant Chain</label> 
                 <select name="name" id="insert-chainSelect">
                     <option>Select a Restaurant Chain</option>
+                    <option>None</option>
                     {{#each restaurantsDropdownData.chainName}}
                     <option data-chainID="{{this.restaurantChainID}}"> {{this.name}} </option>
                     {{/each}}
