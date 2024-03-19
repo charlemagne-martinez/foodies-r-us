@@ -41,17 +41,3 @@ function deleteUser(userID) {
 }
 
 
-// function deleteRow(userID)
-// {
-//     let table = document.getElementById("users-table");
-//     for (let i = 0, row; row = table.rows[i]; i++) 
-//     {
-//        //iterate through rows
-//        //rows would be accessed using the "row" variable assigned in the for loop
-//        if (table.rows[i].getAttribute("data-value") == userID) 
-//        {
-//             table.deleteRow(i);
-//             break;
-//        }
-//     }
-// }
