@@ -2,7 +2,7 @@
  * Citation: Citation is from node.js starter code
  * Date: 02/28/2024
  * Copied from: Github page
- * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%200%20-%20Setting%20Up%20Node.js
+ * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
  */ 
 // ./database/db-connector.js
 
