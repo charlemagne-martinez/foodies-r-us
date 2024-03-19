@@ -1,10 +1,10 @@
 /*
  * Citation: Citation is from node.js starter code. Citations were used to setup all our app routes. 
-                                                    Functioncs like Fetchdropwdown data were of our own creations 
-                                                    including the queries written.
+   Helper functions like fetchDropdownRestaurants (lines 51 - 86), fetchDropdownRestaurantCuisines(lines 120 - 158) 
+   and fetchDropdownReviews (lines 181 - 210), were adapted from the general setup in the starter code.
  * Date: 02/28/2024
- * Copied from: Adapted from Github page
- * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%200%20-%20Setting%20Up%20Node.js
+ * Adapted from: nodes.js starter code
+ * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/
  */ 
 // App.js
 
@@ -181,7 +181,7 @@ app.get('/users', function(req, res){
 // Helper function to fetch restaurants and users data.
 // Using to populate dropdown for Adding a Review to directly grab all FK references
 // from their respective entities, rather than populating based on current attributes in Reviews.
-function fetchDropdownData(req, res, next) {
+function fetchDropdownReviews(req, res, next) {
     let query1 = "SELECT restaurantName FROM Restaurants";
     let query2 = "SELECT CONCAT(fName, ' ', lName) AS userName FROM Users";
 
@@ -210,7 +210,7 @@ function fetchDropdownData(req, res, next) {
 }
 
 
-app.get('/reviews', fetchDropdownData, function(req, res){
+app.get('/reviews', fetchDropdownReviews, function(req, res){
     let query2 = `SELECT Reviews.reviewID, 
     Restaurants.restaurantName, 
     CONCAT(Users.fName, ' ', Users.lName) AS userName, 
