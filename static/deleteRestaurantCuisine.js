@@ -42,20 +42,3 @@ function deleteRestaurantCuisine(restaurantID, cuisineTypeID) {
     });
 }
 
-// function deleteRow(restaurantID, cuisineTypeID){
-//     let table = document.getElementById("restaurantCuisines-table");
-//     for (let i = 0, row; row = table.rows[i]; i++) 
-//     {
-//         // iterate through rows
-//         // rows would be accessed using the "row" variable assigned in the for loop
-//         let rowRestaurantID = table.rows[i].getAttribute("data-restaurant-id")
-//         let rowCuisineTypeID = table.rows[i].getAttribute("data-cuisine-type-id")
-
-
-//         if (rowRestaurantID == restaurantID && rowCuisineTypeID == cuisineTypeID) 
-//         {
-//             table.deleteRow(i);
-//             break;
-//         }
-//     }
-// }
