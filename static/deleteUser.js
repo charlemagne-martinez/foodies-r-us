@@ -23,39 +23,35 @@ function deleteUser(userID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            deleteRow(userID)
+            // Seems to update w/o having to reload when we have this directly here instead of a cal; to deleteRow()??
+            let table = document.getElementById("users-table");
+            for (let i = 0, row; row = table.rows[i]; i++) 
+            {
+                //iterate through rows
+                //rows would be accessed using the "row" variable assigned in the for loop
+                if (table.rows[i].getAttribute("data-value") == userID) 
+                {
+                        table.deleteRow(i);
+                        break;
+                }
+            }
         } 
     });
 
 }
 
 
-// check this again later
-function deleteRow(userID)
-{
-    let table = document.getElementById("users-table");
-    for (let i = 0, row; row = table.rows[i]; i++) 
-    {
-       //iterate through rows
-       //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == userID) 
-       {
-            table.deleteRow(i);
-            // deleteDropDownMenuOption(userID);
-            break;
-       }
-    }
-}
-
-// function deleteDropDownMenuOption(userID)
+// function deleteRow(userID)
 // {
-//     let selectMenu = document.getElementById("updateUser")
-//     for (let i = 0; i < selectMenu.length; i++)
+//     let table = document.getElementById("users-table");
+//     for (let i = 0, row; row = table.rows[i]; i++) 
 //     {
-//         if (Number(selectMenu.options[i].value) == Number(userID))
-//         {
-//             selectMenu[i].remove();
+//        //iterate through rows
+//        //rows would be accessed using the "row" variable assigned in the for loop
+//        if (table.rows[i].getAttribute("data-value") == userID) 
+//        {
+//             table.deleteRow(i);
 //             break;
-//         }
+//        }
 //     }
 // }

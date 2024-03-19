@@ -31,11 +31,11 @@
             </thead>
             <tbody>
                 {{#each data}}
-                <tr>
+                <tr data-value="{{this.restaurantID}}">
                     <td>{{this.restaurantID}}</td>
-                    {{!-- Updated with data passed from app.js, especially helper function --}}
+                    {{!-- Replaced locationID w/ human readable name using data passed from app.js, especially helper function --}}
                     <td>{{this.location}}</td> 
-                    {{!-- Updated with data passed from app.js, especially helper function --}}
+                    {{!-- Replaced restaurantChainID w/ human readable name using data passed from app.js, especially helper function --}}
                     <td>{{this.name}}</td>
                     <td>{{this.restaurantName}}</td>
                     <td>{{this.description}}</td>

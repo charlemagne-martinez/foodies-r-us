@@ -73,7 +73,12 @@
 3/18:
     - Restaurants FK dropdown UPDATE WORKSSSSSSSSSSSSSSS. 
     - Restaurants FK dropdown is now updated such that option goes to current selected one for particular record
+    - Users DELETE now updates table again w/o having to reload page. Will do same for other entities
+    
     - Should have a NULL option for chain in Restaurants, 
+
+
+
 
 Todo / thoughts to consider later: 
     - when we get to Locations, consider removing the UPDATE step as we don't see it making sense
@@ -90,8 +95,6 @@ Todo / thoughts to consider later:
     - validation for RC add to avoid duplicates
     - add drop downs in modal updates for rest of entities suchs as restaurants, reviews, RC 
 
-
-    
     - For some reason, for reviews.handlebars in particular, relateive file path was found for deleteReview.js
     but not found or referenced when clicking on the delete button. As of rn, deleteReview.js file contents directly
     in script.
