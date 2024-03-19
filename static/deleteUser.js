@@ -23,7 +23,7 @@ function deleteUser(userID) {
         contentType: "application/json; charset=utf-8",
         success: function(result)
         {
-            // Seems to update w/o having to reload when we have this directly here instead of a cal; to deleteRow()??
+            // Seems to update w/o having to reload when we have this directly here instead of a call; to deleteRow()??
             let table = document.getElementById("users-table");
             for (let i = 0, row; row = table.rows[i]; i++) 
             {
