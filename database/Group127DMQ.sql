@@ -1,22 +1,11 @@
 -- Group 127 - CouchPotato Saga
 -- Bruce Yan & Charlemagne Martinez
 
--- To-Do (as of step 4):
--- - do not think we're using the queries we have for the dropdown, as we're currently using
---   a script (currently in users.handlebars). This method tho seems to be working but go back maybe?
--- - once we get to them, look at INSERT queries that have subqueries again (Restaurants, Reviews)
 
-
--- TO-DO (as of step 3): 
--- - SEE IF THE WAY WE'RE INSERTING INTO Restaurants IS A GOOD APPROACH
---  (specifically locationID since we're using it's name attributes rather than just the ID)
--- - see if we're doing the dropdowns correctly
-
-
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
 
 
 --Read (SELECT)
---SELECT ALL DATA TO SHOW ON UI
 
 --Select all users
 SELECT * FROM Users;
@@ -28,8 +17,6 @@ FROM Restaurants
 INNER JOIN Locations ON Restaurants.locationID = Locations.locationID
 LEFT JOIN RestaurantChains ON Restaurants.restaurantChainID = RestaurantChains.restaurantChainID
 ORDER BY Restaurants.restaurantID;
--- INNER JOIN RestaurantCuisines ON Restaurants.restaurantID = RestaurantCuisines.restaurantID
--- INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID; 
 
 --Select all reviews 
 SELECT reviewID, Restaurants.restaurantName, CONCAT(Users.fName, ' ', Users.lName) AS userName, review
@@ -39,58 +26,53 @@ INNER JOIN Users ON Reviews.userID = Users.userID
 ORDER BY Reviews.reviewID;
 
 --Select all cuisine types
+SELECT * FROM CuisineTypes;
 SELECT cuisineTypeID, type FROM CuisineTypes;
 
 --Select all restaurant chains
+SELECT * FROM RestaurantChains;
 SELECT restaurantChainID, name FROM RestaurantChains;
 
 --Select all locations
+SELECT * FROM Locations;
 SELECT locationID, city, state, country FROM Locations;
 
 -- Select all restaurant cuisines (intersection table)
-SELECT Restaurants.restaurantName, CuisineTypes.type FROM RestaurantCuisines
+SELECT Restaurants.restaurantID, CuisineTypes.cuisineTypeID, Restaurants.restaurantName, CuisineTypes.type FROM RestaurantCuisines
 INNER JOIN Restaurants ON RestaurantCuisines.restaurantID = Restaurants.restaurantID
 INNER JOIN CuisineTypes ON RestaurantCuisines.cuisineTypeID = CuisineTypes.cuisineTypeID
 ORDER BY RestaurantCuisines.restaurantID;
 
 -- Selects for drop down menus
+-- Representing locationID with concatenation of city, state, and country attributes from Locations
 SELECT CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) as location FROM Locations;
 
-SELECT name as chainName FROM RestaurantChains;
+SELECT name FROM RestaurantChains;
 
-SELECT cuisineTypeID, type FROM CuisineTypes;
+SELECT type FROM CuisineTypes;
 
 SELECT restaurantName FROM Restaurants;
 
-SELECT CONCAT(fName, " ", lName) as userName FROM Users;
+-- Representing userID with concatenation of first and last name attributes from Users
+SELECT CONCAT(fName, ' ', lName) AS userName FROM Users;
+
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
 
 
 --Create (INSERT)
+
 INSERT INTO Users (username, email, password, fName, lName)
 VALUES (:username, :email, :password, :fName, :lName);
 
+-- Query includes SELECT subqueries for locationID and restaurantChainID, based on dropdown selections 
 INSERT INTO Restaurants (locationID, restaurantChainID, restaurantName, description, avgRating, avgPrice, popularOrder)
-VALUES (
-  SELECT locationID
-  FROM Locations
-  WHERE CONCAT(city, ', ', IFNULL(state, ', '), country) = :locationID, 
-  SELECT restaurantChainID
-  FROM RestaurantChains
-  WHERE name = :name, 
-  :restaurantName, :description, :avgRating, :avgPrice, :popularOrder);
+SELECT 
+  (SELECT locationID FROM Locations WHERE CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) = ?),
+  (SELECT restaurantChainID FROM RestaurantChains WHERE name = ?), 
+  :restaurantName, :description, :avgRating, :avgPrice, :popularOrder;
 
-
-INSERT INTO Reviews (restaurantID, userID, review)
-VALUES (
-  SELECT restaurantID
-  FROM Restaurants
-  WHERE restaurantName = :restaurantName, 
-  SELECT userID
-  FROM Users
-  WHERE CONCAT(fName, ' ', lName) = :userID, 
-  :review);
-
--- This one works
+-- Query includes SELECT subqueries for restaurantID and userID, based on dropdown selections 
 INSERT INTO Reviews (restaurantID, userID, review) 
   SELECT 
     (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?), 
@@ -106,8 +88,14 @@ VALUES (:restaurantName);
 INSERT INTO Locations (city, state, country)
 VALUES (:city, :state, :country);
 
+-- Query includes SELECT subqueries for restaurantID and cuisineTypeID, based on dropdown selections 
 INSERT INTO RestaurantCuisines (restaurantID, cuisineTypeID)
-VALUES (:restaurantID, :cuisineTypeID)
+  SELECT
+      (SELECT restaurantID FROM Restaurants WHERE restaurantName = ?),
+      (SELECT cuisineTypeID FROM CuisineTypes WHERE type = ?);
+
+
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
 
 
 --Update (UPDATE)
@@ -121,22 +109,26 @@ SET username = :username,
     lName = :lName
 WHERE userID = :userID;
 
--- Update Restaurants
+-- Update Restaurants query has subqueries for locationID and restaurantChainID, based on dropdown selection
 UPDATE Restaurants
-SET locationID = :locationID,
-    restaurantChainID = :restaurantChainID,
-    restaurantName = :restaurantName,
-    description = :description,
-    avgRating = :avgRating,
-    avgPrice = :avgPrice,
-    popularOrder = :popularOrder,
+SET 
+  locationID = (SELECT locationID 
+                FROM Locations 
+                WHERE CONCAT(city, ", ", IFNULL(CONCAT(state, ", "), ""), country) = ?),
+  restaurantChainID = (SELECT restaurantChainID
+                       FROM RestaurantChains
+                       WHERE name = ?),
+  restaurantName = :restaurantName,
+  description = :description,
+  avgRating = :avgRating,
+  avgPrice = :avgPrice,
+  popularOrder = :popularOrder,
 WHERE restaurantID = :restaurantID;
 
 -- Update Reviews
 UPDATE Reviews
 SET review = :review
-WHERE restaurantID = :restaurantID
-  AND userID = :userID;
+WHERE reviewID = :reviewID;
 
 --Update CuisineTypes
 UPDATE CuisineTypes
@@ -155,12 +147,19 @@ SET city = :city,
     country = :country
 WHERE locationID = :locationID;
 
+--Update RestaurantCuisines has subquery for cuisineTypeID based on dropdown selection
 UPDATE RestaurantCuisines
-SET cuisineTypeID = :cuisineTypeID
+SET cuisineTypeID = (
+  SELECT cuisineTypeID
+  FROM CuisineTypes
+  WHERE type = ?)
 WHERE restaurantID = :restaurantID;
 
---Delete (DELETE)
 
+-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
+
+
+--Delete (DELETE)
 --Delete for Users
 DELETE FROM Users
 WHERE userID = :userID;
@@ -169,15 +168,14 @@ WHERE userID = :userID;
 DELETE FROM Restaurants
 WHERE restaurantID = :restaurantID;
 
---Delete for Reviews
+--Delete for Reviews in Reviews page
+DELETE FROM Reviews WHERE reviewID = :reviewID;
+
+-- Delete for Reviews when deleting user record
 DELETE FROM Reviews WHERE userID = :userID;
 
-DELETE FROM Reviews
-WHERE restaurantID = :restaurantID
-  AND userID = :userID;
-
--- This one works
-DELETE FROM Reviews WHERE reviewID = :reviewID;
+-- Delete for Reviews when deleting restaurant record
+DELETE FROM Reviews WHERE restaurantID = :restaurantID
 
 --Delete for CusisineTypes
 DELETE FROM CuisineTypes
@@ -191,13 +189,14 @@ WHERE restaurantChainID = :restaurantChainID;
 DELETE FROM Locations
 WHERE locationID = :locationID;
 
-
--- Delete RestaurantCuisines
+-- Delete for RestaurantCuisines in RestaurantCuisines page
 DELETE FROM RestaurantCuisines
-WHERE cuisineTypeID = :cuisineTypeID;
+WHERE restaurantID = :restaurantID AND cuisineTypeID = :cuisineTypeID;
 
+-- Delete for RestaurantCuisines when deleting a restaurant record
 DELETE FROM RestaurantCuisines
 WHERE restaurantID = :restaurantID;
 
+-- Delete for RestaurantCuisines when deleting a cuisine type record
 DELETE FROM RestaurantCuisines
-WHERE restaurantID = :restaurantID AND cuisineTypeID = :cuisineTypeID
+WHERE cuisineTypeID = :cuisineTypeID;
