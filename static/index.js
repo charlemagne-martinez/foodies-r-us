@@ -90,7 +90,7 @@ function hideChainModal() {
 
 }
 
-function updateReview(reviewID, review) {
+function updateReview(reviewID, restaurantName, userName, review) {
     var showSomethingModal = document.getElementById('update-modal-review');
     var modalBackdrop = document.getElementById('modal-backdrop-review');
 
@@ -99,6 +99,10 @@ function updateReview(reviewID, review) {
 
     
     document.getElementById("update-reviewID").value = reviewID
+
+    document.getElementById("restaurantNameNoChange").innerHTML = restaurantName
+    document.getElementById("userNameNoChange").innerHTML = userName
+
     document.getElementById("update-review").value = review
 
 }
