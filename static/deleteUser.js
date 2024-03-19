@@ -1,5 +1,5 @@
 /*
- * Citation: Citation is from node.js starter code
+ * Citation: Citation is from node.js starter code. Citation used for our delete function
  * Date: 02/28/2024
  * Adapted from: Github page
  * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app

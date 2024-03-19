@@ -1,7 +1,9 @@
 /*
- * Citation: Citation is from node.js starter code
+ * Citation: Citation is from node.js starter code. Citations were used to setup all our app routes. 
+                                                    Functioncs like Fetchdropwdown data were of our own creations 
+                                                    including the queries written.
  * Date: 02/28/2024
- * Copied from: Github page
+ * Copied from: Adapted from Github page
  * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%200%20-%20Setting%20Up%20Node.js
  */ 
 // App.js

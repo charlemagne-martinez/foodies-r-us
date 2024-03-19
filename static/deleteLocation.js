@@ -1,3 +1,9 @@
+/*
+ * Citation: Citation is from node.js starter code. Citation used for our delete fucntions
+ * Date: 03/07/2024
+ * Adapted from: Github page
+ * Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+ */ 
 function deleteLocation(locationID) {
     console.log("deleteLocation.js is connected!");
 

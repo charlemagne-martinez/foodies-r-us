@@ -1,3 +1,9 @@
+/*
+ *
+ * No citations were used for this page
+ * 
+ */
+
 function updateLocation(locationID, city, state, country) {
     console.log("locationID: ", locationID);
 
